@@ -13,7 +13,7 @@ We are going to take brief tour through the following key areas:
 
 - Welcome to Xcode, your new best friend
 - Setting up your first Xcode project
-- Introduction to Views & View Controllers
+- Introduction to Interface Builder
 - Connecting the dots, IBActions & IBOutlets
 - Debugging, Fininding the tree in the forest
 - What is a Storyboard
