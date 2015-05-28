@@ -26,10 +26,17 @@ As show in the above image, click on the *SimpleApp* Label item, located under t
 You will notice on the right hand side the blue pencil looking icon has been selected, this is the *Attributes Inspector* panel and gives you great control over the currently selected
 resources attributes.
 
-##Exercise
+A *View* is nice to look at however it is one of three interconnected parts that comprise the Model-View-Controller (MVC) design pattern (we will be discussing this in more detail).
+Before we move onto the next section to explore the **ViewController*, let's have some fun with the loading screen view.
 
-Have a play, make this the loading screen you always wanted :)
+##Freestyle
 
-**Hint:** Have a look at the object library at the bottom of the panel to throw a few objects into the mix.
+Design the loading screen of your dreams or create the most ridiculous :)
+
+**Hint:** Have a look at the object library at the bottom of the panel, drag n drop a few objects in and also check out their respective attributes.
 
 ![image](ib_object_inspector.png)
+
+Here is one I made earlier:
+
+![image](ib_launch_view_2.png)
