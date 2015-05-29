@@ -73,9 +73,37 @@ You will want to use an *IBOutlet* to enable your code to send a message to your
 Time to try this out for yourself, see if you can:
 
 1. Add a label to your View 
-2. Create a variable in your `ViewController` class that will be connect to your *UILabel*
-3. Connect your Label to your Label Outlet.
+2. Create a variable with attribute *IBOutlet* in your `ViewController` class that you will connect to your *UILabel*
+3. Connect your View's Label to your code's label variable.
 
 **Bonus Points**
 1. Use Auto Layout
 2. Make your Label change text when the `buttonPressed` function is called.
+
+<div class="solution" markdown="1" title="Adding an IBOutlet">
+Your view *ViewController* should look something like this:
+```
+class ViewController: UIViewController {
+    
+    @IBOutlet var label: UILabel!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    // Let's handle the button
+    @IBAction func buttonTapped(sender: AnyObject) {
+        println("Ouch")
+    }
+}
+```
+</div>
+
+
+
