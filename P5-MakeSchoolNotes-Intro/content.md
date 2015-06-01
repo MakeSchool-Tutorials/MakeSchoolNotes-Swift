@@ -11,10 +11,10 @@ In this tutorial we will build upon that knowledge to build a fully fledged appl
 We are going to be focusing on the following topics:
 
 - Introduction to Table Views
-- What is delegation?
-- Creating notes programmatically
-- What is persistance?
-- Using multiple ViewControllers & Containers
+- The Navigation Controller
+- Delegates, protocols and extensions
+- Local storage and Realm
+- Creating notes 
 - Capturing User Input
 - Keyboard Handling
 - Using Seques
@@ -23,4 +23,11 @@ We will touch on other topic through the course of this tutorial however this is
 
 By the end of it you will have a good understanding of building a complete iOS utility app, this will put you in good stead for our next tutorial *Makestagram*!
 
-Let's get started by taking a look at Table Views.
+##Getting Started
+
+Although we could go through setting up the project step by step I've decided to supply a project template that has all additional libraries, provides
+starting point classes for us to quick srart on the app development and most importantly 'Just Works' for everyone. 
+
+[Download MakeSchoolNotes Template Project](MakeSchoolNotes-Template.zip)
+
+Let's move onto the next chapter and start exploring a very important building block in many apps, Table Views.
