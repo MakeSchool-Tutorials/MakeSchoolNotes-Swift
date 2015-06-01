@@ -155,6 +155,29 @@ Finally before the closing squiggley of `viewDidLoad()` let's update `notes` wit
 notes = Note.allObjects();
 ````
 
+So you are very close now.....
+
+Remeber when you added the `UITableViewDataSource` protocol extension? These functions now need updated to pull through the data from your new notes data source.
+<div class="action"></div>
+Replace the following code in `tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)`
+
+    let row = indexPath.row
+    cell.textLabel?.text = "Hello World"
+
+with
+
+    let row = UInt(indexPath.row)
+    let note = notes[row] as! Note
+    cell.note = note
+
+Also replace the following code in `func tableView(tableView: UITableView, numberOfRowsInSection section: Int)`
+
+    return 5
+
+with
+
+    return Int(notes?.count ?? 0)
+
 Finally you can Run the App!
 
 It should look a little like this:
@@ -164,5 +187,7 @@ It should look a little like this:
 The more times you run it, the more notes will be added.  If you wish to clear out the notes for testing, add the following into your realm transaction block. `realm.deleteAllObjects();`
 
 As you have found it, Realm is a great lightweight framework to add data persistance to your app.  You also now know how to add new notes in code, the app is really coming together now.
+
+Now would be a great time to *Commit* your work so far.
 
 In the next chapter we will be looking at enabling the user to create Notes themseleves using a new View Controller and handling data capture.
