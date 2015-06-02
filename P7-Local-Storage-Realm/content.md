@@ -190,4 +190,4 @@ As you have found it, Realm is a great lightweight framework to add data persist
 
 Now would be a great time to *Commit* your work so far.
 
-In the next chapter we will be looking at enabling the user to create Notes themseleves using a new View Controller and handling data capture.
+In the next chapter we will be looking at enabling the user to create Notes themseleves using a new View Controller and handling this data capture process.
