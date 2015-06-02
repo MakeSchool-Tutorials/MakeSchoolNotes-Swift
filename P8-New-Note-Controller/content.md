@@ -94,7 +94,7 @@ Let's add an identifier to our new seque.
 <div class="action"></div>
 1. Select the seque, ensure the *Attributes Inspector* is select and then set the identifier to `Add`
 
-![image](select_seque.png) ![image](seque_identifier_add.png)
+![image](select_seque.png) ![image](seque_identifier_addseque_identifier_add.png)
 
 Now that our `New Note View Controller` has been connected into our original Navigation Stack, we can remove the new one that was created during the embed in navigation
 controller stage.
@@ -128,10 +128,48 @@ This should look as follows:
 
 ![image](new_note_bar.png) 
 
+Awesome, you have some buttons ready but what can they be connected to? 
+Well you could create some functions in the `New Note View Controler` however we are going to look at using *unwindToSegue* to help manage
+our navigation stack, centralise our action functions and reduce code. 
 
-11. Add @IBAction func unwindToSegue (segue : UIStoryboardSegue) {}
+**What is unwindToseque*
 
-12. connect buttons to controller ext / unwindToSeque (add to noteviewcontroller)
+As the name suggests it will 'unwind' the current stack, so when our `New Note View Controller` was moves to the front after we pressed the + button. 
+This will perform the opposite and return our root `Notes View Controller` to to the front.  
+A seque will be used to transition between scenes and we can use the seque identifier to let us know which actions we need to perform.
+
+Let's add this function and seque our buttons.
+
+<div class="action"></div>
+Open `NotesViewController.swift` and add the following to this class.
+
+    @IBAction func unwindToSegue(segue: UIStoryboardSegue) {
+        
+        if let identifier = segue.identifier {
+            println("Identifier \(identifier)")
+        }
+    }
+	
+Now connect both Cancel and Save bar buttons in `New Note View Controller` to the `Exit` Icon.  You will be presented with a popup to
+select the `IBAction` to connect with.
+
+![image](unwind_connection_baritems.png) 
+![image](popup_unwindtoseque.png) 
+
+You should now see to seques in the `Notes View Controller` outline.
+
+![image](unwind_seque_selection.png) 
+
+<div class="action"></div>
+Select the first one, this will be the `Cancel` `Bar Item` connection, ensure the *Attributes Insepctor* is selected and give 
+this an identifier of 'Cancel'. Modify the next seque to have an identifier of 'Save'.
+
+Run your App!
+
+Go in add 'Add' a new note, hit cancel, go back in and hit save.  Then take a look at your console output in the debug window.
+You can see we now know which buttons are being pressed! The flow of the app is really coming on.
+
+![image](debug_identifiers.png) 
 
 13. move add code into prepareForSegue
 
