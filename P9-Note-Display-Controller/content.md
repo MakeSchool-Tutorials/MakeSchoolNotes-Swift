@@ -65,6 +65,9 @@ Open `NotesViewController.swift` and add the followig to the `switch` statement 
 	    realm.transactionWithBlock() {
 	        realm.deleteObject(self.selectedNote)
 	    }
+        
+        let source = segue.sourceViewController as! NoteDisplayViewController
+                source.note = nil;
 
 Our trash can will now delete notes!
 
@@ -239,8 +242,64 @@ it has no title or content only it's modification date.
 
 ![image](simulator_dashboard.png) ![image](simulator_view.png) ![image](simulator_add.png) 
 
-If you havn't commited your code in a while, now would be a good time to do so.  Setting ourselves up nicely for storing inputted information.
+##Saving Input
 
-##Handling User Input
+In the simulator by default it will not show the iOS keyboard as you can simply type into the fields with your physical keyboard which tends to make input easier when testing.  
+However I find it easier to disable the physical keyboard so it will always default to the software keyboard to get more accurate simulation.
+From the `iOS Simulator` menu: `Hardware/Keyboard/Connect Hardware Keyboard` to deselect this option.
 
-Time to start supporting that keyboard, as mentioned earlier the MakeSchool ConvenienceKit provides
+to simply disabled the `Hardware
+Let's add quick support for modification of our notes.
+
+When is a good time to save a Note? When the View is dismissed seems like a good place to do so.
+
+[action]
+Add the following code to `NoteDisplayViewController` after `func displayNote`:
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        saveNote()
+    }
+    
+    func saveNote() {
+        if let note = self.note {
+            let realm = RLMRealm.defaultRealm()
+            
+            realm.transactionWithBlock {
+                if (note.title != self.titleTextField.text || note.content != self.contentTextView.textValue) {
+                    note.title = self.titleTextField.text
+                    note.content = self.contentTextView.textValue
+                    note.modificationDate = NSDate()
+                }
+            }
+        }
+    }
+    
+When you press the effective back button '< Dashboard' the view will be dismissed and the `viewWillDisappear` method will be called.  At this point `saveNote` is called,
+this method will check that the fields have changed, if so then update the note.
+
+If we return back to our `Dashboard Scene` at this point, there will be no update.
+
+As we learnt in this chapter, it's better to refresh scene information on `viewWillAppear`.  Let's go back and make this change to our `Dashboard Scene`.
+
+[action]
+Modify `NotesViewController` as follows:
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        notes = Note.allObjects().sortedResultsUsingProperty("modificationDate", ascending: false)
+    }
+    
+Now Run the App, you can add new notes, edit existing notes using the physical keyboard.  Another step closer to full Note management.
+
+If you havn't commited your code in a while, now would be a good time to do so. 
+
+Give yourself a pat on the back the app is coming along nicely, time to move onto the next chapter, Keyboard Handling.

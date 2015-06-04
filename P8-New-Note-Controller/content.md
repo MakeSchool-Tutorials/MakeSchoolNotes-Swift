@@ -332,13 +332,3 @@ Now run the App, the rows will fit nicely and a left swipe will now reveal the `
 Great your Notes app has progressed nicely, you can now perform note management actions and have implemented the Table View delegate.  
 
 Time to move on and create a new controller to display the contents of a note and allow us to modify the contents.
-
-17. drag container view into new note view controller, will create a new view controller 
-
-17. add manual seque, call it 'ShowExistingNote', drag from notes view controller to NoteDisplayViewController
-
-18. add toolbar, set trash identifier
-
-19. ctrl connect to exit, unwind seque, set identifier 'Delete'
-
-20. create switch statement , save , delete
