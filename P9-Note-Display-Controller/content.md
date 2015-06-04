@@ -67,7 +67,7 @@ Open `NotesViewController.swift` and add the followig to the `switch` statement 
 	    }
         
         let source = segue.sourceViewController as! NoteDisplayViewController
-                source.note = nil;
+        source.note = nil;
 
 Our trash can will now delete notes!
 
