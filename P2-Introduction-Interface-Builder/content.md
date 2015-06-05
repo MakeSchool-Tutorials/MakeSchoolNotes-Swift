@@ -8,12 +8,15 @@ The Interface Builder editor within Xcode makes it simple to design a full user 
 
 ##Views
 
-In iOS, you use windows and views to present your application's content on the screen. Windows do not have any visible content themselves but provide a basic container for your application's views. 
-Views define a portion of a window that you want to fill with some content. For example, you might have views that display images, text, shapes, or some combination thereof. You can also use views to organize and manage other views.
+In iOS, you use windows and views to present your application's content on the screen. Windows do not have any visible content themselves but provide a basic container 
+for your application's views. 
+Views define a portion of a window that you want to fill with some content. For example, you might have views that display images, text, shapes, or some combination thereof. 
+You can also use views to organize and manage other views.
 
 Now let's look at a view.
 
-Click on the *LaunchScreen.xib* from the *Project Navigator*
+> [action]
+> Click on the *LaunchScreen.xib* from the *Project Navigator*
 
 ![image](project_navigator_launch.png)
 
@@ -21,7 +24,8 @@ This will open our *LaunchScreen* XIB (XML Interface Builder) in the Interface B
 
 ![image](ib_launch_view.png)
 
-As show in the above image, click on the *SimpleApp* Label item, located under the *View* hierarchy.  This will highlight the 'SimpleApp' label as shown.
+> [action]
+> As show in the above image, click on the *SimpleApp* Label item, located under the *View* hierarchy.  This will highlight the 'SimpleApp' label as shown.
 
 You will notice on the right hand side the blue pencil looking icon has been selected, this is the *Attributes Inspector* panel and gives you great control over the currently selected
 resources attributes.

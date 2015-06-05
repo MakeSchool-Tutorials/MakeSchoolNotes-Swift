@@ -50,7 +50,7 @@ We also want a way to call this `Note Display View Controller` when a row is sel
 [action]
 Connect (Ctrl-Drag) your Dashboard View Controller to the `Note Display View Controller`.
 
-![image](manual_seque.png.png) 
+![image](manual_seque.png) 
 
 This will create a new seque, set the identifier to 'ShowExistingNote'.
  
@@ -99,6 +99,13 @@ We have a basic presentation interface, now we need to connect the `Text Field` 
 It should look like this:
 
 ![image](display_view.png) 
+
+Remeber if things are not looking quite right when you run on device, you can generally solve these through resolving auto layout that you tried out
+in the simple app tutorial.
+
+Select from the main menu `Editor\Resolve Auto Layout Issues\(Selected Views) Reset to Suggested Constraints`
+
+![image](reset_constraints.png)
  
 Time to add some outlets.
 
@@ -114,11 +121,12 @@ Open `NoteDisplayViewController.swift` and add modify the head of your class as 
 	    
 	    @IBOutlet weak var titleTextField: UITextField!
 	    @IBOutlet weak var contentTextView: TextView!
-	
+        
 	    override func viewDidLoad() {
 
 For the eagle eyed, you will notice that we are using `TextView` and not `UITextView` this is provided by the `ConvenienceKit` framework, this framework was created by Make School
 as an input helper to streamline the process of handling user input. Cmd-Click if you are curious about this subclass.
+
 
 [action]
 Update your `UITextView` object in the *Identity Inspector* to use the `TextView` class, you also need to set the `Module` to be `ConvenienceKit`.

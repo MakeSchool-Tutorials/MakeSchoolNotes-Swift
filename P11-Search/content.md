@@ -122,8 +122,8 @@ Run the App again, looking good!
 
 Once again a good time to commit your code.
 
-Well done you have made it this far and have a fully functionaly Notes application.  Sure it may be a little rough around the edges as you get to grips
-with using Auto Layout and it may not be super pretty or colorful however it's your first App and a great starting place in your development :)
+Well done you have made it this far and have a fully functionaly Notes application.  Sure it may not be super pretty and polished yet 
+however it's your first App and a great starting place in your development.
 
 The next chapter is on polish, we will look at changing the color of various elements to put your own stamp on it.
 
