@@ -8,16 +8,18 @@ of how to use Xcode and the fundemental building blocks of how an App is put tog
 
 In this tutorial we will build upon that knowledge to build a fully fledged application that will touch upon many beginner and intermediate development topics. 
 
-We are going to be focusing on the following topics:
+We are going to be looking at the following topics:
 
 - Introduction to Table Views
 - The Navigation Controller
 - Delegates, protocols and extensions
 - Local storage and Realm
 - Creating notes 
+- Using Seques
 - Capturing User Input
 - Keyboard Handling
-- Using Seques
+- Constraints
+- Search Bar
 
 We will touch on other topic through the course of this tutorial however this is an outline of the skills and questions you will be able to answer by the end of this tutorial.
 
