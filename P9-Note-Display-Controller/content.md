@@ -21,7 +21,7 @@ When the container was added it will create a new embeded seque under `New Note 
 > Set this seque identifier to: 'ShowNewNote' (We will be using this later on)
 > ![image](embed_seque_1.png) ![image](embed_seque_2.png) 
 
-##Adding a The Note Display Controller
+##Adding he Note Display Controller
 
 > [action] 
 > As per the previous chapter, create a new View Controller subclass entitled `NoteDisplayViewController` and set your newly added View Controller to use this Custom Class.
