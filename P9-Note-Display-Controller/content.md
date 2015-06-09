@@ -212,7 +212,7 @@ If we now go back to our `Note Display View Controller` and ensure we call `disp
 >	    
 	    override func viewWillAppear(animated: Bool) {
 	        super.viewWillAppear(animated)
-	        
+>
 	        displayNote(self.note)
 	    }
 >	    
@@ -321,7 +321,7 @@ As we learnt in this chapter, you should refresh scene information on `viewWillA
 >    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+>
         notes = Note.allObjects().sortedResultsUsingProperty("modificationDate", ascending: false)
     }
 >    
