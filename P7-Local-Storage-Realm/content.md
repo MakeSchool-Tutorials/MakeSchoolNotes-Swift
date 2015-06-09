@@ -112,9 +112,7 @@ Before you create a new note, you need to ensure you add a notes variable to our
     var notes: RLMResults! {
         didSet {
             // Whenever notes update, update the table view
-            if let tableView = tableView {
-                tableView.reloadData()
-            }
+            tableView?.reloadData()
         }
     }
 >
