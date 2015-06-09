@@ -109,7 +109,7 @@ Before you create a new note, you need to ensure you add a notes variable to our
 > [action]
 > Add the following code to after your `tableView` variable in `NoteViewController`
 >
-    var notes: RLMResults! {
+    var notes: Results<Note>! {
         didSet {
             // Whenever notes update, update the table view
             if let tableView = tableView {
