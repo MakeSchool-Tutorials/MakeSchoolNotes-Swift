@@ -138,13 +138,13 @@ Great you have a new note but nowhere to put it, let's add it to our `Realm` loc
 > [action]
 > Add the following code right after the previous code.
 >
-    let realm = RLMRealm.defaultRealm() // 1
-    realm.transactionWithBlock() { // 2
-        realm.addObject(myNote) // 3
+     let realm = Realm() // 1
+    realm.write() { // 2
+        realm.add(myNote) // 3
     }
 >
 > 1. Before you can add it to Realm you must first grab the default realm.
-> 2. Write operations must be performed within a real transaction.
+> 2. Write (eg. add) operations must be performed within a write closure.
 > 3. Add your new note to realm
 
 Realm makes this whole process nice and easy.
@@ -187,7 +187,7 @@ It should look a little like this:
 ![image](notes_app_realm.png)
 
 The more times you run it, the more notes will be added.  
-If you wish to clear out the notes for testing, add the following into your realm transaction block. `realm.deleteAllObjects();`
+If you wish to clear out the notes for testing, add the following into your realm write closure. `realm.deleteAll();`
 
 As you have found out, Realm is a great lightweight framework to add data persistance to your app.  
 You also explored how to add new notes in code, the app is starting to come together now.
