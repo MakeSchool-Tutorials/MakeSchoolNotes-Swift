@@ -5,7 +5,7 @@ slug: search
 
 ##UISearchBar
 
-Let's take a look at adding a search bar to our `Dasboard Scene`.
+Let's take a look at adding a search bar to our `Dashboard Scene`.
 
 > [action]
 > See if you can add a `Search Bar` to your `Dashboard Scene` yourself.
@@ -13,10 +13,10 @@ Let's take a look at adding a search bar to our `Dasboard Scene`.
 > [solution]
 > ![image](add_search_bar.png)
 
-Much like the TableView we will need a `UISearchBar` `IBOutlet` to connect our search object to our controller code and we will be creating yet another new extension
+Much like the TableView, we will need a `UISearchBar` `IBOutlet` to connect our search object to our controller code and we will be creating yet another new extension
 to implement the search delegate `UISearchBarDelegate`.
 
-We will then implement a state system into our `NoteViewController` for displaying notes normally (DefaultMode) and how to display when we are utilising search (SearchMode)
+We will then implement a state system into our `NoteViewController` for displaying notes normally (DefaultMode) and another state for what to display when we are utilising search (SearchMode).
 
 Let's add this outlet and possible search states.
 
@@ -36,17 +36,17 @@ Let's add this outlet and possible search states.
       var state: State = .DefaultMode
 >
 
-Now time to tack the interface.
+Now time to tackle the interface.
      
 > [action]
 > 1. Connect your Search Bar in your interface to the `searchBar` outlet.
-> 2. Set the `Search Bar Delegate`, you can do this as you did before with `tableView` e.g. `searchBar.delegate = self` however 
+> 2. Set the `Search Bar Delegate`, you can do this as you did before with `tableView` e.g. `searchBar.delegate = self`. However 
 > you can also do it by opening the *Connections Inspector* for the `Search Bar` object and dragging the delegate outlet to the `Dashboard`
 >
 > ![image](search_delegate_connect.png)
 >
 
-Let's add some search functionality, Realm can use `NSPredicate` to filter it's result set. 
+Let's add some search functionality. Realm can use `NSPredicate` to filter its result set. 
 `NSPredicate` allows you to construct logical conditions used to constrain a search.  It's easier to see it in action.
 
 > [action]
@@ -58,11 +58,11 @@ Let's add some search functionality, Realm can use `NSPredicate` to filter it's 
     }
 >
     
-This should be fairly clear what it is roughly happening. 
+It should be fairly clear what is roughly happening here. 
 *IF* the *TEXT* entered in the search bar is found in either the *TITLE* or the *CONTENT* of a note, then include that matching note as part of the result set.
 
 ##Search Delegate
-Now we need our app to know when we are modifying our search bar, this is where the `UISearchBarDelegate` comes into play.
+Now we need our app to know when we are modifying our search bar. This is where the `UISearchBarDelegate` comes into play.
 
 > [action]
 > Add the follow extension to the `NotesViewController`
@@ -84,7 +84,7 @@ Now we need our app to know when we are modifying our search bar, this is where 
     }
 >
     
-Run your App, pretty nice eh? Although the search works well the user experience can always be better.  Let's improve the situation:
+Run your App. Pretty nice, eh? Although the search works well, the user experience can always be better.  Let's improve the situation:
     
 ##The State Machine
  
@@ -98,7 +98,7 @@ When the `Dashboard` is presented we want to revert to `.DefaultMode`.
       state = .DefaultMode
     }
  
-We are setting the default state however nothing will happen unless we use the ever useful *didSet* functionality to perform actions when our `state` machine is updated.
+We are setting the default state. However nothing will happen unless we use the ever-useful *didSet* functionality to perform actions when our `state` machine is updated.
 
 > [action]
 > Ensure your `state` variable definition reads as follows:
@@ -123,12 +123,12 @@ We are setting the default state however nothing will happen unless we use the e
     }
 >    
 > What's going on:
-> 1. We have moved our default date search code so whenever we return to default state we want to ensure the list is reset.
-> 2. This returns the navigation bar in an animated fashion, you can see why it was hidden in point 6
+> 1. We have moved our default state search code so whenever we return to default state the list is reset.
+> 2. This returns the navigation bar in an animated fashion - you can see why it was hidden in point 6
 > 3. Remove keyboard popup
-> 4. Animate in a cancel button beside the search bar, this looks nice (UI Polish)
+> 4. Animate in a cancel button beside the search bar. This just looks nice (UI Polish)
 > 5. Perform a search on any text when entered into the search bar
-> 6. This makes the search bar take prominance in our view, by hiding the navigation bar the user is focused on search. (UI Polish)
+> 6. This makes the search bar take prominence in our view. By hiding the navigation bar the user is focused on search. (UI Polish)
 >
 
 Run the App
@@ -137,9 +137,9 @@ Run the App
 
 Once again a good time to **Commit your code.**
 
-Well done you have made it this far and have a fully functionaly Notes application.  
-Sure it may not be super pretty and polished yet however it's your first App and a great starting place in your development.
+Well done! You have made it this far and have a fully functional Notes application.  
+Sure, it may not be super pretty and polished yet. However, it's your first App and a great starting place in your development.
 
-The next chapter is brief chapter on app polish, we will look at changing the color of various elements to start putting your own stamp on it.
+The next chapter is brief chapter on app polish. We will look at changing the color of various elements to start putting your own stamp on it.
 
 
