@@ -41,7 +41,7 @@ Seriously let's take it for a spin. Time to implement Realm into our `Note` obje
     class Note : RLMObject { 
     }
 
-So we've dynamically imported the Realm library so we have access to this functionality.  You remeber Alt-Clicking? Try it now on *RLMObject*.
+So we've dynamically imported the Realm library so we have access to this functionality.  You remember Alt-Clicking? Try it now on *RLMObject*.
 Realm objects are just like normal object, you just subclass *RLMObject* to get started.
 
 > [action]
@@ -152,12 +152,12 @@ Realm makes this whole process nice and easy.
 > [action]
 > Finally before the closing squiggley of `viewDidLoad()` let's update our `notes` variable with our latest Realm data.
 >
-    notes = Note.allObjects();
+    notes = realm.objects(Note)
 >
 
 Very close now.....
 
-Remeber when you added the `UITableViewDataSource` protocol extension? These functions now need updated to pull through the data from your new notes data source.
+Remember when you added the `UITableViewDataSource` protocol extension? These functions now need updated to pull through the data from your new notes data source.
 
 > [action]
 > Replace the following code in `tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)`
@@ -167,8 +167,8 @@ Remeber when you added the `UITableViewDataSource` protocol extension? These fun
 >
 > with
 > 
-    let row = UInt(indexPath.row)
-    let note = notes[row] as! Note
+    let row = indexPath.row
+    let note = notes[row] as Note
     cell.note = note
 >
 > Also replace the following code in `func tableView(tableView: UITableView, numberOfRowsInSection section: Int)`
