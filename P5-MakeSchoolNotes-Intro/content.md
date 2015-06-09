@@ -30,6 +30,6 @@ By the end of it you will have a good understanding of building a complete iOS u
 Although we could go through setting up the project step by step, I've decided to supply a project template that has all additional libraries, provides
 starting point classes for us to quick start on the app development, and most importantly 'Just Works' for everyone. 
 
-[Download MakeSchoolNotes Template Project](MakeSchoolNotes-Template.zip)
+[Download MakeSchoolNotes Template Project](https://github.com/MakeSchool-Tutorials/MakeSchoolNotes-Swift/raw/master/P5-MakeSchoolNotes-Intro/MakeSchoolNotes-Template.zip)
 
 Let's move onto the next chapter and start exploring a very important building block in many apps, Table Views.
