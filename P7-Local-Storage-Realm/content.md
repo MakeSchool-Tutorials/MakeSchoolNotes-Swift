@@ -36,7 +36,7 @@ Hmmmmm... I like saving lines of code and I like saving work... I'm sure Realm s
 Seriously let's take it for a spin. Time to implement Realm into our `Note` object, you can find this under the `Entities` group.
 
     import Foundation
-    import Realm
+    import RealmSwift
 
     class Note : RLMObject { 
     }
@@ -138,13 +138,13 @@ Great you have a new note but nowhere to put it, let's add it to our `Realm` loc
 > [action]
 > Add the following code right after the previous code.
 >
-     let realm = Realm() // 1
+    let realm = Realm() // 1
     realm.write() { // 2
         realm.add(myNote) // 3
     }
 >
 > 1. Before you can add it to Realm you must first grab the default realm.
-> 2. Write (eg. add) operations must be performed within a write closure.
+> 2. All changes to an object (addition, modification and deletion) must be done within a write transaction/closure.
 > 3. Add your new note to realm
 
 Realm makes this whole process nice and easy.
