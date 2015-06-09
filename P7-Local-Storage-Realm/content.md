@@ -10,18 +10,17 @@ their precious notes after the app is restarted.  That's a 1 Star review waiting
 
 ##Persistence
 
-Persistence is the ability of an object to survive the lifetime of the OS process in which it resides.
+In this context, persistence is the ability to save data so that when you close an app and reopen it, the data is still there.
 
 **How to achieve persistence**
 
-- Should be transparent to application developer
 - Upon activation, load object state from persistent storage
-- Storing object state on persistent storage before de-activation
+- Before deactivation, store object state to persistent storage
 
 Hold up... This sounds like it could be painful...  
 
-Thankfully this is an age old problem with many differnent solutions, Apple offers you [Core Data](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdTechnologyOverview.html) as a complete framework for object graph management.
-It can be a great solution however it is also a lot of work :)
+Thankfully this is an age old problem with many different solutions, Apple offers you [Core Data](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdTechnologyOverview.html) as a complete framework for object graph management.
+It can be a great solution, however it is also a lot of work :)
 
 Let's look at a lightweight alternative called Realm. 
 
@@ -31,9 +30,9 @@ What is [Realm](https://realm.io/)?
 
 *Realm is a replacement for SQLite & Core Data. It can save you thousands of lines of code & weeks of work, and lets you craft amazing new user experiences.*
 
-Hmmmmm... I like saving lines of code and I like saving work... I'm sure Realm says that to all the boys/girls...
+Hmmmmm... I like saving lines of code and I like saving work... 
 
-Seriously let's take it for a spin. Time to implement Realm into our `Note` object, you can find this under the `Entities` group.
+Seriously, let's take it for a spin. Time to implement Realm into our `Note` object, you can find this under the `Entities` group.
 
     import Foundation
     import Realm
