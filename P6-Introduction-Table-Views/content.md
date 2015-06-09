@@ -14,7 +14,7 @@ Let's take a sneak peek of MakeSchoolNotes a little bit further on in the tutori
 A Table view is an instance of the `UITableView` class. It has only one column and only allows vertical scrolling.  
 Rows are drawn using cells, which are `UITableViewCell` objects.  
 
-As you can see, it's an ideal way to display lists of information, perfect for our app.
+As you can see, it's an ideal way to display lists of information, which is perfect for our app.
 
 > [action]
 > Open `Main.Storyboard` you will see that you have two `Controllers`.
@@ -36,17 +36,17 @@ I would encourage you to always look at new objects under the various *Inspector
 You may have noticed that if you click on the `View Controller` and inspect under the *Identity Inspector*, it is using a custom class of **NotesViewController**. 
 You will be expanding on this class very soon.
  
-You will come back to this shortly. However, let's look at the other `Controller` in our Storyboard.
+You will come back to this shortly. However, let's first look at the other `Controller` in our Storyboard.
  
 ##Navigation Controller
  
-What is a *Navigation Controller* ?
+What is a *Navigation Controller*?
 
 The *Navigation Controller* manages a stack of view controllers. It provides a drill-down interface for hierarchical content. It often goes hand in hand with Table Views - 
-for example look at the *Photos* App. Click `Albums` to take you into a View Controller that presents the UITableView, click a row and it opens 
-a View Controller to display image thumbnails. Drill down again and you go into another View Controller that will preview the image.
+for example, look at the *Photos* App. Tapping on `Albums` takes you into a View Controller that presents the UITableView.  Tapping on a row opens 
+a View Controller to display image thumbnails. Tapping on a picture lets you drill down one level deeper into another View Controller that will preview the image.
 
-Notice when you are *Navigating* the app you will always have a `Navigation Bar` at the top. This is provided by the `Navigation Controller` and sits at 
+Notice that when you are *Navigating* within the app, you will always have a `Navigation Bar` at the top. This is provided by the `Navigation Controller` and sits at 
 the root of your app. This enables you to easily perform actions such as *Back* that help manage your stack of view controllers.
 
 ##Connecting the Table View
@@ -84,8 +84,8 @@ Let's change the View Controller name while we are at it.
 
 > [action]
 > Click on *Home* and then press *Enter* and rename to `Dashboard`
->
-> Great your Table View is now connected to tabelView variable in `NotesViewController`. 
+
+Great! Your Table View is now connected to the tabelView variable in `NotesViewController`. 
 
 So hit run!
 
@@ -95,7 +95,7 @@ to be set up before it will run.
 
 #Adding a Table Data Source
 
-This one is a bit more self explanatory. For the Table View to display data, it requires a data source to populate from. This might be an array or information, it could be data being queried
+This one is a bit more self explanatory. For the Table View to display data, it requires a data source to draw from. This might be an array or information, it could be data being queried
 from a local database, it might be data being pulled down from a remote source.
 
 Let's tell our tableView where it should expect to find a dataSource handler. Let's set this one via code. However, it could also be set via Interface Builder.
@@ -124,7 +124,7 @@ OK great. So how do I add this protocol support for `UITableViewDataSource`?
 
 ##Extensions
 
-Glad you asked! You can extend support to your existing class using an *Extension*. Extensions can add new functionality, butr they can't override existing functionality. 
+Glad you asked! You can extend support to your existing class using an *Extension*. Extensions can add new functionality, but they can't override existing functionality. 
 In this case you will be extending your class to implement the additional protocol functionality required to provide the data source.
 
 > [action]
@@ -155,9 +155,9 @@ Try it out now on your newly added `func tableView(tableView: UITableView, numbe
 
 ![image](table_view_protocol_lookup.png)
 
-If you look at comment //1
+Take a look at comment //1.
 
- This code is trying to return a `UITableViewCell` with a unique identifier of "NoteCell" (You can create custom Table View Cells so you could have many unique styles in your application).
+ This code is trying to return a `UITableViewCell` with a unique identifier of "NoteCell" (you can create custom Table View Cells with different identifiers so you could have many unique styles in your application).
 *dequeueReusableCellWithIdentifier* is trying to make this process more efficent by trying to find a reusable cell first and save on additional initializing overhead.  
 If none exist, which will be the case when we run our app, it will create new `UITableViewCells` and in our case we are going to use our own custom subclass of `NoteTableViewCell`.
 
@@ -207,8 +207,7 @@ Right now our basic cell only contains a title. You may have noticed a few style
 > Select the `NoteCell` in the Interface Builder and expand the hierarchy.
 > ![image](notecell_custom_1.png)
 
-Let's see if you can create a custom cell with a title label and modification date label, increase the cell height if neeeded and feel free to add plausable placeholder text in your labels.  
-It makes it much easier to visualise and ensure you have the right aesthetic.
+Let's see if you can create a custom cell with two labels: title and modification date. Feel free to increase the cell height as neeeded and to add plausable placeholder text in your labels (it makes it much easier to visualise and ensure you have the right aesthetic).
 
 *Hint* - Make sure you change the `Style` to `Custom` first. This will give you an empty `Content View` to work with.
 
@@ -250,5 +249,5 @@ Run your App.
 Pretty sweet...  
 You have explored some fundamental skills and this is certainly not the last time you will hear of `Protocols`, `Delegates` and `Extensions`.
 
-Adding hardcoded data to populate your TableView is interesting and demonstrates the basics, but it's not that useful.  
+Adding hardcoded data to populate your TableView is interesting and demonstrates the basics, but it's clearly not what you want for a real notes app.  
 Time to move on now and see how local storage using Realm can make this App a lot more useful.

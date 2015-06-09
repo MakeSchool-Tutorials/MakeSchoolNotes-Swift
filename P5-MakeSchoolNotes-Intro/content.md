@@ -15,15 +15,15 @@ We are going to be looking at the following topics:
 - Delegates, protocols and extensions
 - Local storage and Realm
 - Creating notes 
-- Using Seques
+- Using Segues
 - Capturing User Input
 - Keyboard Handling
 - Constraints
 - Search Bar
 
-We will touch on other topics through the course of this tutorial. However, this is an outline of the skills and questions you will be able to answer by the end of this tutorial.
+Although we'll touch on some other topics, this is an outline of what youll be most familiar and comfortable with by the end of this tutorial.
 
-By the end of it you will have a good understanding of building a complete iOS utility app. This will put you in good stead for our next tutorial, *Makestagram*!
+Once you've finished, you'll have a good understanding of how to build a complete iOS utility app and be in good shape for the next tutorial, *Makestagram*!
 
 ##Getting Started
 
