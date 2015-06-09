@@ -239,8 +239,8 @@ connect the `Custom Cell View` label objects respectively in IB.
 >
 > Hopefully you spotted the previous line of code `cell.textLabel?.text = "Hello World"`. Replace it with the following:
 >
-    cell.titleLabel.text = "Hello";
-    cell.dateLabel.text  = "Today";
+    cell.titleLabel.text = "Hello"
+    cell.dateLabel.text  = "Today"
 >
 
 Run your App.
