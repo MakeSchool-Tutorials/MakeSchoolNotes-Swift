@@ -112,9 +112,7 @@ Before you create a new note, you need to ensure you add a notes variable to our
     var notes: RLMResults! {
         didSet {
             // Whenever notes update, update the table view
-            if let tableView = tableView {
-                tableView.reloadData()
-            }
+            tableView?.reloadData()
         }
     }
 >
@@ -152,7 +150,7 @@ Realm makes this whole process nice and easy.
 > [action]
 > Finally before the closing squiggley of `viewDidLoad()` let's update our `notes` variable with our latest Realm data.
 >
-    notes = Note.allObjects();
+    notes = Note.allObjects()
 >
 
 Very close now.....
@@ -187,7 +185,7 @@ It should look a little like this:
 ![image](notes_app_realm.png)
 
 The more times you run it, the more notes will be added.  
-If you wish to clear out the notes for testing, add the following into your realm transaction block. `realm.deleteAllObjects();`
+If you wish to clear out the notes for testing, add the following into your realm transaction block. `realm.deleteAllObjects()`
 
 As you have found out, Realm is a great lightweight framework to add data persistance to your app.  
 You also explored how to add new notes in code, the app is starting to come together now.
