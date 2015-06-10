@@ -218,10 +218,11 @@ is performed. So let's look there.
 
 > [action]
 > Open `NotesViewController.swift` and locate the `unwindToSeque` function.  Modify your code as follows:
+
 >
    if let identifier = segue.identifier {
             let realm = Realm()
-            
+>               
 >           switch identifier {
             case "Save":
                 let source = segue.sourceViewController as! NewNoteViewController //1
@@ -245,7 +246,7 @@ You are using a switch statement, although for only one case you would typically
 As it stands we have just added support for our `Save Action`.
 
 1. We need to grab a reference to the outgoing controller, in this case our `New Note View Controller`, we do this to gain access to the `currentNote` variable that holds the new Note object.
-2. Realm allows for advanced sorting and query functionality for it's stored objets, preivously we just grabbed all Note objects without any regard for order, this change makes it more useful 
+2. Realm allows for advanced sorting and query functionality for it's stored objets, previously we just grabbed all Note objects without any regard for order, this change makes it more useful 
 and orders by the most recent `modificationDate`.
 
 Before you run the app let's tidy up the `viewDidLoad()` function, previously you added test code to create a new Note everytime the app is run.  Time to tidy this code up now.
@@ -254,10 +255,11 @@ Before you run the app let's tidy up the `viewDidLoad()` function, previously yo
 > Modify your `viewDidLoad()` method to read as follows:
 >
     override func viewDidLoad() {
+        let realm = Realm()
         super.viewDidLoad()
         tableView.dataSource = self
 >        
-        notes = Note.allObjects().sortedResultsUsingProperty("modificationDate", ascending: false)
+        notes = realm.objects(Note).sorted("modificationDate", ascending: false)
     }
 >
     
@@ -296,15 +298,15 @@ would be a great time to add an `Extenstion` to the `Notes View Controller` to i
         // 4
         func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
             if (editingStyle == .Delete) {
-                let note = notes[indexPath.row] as! Object
+                let note = notes[indexPath.row] as Object
 >                
                 let realm = Realm()
 >                
                 realm.write() {
                     realm.delete(note)
                 }
->                
-                notes = Note.allObjects().sorted("modificationDate", ascending: false)
+>              
+                notes = realm.objects(Note).sorted("modificationDate", ascending: false)
             }
         }
 >

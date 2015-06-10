@@ -63,8 +63,8 @@ Great, let's add support for our new trash can seque.
 > Open `NotesViewController.swift` and add the followig to the `switch` statement in your `unwindToSeque` function.
 >	
 	case "Delete":
-	    realm.transactionWithBlock() {
-	        realm.deleteObject(self.selectedNote)
+	    realm.write() {
+	        realm.delete(self.selectedNote)
 	    }
 >        
         let source = segue.sourceViewController as! NoteDisplayViewController
@@ -116,7 +116,7 @@ Time to add some outlets.
 >
 	import Foundation
 	import UIKit
-	import Realm
+	import RealmSwift
 	import ConvenienceKit
 >
 	class NoteDisplayViewController: UIViewController {
@@ -151,7 +151,7 @@ Now let's get these new display objects display our existing note information, w
     }
 >
 	
-Remeber the `didSet` functionality we added during the 'Local Storage with Realm' chapter? Have a quick look at `NoteTableViewCell` for a reminder.
+Remember the `didSet` functionality we added during the 'Local Storage with Realm' chapter? Have a quick look at `NoteTableViewCell` for a reminder.
 In this case when a note is set, we want to call the `displayNote` method to populate our title and content display objects in our view.
 
 > [action]
@@ -196,7 +196,7 @@ If we now go back to our `Note Display View Controller` and ensure we call `disp
 >
 	import Foundation
 	import UIKit
-	import Realm
+	import RealmSwift
 	import ConvenienceKit
 >
 	class NoteDisplayViewController: UIViewController {
@@ -290,9 +290,9 @@ When is a good time to save a Note? When the View is dismissed seems like a good
 >   
     func saveNote() {
         if let note = self.note {
-            let realm = RLMRealm.defaultRealm()
+            let realm = .Realm()
 >            
-            realm.transactionWithBlock {
+            realm.write {
                 if (note.title != self.titleTextField.text || note.content != self.contentTextView.textValue) {
                     note.title = self.titleTextField.text
                     note.content = self.contentTextView.textValue
