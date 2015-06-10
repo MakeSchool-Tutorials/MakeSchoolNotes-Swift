@@ -10,13 +10,12 @@ their precious notes after the app is restarted.  That's a 1 Star review waiting
 
 ##Persistence
 
-Persistence is the ability of an object to survive past the lifetime of the OS process in which it resides.
+In this context, persistence is the ability to save data so that when you close an app and reopen it, the data is still there.
 
 **How to achieve persistence**
 
-- Should be transparent to application developer
 - Upon activation, load object state from persistent storage
-- Storing object state on persistent storage before de-activation
+- Before deactivation, store object state to persistent storage
 
 Hold up... This sounds like it could be painful...  
 
@@ -41,7 +40,7 @@ OK, I'm convinced. Let's take it for a spin. Time to implement Realm into our `N
     class Note : RLMObject { 
     }
 
-So we've dynamically imported the Realm library so we have access to this functionality.  You remeber Alt-Clicking? Try it now on *RLMObject*.
+So we've dynamically imported the Realm library so we have access to this functionality.  You remember Alt-Clicking? Try it now on *RLMObject*.
 Realm objects are just like normal objects - you just subclass *RLMObject* to get started.
 
 > [action]
@@ -100,7 +99,7 @@ that can be squeezed out of an app. This comes with experience.
 ##didSet
 
 So you've added a variable to store the `Note` object. What is didSet? It's a rather handy bit of functionality that will be called whenever this `note` object is modified. 
-For example, if the note gets edited anywhere, this function will be called that will update the OutLet labels and therefore update the `NoteCell` in our list.
+For example, if the note gets edited anywhere, this function will be called that will update the Outlet labels and therefore update the `NoteCell` in our list.
 
 ##Notes Collection
 
@@ -161,7 +160,8 @@ Remember when you added the `UITableViewDataSource` protocol extension? These fu
 > Replace the following code in `tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)`
 >
     let row = indexPath.row
-    cell.textLabel?.text = "Hello World"
+    cell.titleLabel.text = "Hello"
+    cell.dateLabel.text = "Today"
 >
 > with
 > 
