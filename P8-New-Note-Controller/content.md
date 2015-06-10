@@ -286,7 +286,7 @@ would be a great time to add an `Extenstion` to the `Notes View Controller` to i
     extension NotesViewController: UITableViewDelegate {
 >    
         func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-            //selectedNote = notes.objectAtIndex(UInt(indexPath.row)) as? Note      //1
+            //selectedNote = notes[indexPath.row]      //1
             //self.performSegueWithIdentifier("ShowExistingNote", sender: self)     //2
         }
 >        
