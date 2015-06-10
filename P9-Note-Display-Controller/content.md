@@ -321,7 +321,7 @@ As we learned in this chapter, you should refresh scene information on `viewWill
 >    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
->         
+        let realm = Realm()        
         notes = realm.objects(Note).sorted("modificationDate", ascending: false)
     }
 >    
