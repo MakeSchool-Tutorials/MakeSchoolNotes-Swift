@@ -236,8 +236,7 @@ is performed. So let's look there.
 >            
              notes = realm.objects(Note).sorted("modificationDate", ascending: false) //2
         }
-        
-        
+>       
     }
 
 
