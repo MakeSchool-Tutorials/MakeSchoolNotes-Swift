@@ -219,24 +219,28 @@ is performed. So let's look there.
 > [action]
 > Open `NotesViewController.swift` and locate the `unwindToSeque` function.  Modify your code as follows:
 >
-    if let identifier = segue.identifier {
-            let realm = RLMRealm.defaultRealm()
->            
-            switch identifier {
+   if let identifier = segue.identifier {
+            let realm = Realm()
+            
+>           switch identifier {
             case "Save":
                 let source = segue.sourceViewController as! NewNoteViewController //1
->                
-                realm.transactionWithBlock() {
-                    realm.addObject(source.currentNote)
+>               
+                realm.write() {
+                    realm.add(source.currentNote!)
                 }
->
+>                
             default:
                 println("No one loves \(identifier)")
             }
+>            
+             notes = realm.objects(Note).sorted("modificationDate", ascending: false) //2
         }
->        
-        notes = Note.allObjects().sortedResultsUsingProperty("modificationDate", ascending: false) //2
->
+        
+        
+    }
+
+
         
 You are using a switch statement, although for only one case you would typically use an `if` statement however we will be expanding this `switch` statement with additional use cases.
 As it stands we have just added support for our `Save Action`.
@@ -293,15 +297,15 @@ would be a great time to add an `Extenstion` to the `Notes View Controller` to i
         // 4
         func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
             if (editingStyle == .Delete) {
-                let note = notes[UInt(indexPath.row)] as! RLMObject
+                let note = notes[indexPath.row] as! Object
 >                
-                let realm = RLMRealm.defaultRealm()
+                let realm = Realm()
 >                
-                realm.transactionWithBlock() {
-                    realm.deleteObject(note)
+                realm.write() {
+                    realm.delete(note)
                 }
 >                
-                notes = Note.allObjects().sortedResultsUsingProperty("modificationDate", ascending: false)
+                notes = Note.allObjects().sorted("modificationDate", ascending: false)
             }
         }
 >
@@ -342,7 +346,7 @@ This is because we need tell the Table View where it can find the delegate metho
     tableView.dataSource = self
     tableView.delegate = self
 >    
-    notes = Note.allObjects().sortedResultsUsingProperty("modificationDate", ascending: false)
+    notes = realm.objects(Note).sorted("modificationDate", ascending: false)
 >
     
 Run the app! Give it a left swipe, oh no, it swipes left but I can't see the `Delete` button :(
