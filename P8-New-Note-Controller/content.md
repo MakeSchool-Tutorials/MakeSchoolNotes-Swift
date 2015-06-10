@@ -230,26 +230,23 @@ is performed. So let's look there.
                 realm.write() {
                     realm.add(source.currentNote!)
                 }
->                
+>
             default:
                 println("No one loves \(identifier)")
             }
 >            
-             notes = realm.objects(Note).sorted("modificationDate", ascending: false) //2
+            notes = realm.objects(Note).sorted("modificationDate", ascending: false) //2
         }
->       
-    }
+>        
 
-
-        
 You are using a switch statement, although for only one case you would typically use an `if` statement however we will be expanding this `switch` statement with additional use cases.
 As it stands we have just added support for our `Save Action`.
 
 1. We need to grab a reference to the outgoing controller, in this case our `New Note View Controller`, we do this to gain access to the `currentNote` variable that holds the new Note object.
-2. Realm allows for advanced sorting and query functionality for it's stored objets, previously we just grabbed all Note objects without any regard for order, this change makes it more useful 
+2. Realm allows for advanced sorting and query functionality for it's stored objects. Previously we just grabbed all Note objects without any regard for order, this change makes it more useful 
 and orders by the most recent `modificationDate`.
 
-Before you run the app let's tidy up the `viewDidLoad()` function, previously you added test code to create a new Note everytime the app is run.  Time to tidy this code up now.
+Before you run the app let's tidy up the `viewDidLoad()` function in `NotesViewController`, previously you added test code to create a new Note everytime the app is run.  Time to tidy this code up now.
 
 > [action]
 > Modify your `viewDidLoad()` method to read as follows:
@@ -277,7 +274,7 @@ Woo hoo, the app should now return to the Dashboard and you will see the note ha
 
 ##Adding the Table View Delegate
 
-The Table View Delegate was touched upon in the *Introduction To Table Views* chapter, we didn't implement it at the time as it wasn't required at that point however now
+The Table View Delegate was touched upon in the *Introduction To Table Views* chapter, we didn't implement it at the time as it wasn't required at that point. However, now
 would be a great time to add an `Extenstion` to the `Notes View Controller` to implement this delegate so we can handle editing of an existing row or deletion of a row.
 
 > [action]
@@ -322,7 +319,7 @@ The first function informs us that a row has been selected, you will notice thes
 1. When a note has been selected we want to assign this note to a variable for easy access. When a row is selected the row Index is passed as a parameter so
 we can grab the correct note object using the `objectAtIndex` method to return the correct note object.
 
-2. We well be performing a seque to a new Note Display View Controller (You will add this soon) that will display the `currentNote`
+2. We will be performing a segue to a new Note Display View Controller (You will add this soon) that will display the `currentNote`
 
 > [action]
 > Can you add a `currentNote` variable to the class to store the selected Note? 
@@ -330,7 +327,7 @@ we can grab the correct note object using the `objectAtIndex` method to return t
 
 Before you setup the Note Display View Controller, let's look at 3 and 4.
 
-3. This function is used to check if a row can be editied, in our app we would always like this behaviour so it will always return true.
+3. This function is used to check if a row can be edited, in our app we would always like this behaviour so it will always return true.
 4. This function is activated when you left swipe your Table View to enter edit mode and are presented with the option to *Delete* the selected row.
 
 Run the App, oh it will not do any of this :(  
