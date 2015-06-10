@@ -21,7 +21,7 @@ When the container was added it will create a new embeded seque under `New Note 
 > Set this seque identifier to: 'ShowNewNote' (We will be using this later on)
 > ![image](embed_seque_1.png) ![image](embed_seque_2.png) 
 
-##Adding he Note Display Controller
+##Adding The Note Display Controller
 
 > [action] 
 > As per the previous chapter, create a new View Controller subclass entitled `NoteDisplayViewController` and set your newly added View Controller to use this Custom Class.
@@ -63,14 +63,14 @@ Great, let's add support for our new trash can seque.
 > Open `NotesViewController.swift` and add the followig to the `switch` statement in your `unwindToSeque` function.
 >	
 	case "Delete":
-	    realm.transactionWithBlock() {
-	        realm.deleteObject(self.selectedNote)
+	    realm.write() {
+	        realm.delete(self.selectedNote)
 	    }
 >        
         let source = segue.sourceViewController as! NoteDisplayViewController
         source.note = nil;
 >
-The trash when clicker can will now delete notes.
+The trash when clicked will now delete notes.
 
 Time to enable the table row selection to trigger the seque to the `Note Display View Controller`.
 
@@ -90,7 +90,7 @@ a note and deletes it, this can then replace both chunks of `Delete` code.
 Time to create an interface to present our Note information and move us towards being able to edit this information. 
 
 > [action]
-> 1. Open `Main.storyboard` and locate your `New Display View controller Scene`
+> 1. Open `Main.storyboard` and locate your `Note Display View controller Scene`
 > 2. Add a `Scroll View` to your main `View`, your notes have the potential to contain a lot of content so you want to ensure the user can scroll through them.
 > 3. Add a `Text Field` to your `Scroll View` near the top, this will be used to display the title.
 > 4. Add a `Text View` in your `Scroll View` and add it below your `Text Field` this will be used to display the content.
@@ -116,7 +116,7 @@ Time to add some outlets.
 >
 	import Foundation
 	import UIKit
-	import Realm
+	import RealmSwift
 	import ConvenienceKit
 >
 	class NoteDisplayViewController: UIViewController {
@@ -146,12 +146,12 @@ Now let's get these new display objects display our existing note information, w
 >
 	var note: Note? {
         didSet {
-            displayNote(self.note)
+            displayNote(note)
         }
     }
 >
 	
-Remeber the `didSet` functionality we added during the 'Local Storage with Realm' chapter? Have a quick look at `NoteTableViewCell` for a reminder.
+Remember the `didSet` functionality we added during the 'Local Storage with Realm' chapter? Have a quick look at `NoteTableViewCell` for a reminder.
 In this case when a note is set, we want to call the `displayNote` method to populate our title and content display objects in our view.
 
 > [action]
@@ -196,7 +196,7 @@ If we now go back to our `Note Display View Controller` and ensure we call `disp
 >
 	import Foundation
 	import UIKit
-	import Realm
+	import RealmSwift
 	import ConvenienceKit
 >
 	class NoteDisplayViewController: UIViewController {
@@ -206,14 +206,14 @@ If we now go back to our `Note Display View Controller` and ensure we call `disp
 >	    
 	    var note: Note? {
 	        didSet {
-	            displayNote(self.note)
+	            displayNote(note)
 	        }
 	    }
 >	    
 	    override func viewWillAppear(animated: Bool) {
 	        super.viewWillAppear(animated)
->
-	        displayNote(self.note)
+>   	        
+	        displayNote(note)
 	    }
 >	    
 	    //MARK: Business Logic
@@ -289,10 +289,10 @@ When is a good time to save a Note? When the View is dismissed seems like a good
     }
 >   
     func saveNote() {
-        if let note = self.note {
-            let realm = RLMRealm.defaultRealm()
+        if let note = note {
+            let realm = Realm()
 >            
-            realm.transactionWithBlock {
+            realm.write {
                 if (note.title != self.titleTextField.text || note.content != self.contentTextView.textValue) {
                     note.title = self.titleTextField.text
                     note.content = self.contentTextView.textValue
@@ -308,7 +308,7 @@ At this point `saveNote` is called, this method will check that the fields have 
 
 If we return back to our `Dashboard Scene` at this point, there will be no update.
 
-As we learnt in this chapter, you should refresh scene information on `viewWillAppear`.  Time to go back and make this change to our `Dashboard Scene`.
+As we learned in this chapter, you should refresh scene information on `viewWillAppear`.  Time to go back and make this change to our `Dashboard Scene`.
 
 > [action]
 > Modify `NotesViewController` as follows:
@@ -321,8 +321,8 @@ As we learnt in this chapter, you should refresh scene information on `viewWillA
 >    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
->
-        notes = Note.allObjects().sortedResultsUsingProperty("modificationDate", ascending: false)
+>         
+        notes = realm.objects(Note).sorted("modificationDate", ascending: false)
     }
 >    
 

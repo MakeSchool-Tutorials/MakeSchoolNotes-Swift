@@ -35,7 +35,7 @@ Hmmmmm... I like saving lines of code and I like saving work...
 OK, I'm convinced. Let's take it for a spin. Time to implement Realm into our `Note` object. You can find this under the `Entities` group.
 
     import Foundation
-    import Realm
+    import RealmSwift
 
     class Note : RLMObject { 
     }
@@ -97,8 +97,8 @@ I wouldn't expect you at this stage to start worrying about optimisations. Focus
 that can be squeezed out of an app. This comes with experience.
 
 ##didSet
+So you've added a variable to store the `Note` object, what is didSet? Well it's a rather handy bit of functionality that will be called whenever this `note` object is modified. 
 
-So you've added a variable to store the `Note` object. What is didSet? It's a rather handy bit of functionality that will be called whenever this `note` object is modified. 
 For example, if the note gets edited anywhere, this function will be called that will update the Outlet labels and therefore update the `NoteCell` in our list.
 
 ##if - let
@@ -116,7 +116,7 @@ Before you create a new note, you need to add a notes variable to our `NotesView
 > [action]
 > Add the following code to after your `tableView` variable in `NoteViewController`
 >
-    var notes: RLMResults! {
+    var notes: Results<Note>! {
         didSet {
             // Whenever notes update, update the table view
             tableView?.reloadData()
@@ -143,13 +143,13 @@ Great! You have a new note but nowhere to put it. Let's add it to our `Realm` lo
 > [action]
 > Add the following code right after the previous code.
 >
-    let realm = RLMRealm.defaultRealm() // 1
-    realm.transactionWithBlock() { // 2
-        realm.addObject(myNote) // 3
+    let realm = Realm() // 1
+    realm.write() { // 2
+        realm.add(myNote) // 3
     }
 >
 > 1. Before you can add it to Realm you must first grab the default realm.
-> 2. Write operations must be performed within a real transaction.
+> 2. All changes to an object (addition, modification and deletion) must be done within a write transaction/closure.
 > 3. Add your new note to realm
 
 Realm makes this whole process nice and easy.
@@ -157,12 +157,12 @@ Realm makes this whole process nice and easy.
 > [action]
 > Finally before the closing squiggley of `viewDidLoad()`, let's update our `notes` variable with our latest Realm data.
 >
-    notes = Note.allObjects()
+    notes = realm.objects(Note)
 >
 
 Very close now.....
 
-Remember when you added the `UITableViewDataSource` protocol extension? These functions now need to be updated to pull through the data from your new notes data source.
+Remember when you added the `UITableViewDataSource` protocol extension? These functions now need updated to pull through the data from your new notes data source.
 
 > [action]
 > Replace the following code in `tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)`
@@ -173,8 +173,8 @@ Remember when you added the `UITableViewDataSource` protocol extension? These fu
 >
 > with
 > 
-    let row = UInt(indexPath.row)
-    let note = notes[row] as! Note
+    let row = indexPath.row
+    let note = notes[row] as Note
     cell.note = note
 >
 > Also replace the following code in `func tableView(tableView: UITableView, numberOfRowsInSection section: Int)`
@@ -193,7 +193,7 @@ It should look a little like this:
 ![image](notes_app_realm.png)
 
 The more times you run it, the more notes will be added.  
-If you wish to clear out the notes for testing, add the following into your realm transaction block. `realm.deleteAllObjects()`
+If you wish to clear out the notes for testing, add the following into your realm write closure. `realm.deleteAll();`
 
 As you have found out, Realm is a great lightweight framework to add data persistence to your app.  
 You also explored how to add new notes in code. The app is starting to come together now.
