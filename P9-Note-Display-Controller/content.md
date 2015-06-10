@@ -322,7 +322,7 @@ As we learnt in this chapter, you should refresh scene information on `viewWillA
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        notes = Note.allObjects().sortedResultsUsingProperty("modificationDate", ascending: false)
+        notes = realm.objects(Note).sorted("modificationDate", ascending: false)
     }
 >    
 
