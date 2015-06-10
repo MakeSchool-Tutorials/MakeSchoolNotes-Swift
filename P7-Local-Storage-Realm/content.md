@@ -101,6 +101,14 @@ that can be squeezed out of an app. This comes with experience.
 So you've added a variable to store the `Note` object. What is didSet? It's a rather handy bit of functionality that will be called whenever this `note` object is modified. 
 For example, if the note gets edited anywhere, this function will be called that will update the Outlet labels and therefore update the `NoteCell` in our list.
 
+##if - let
+
+Remember back to Optionals and how sometimes a variable can be empty - represented by `nil`? If we forget about this and go about coding normally, our application is likely to crash and burn, not exactly a great experience for your users. If - let allows us to ensure that the variable does hold a value, and continue to code as usual.
+
+`if let thing1 = thing2 {...}` says: assign the value (or nil) in `thing2` to `thing1`, and afterwards if `thing1` holds a non-nil value, execute the code within the following curly braces. This means that you can use `thing1` within the block of code contained in the curly braces safely, without worrying about unexpected behavior due to a `nil` value.
+
+In our example, we make sure that `note`, `titleLabel`, and `dateLabel` are properly set before we execute our code involving them.
+
 ##Notes Collection
 
 Before you create a new note, you need to add a notes variable to our `NotesViewController` so we can populate the Table View.
