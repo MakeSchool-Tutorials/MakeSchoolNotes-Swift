@@ -245,7 +245,7 @@ As it stands we have just added support for our `Save Action`.
 2. Realm allows for advanced sorting and query functionality for it's stored objets, preivously we just grabbed all Note objects without any regard for order, this change makes it more useful 
 and orders by the most recent `modificationDate`.
 
-Before you run the app let's tidy up the `viewDidLoad()` function, previously you added test code to create a new Note everytime the app is run.  Time to tidy this code up now.
+Before you run the app let's tidy up the `viewDidLoad()` function in `NotesViewController`, previously you added test code to create a new Note everytime the app is run.  Time to tidy this code up now.
 
 > [action]
 > Modify your `viewDidLoad()` method to read as follows:
