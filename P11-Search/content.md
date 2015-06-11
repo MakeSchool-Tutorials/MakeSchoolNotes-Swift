@@ -135,7 +135,21 @@ Run the App
 
 ![image](simulator_search.png)
 
-Once again a good time to **Commit your code.**
+Looks great! But if you play around a bit you may discover a pretty serious UX bug.
+
+> [action]
+> Try to find this bug and fix it by yourself. You can do it!
+
+> [solution]
+> When you go into search mode, you hide the navigation bar. But if you tap on a note when you're in search mode, you never re-show the navigation bar; the only way to get back to the Dashboard is to delete the note! 
+> There are a few ways to fix this. One is to make sure the navigation bar is shown every time your `NoteDisplayViewController` appears. To do this, add the following to the `viewWillAppear` method in your `NoteDisplayViewController`:
+>
+    self.navigationController!.setNavigationBarHidden(false, animated: true)
+>
+
+Finding and fixing bugs like this is great practice. No matter how well-thought-out your code is, some things will always slip through the cracks.
+
+Now that we've fixed that, its once again a good time to **Commit your code.**
 
 Well done! You have made it this far and have a fully functional Notes application.  
 Sure, it may not be super pretty and polished yet. However, it's your first App and a great starting place in your development.
