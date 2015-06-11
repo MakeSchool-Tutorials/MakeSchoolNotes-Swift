@@ -54,7 +54,7 @@ Let's add some search functionality. Realm can use `NSPredicate` to filter its r
 >
     func searchNotes(searchString: String) -> RLMResults {
       let searchPredicate = NSPredicate(format: "title CONTAINS[c] %@ OR content CONTAINS[c] %@", searchString, searchString)
-      return Note.objectsWithPredicate(searchPredicate)
+      return Note.objectsWithPredicate(searchPredicate).sortedResultsUsingProperty("modificationDate", ascending: false)
     }
 >
     
