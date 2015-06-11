@@ -15,11 +15,11 @@ Let's add a new container view to our `New Note View Controller`, this container
 > Drag this into the `View` of your `New Note View Controller`, then resize it vertically to sit under the navigation item bar.
 > Rename this controller to `Note Display View Controller`
 
-When the container was added it will create a new embeded seque under `New Note View Controller`, 
+When the container was added it will create a new embeded segue under `New Note View Controller`, 
 
 > [action] 
-> Set this seque identifier to: 'ShowNewNote' (We will be using this later on)
-> ![image](embed_seque_1.png) ![image](embed_seque_2.png) 
+> Set this segue identifier to: 'ShowNewNote' (We will be using this later on)
+> ![image](embed_segue_1.png) ![image](embed_segue_2.png) 
 
 ##Adding The Note Display Controller
 
@@ -34,33 +34,33 @@ Let's add a bit of initial useability to our new Note Display view Controller.
 > ![image](toolbar_constraints.png) 
 >
 > 3. Select the `Item` object in our `Toolbar` and change the `Identifier` to Trash. You will see `Item` change into a trash can icon.
-> 4. Connect the Trash icon to the `Exit` of the View Controller, you will be presented with a popup to select the `unwindToSeque` action.
+> 4. Connect the Trash icon to the `Exit` of the View Controller, you will be presented with a popup to select the `unwindToSegue` action.
 >
 > ![image](connect_trash_exit.png) 
 >
-> A new seque will have been created.
-> setup the Identifier as 'Delete', you will be using that in the switch statement in the `unwindToSeque` function.
+> A new segue will have been created.
+> setup the Identifier as 'Delete', you will be using that in the switch statement in the `unwindToSegue` function.
 >
-> ![image](display_seque_exit_1.png) ![image](display_seque_exit_2.png) 
+> ![image](display_segue_exit_1.png) ![image](display_segue_exit_2.png) 
 
 We also want a way to call this `Note Display View Controller` when a row is selected so we can display our note.
 
 > [action]
 > Connect (Ctrl-Drag) your Dashboard View Controller to the `Note Display View Controller`.
 
-![image](manual_seque.png) 
+![image](manual_segue.png) 
 
-This will create a new seque.
+This will create a new segue.
 
 > [action]
 > set the identifier to 'ShowExistingNote'.
  
-![image](manual_seque_select.png) ![image](manual_seque_attributes.png) 
+![image](manual_segue_select.png) ![image](manual_segue_attributes.png) 
 
-Great, let's add support for our new trash can seque.
+Great, let's add support for our new trash can segue.
 
 > [action]
-> Open `NotesViewController.swift` and add the followig to the `switch` statement in your `unwindToSeque` function.
+> Open `NotesViewController.swift` and add the followig to the `switch` statement in your `unwindToSegue` function.
 >	
 	case "Delete":
 	    realm.write() {
@@ -72,14 +72,14 @@ Great, let's add support for our new trash can seque.
 >
 The trash when clicked will now delete notes.
 
-Time to enable the table row selection to trigger the seque to the `Note Display View Controller`.
+Time to enable the table row selection to trigger the segue to the `Note Display View Controller`.
 
 > [action]
 > Uncomment the following code in your `UITableViewDelegate` extension.
 >
 	self.performSegueWithIdentifier("ShowExistingNote", sender: self)
 	
-Ah those good handy seque identifiers...
+Ah those good handy segue identifiers...
 
 ##Bonus
 You may have noticed we are now perform a `Delete` operation in two seperate places, this seems like a good candidate to refactor and ensure we have a unified function that perhaps takes 
@@ -169,7 +169,7 @@ In this case when a note is set, we want to call the `displayNote` method to pop
 ##Sharing Note Data
 How can we send the Note information across to this controller? 
 
-Well once we can use seque functionality, when a seque is being prepared you can override the functionality and perform your own actions.
+Well once we can use segue functionality, when a segue is being prepared you can override the functionality and perform your own actions.
 In this case we will override the `prepareForSegue` functionality, check for the `ShowExistingNote` identifier and then set our `Note` variable in our `Note Display View Controller` 
 with the currently selected `Note` in our `Table View`.  Sound easy ? :)
 
