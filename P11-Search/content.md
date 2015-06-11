@@ -52,9 +52,9 @@ Let's add some search functionality. Realm can use `NSPredicate` to filter its r
 > [action]
 > Add the following function to the `NotesViewController` class:
 >
-    func searchNotes(searchString: String) -> RLMResults {
-      let searchPredicate = NSPredicate(format: "title CONTAINS[c] %@ OR content CONTAINS[c] %@", searchString, searchString)
-      return Note.objectsWithPredicate(searchPredicate)
+     func searchNotes(searchString: String) -> Results<Note> {
+        let searchPredicate = NSPredicate(format: "title CONTAINS[c] %@ OR content CONTAINS[c] %@", searchString, searchString)
+        return realm.objects(Note).filter(searchPredicate)
     }
 >
     
