@@ -45,19 +45,12 @@ build this by hand if we want however let's have Xcode do the work for us.
 
 ##Navigation
 
-Where is my Navigation? Xcode has your back.
+As you can see, the new view controller is currently missing the navigation bar that the rest of the app has. We will soon take care of this.
+
+Let's first give our navigation bar in the NotesViewController a title and insert an add button to allow users to create a new note. When this button is pressed the app will navigate to our NewNoteViewController.
 
 > [action]
-> Highlight `New Note View Controller`, from the main menu `Editor/Embed In/Navigation Controller`
->
-> ![image](embed_in_navigation_1.png)
-
-This will create a new `Navigation Controller`, sure it looks a bit ugly however not to fear we can get rid of it and still retain our Navigation.
-
-![image](embed_in_navigation_2.png)
-
-> [action]
-> Select `NotesViewController` then select the `Navigation Item`, ensure you have the *Attributes Inspector* open and rename *Title* to *Dashboard*.
+> Select `NotesViewController` in Interface Builder, then select the `Navigation Item`, ensure you have the *Attributes Inspector* open, and rename *Title* to *Dashboard*.
 >
 > ![image](navigation_item_1.png)
 >
@@ -69,9 +62,9 @@ This will create a new `Navigation Controller`, sure it looks a bit ugly however
 
 Great, now how do we connect the `Add` button to the `New Note View Controller` ?  
 
-Seque to the rescue!
+Segue to the rescue!
 
-##Seques
+##Segues
 
 A segue is a smooth transition. (Pronounced SEG-way, to avoid that awkward interview moment)
 Seques allow you to create transitions from one scene to another easily, you will be happy to know they are nice and easy to use.
