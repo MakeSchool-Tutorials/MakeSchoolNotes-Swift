@@ -137,7 +137,7 @@ Awesome, you have some buttons ready but what should they be connected to?
 Well you could create some new methods for each action in the `New Note View Controler` however we are going to look at using *unwindToSegue* to 
 help manage our navigation stack, centralise our action functions and reduce code. 
 
-##What is unwindTosegue
+##What is unwindToSegue
 
 As the name suggests it will 'unwind' the current stack, so when our `New Note View Controller` was moved to the front after we pressed the + button. 
 This will perform the opposite and return our root `Notes View Controller` to to the front.  
