@@ -28,7 +28,7 @@ Let's start by creating a new View Controller sublcass.
 
 The new `NewNoteViewController.swift` file has been created and added to the project.
 
-Notice the code automatically added to the file by Xcode for, in particular the commented out section relating to seques, we will be coming back
+Notice the code automatically added to the file by Xcode for, in particular the commented out section relating to segues, we will be coming back
 to this very powerful functionality soon.
 
 ##Creating the new Note View Controller interface
@@ -69,12 +69,12 @@ This will create a new `Navigation Controller`, sure it looks a bit ugly however
 
 Great, now how do we connect the `Add` button to the `New Note View Controller` ?  
 
-Seque to the rescue!
+Segue to the rescue!
 
-##Seques
+##Segues
 
 A segue is a smooth transition. (Pronounced SEG-way, to avoid that awkward interview moment)
-Seques allow you to create transitions from one scene to another easily, you will be happy to know they are nice and easy to use.
+Segues allow you to create transitions from one scene to another easily, you will be happy to know they are nice and easy to use.
 
 Let's try one out right now and connect our '+' button to the `New Note View Controller`.
 
@@ -83,17 +83,17 @@ Let's try one out right now and connect our '+' button to the `New Note View Con
 >
 > ![image](add_create_seque_1.png)
 
-You will be presented with an additional dialog of seque types, for now we are going to use *Show*.  This will push the `New Note View Controller` to the top of
+You will be presented with an additional dialog of segue types, for now we are going to use *Show*.  This will push the `New Note View Controller` to the top of
 the Navigation stack.
 
 ![image](action_seque_1.png)
 
-It's useful to add an *Identifier* to our seque, it comes in handy when you want to perform actions based upon the seque identifier, for example: Save, Add, Delete
+It's useful to add an *Identifier* to our segue, it comes in handy when you want to perform actions based upon the segue identifier, for example: Save, Add, Delete
 
-Let's add an identifier to our new seque.
+Let's add an identifier to our new segue.
 
 > [action]
-> 1. Select the seque, ensure the *Attributes Inspector* is select and then set the identifier to `Add`
+> 1. Select the segue, ensure the *Attributes Inspector* is select and then set the identifier to `Add`
 >
 > ![image](select_seque.png) ![image](seque_identifier_addseque_identifier_add.png)
 
@@ -106,7 +106,7 @@ controller stage.
 Feel free to move your controllers around your storyboard so everything lines up just how you like it :)
 
 OK time to Run the App! 
-Wooo Hoo, you can select Add and the app will now *Seque* into our New Note View Controller.
+Wooo Hoo, you can select Add and the app will now *Segue* into our New Note View Controller.
 
 ![image](screen_dashboard.png) ![image](screen_new_note.png)
 
@@ -137,13 +137,13 @@ Awesome, you have some buttons ready but what should they be connected to?
 Well you could create some new methods for each action in the `New Note View Controler` however we are going to look at using *unwindToSegue* to 
 help manage our navigation stack, centralise our action functions and reduce code. 
 
-##What is unwindToseque
+##What is unwindToSegue
 
 As the name suggests it will 'unwind' the current stack, so when our `New Note View Controller` was moved to the front after we pressed the + button. 
 This will perform the opposite and return our root `Notes View Controller` to to the front.  
-A seque will be used to transition between scenes and we can use the seque identifier to let us know which actions we need to perform.
+A segue will be used to transition between scenes and we can use the segue identifier to let us know which actions we need to perform.
 
-Let's add this function and seque our new bar button items.
+Let's add this function and segue our new bar button items.
 
 > [action]
 > Open `NotesViewController.swift` and add the following function to the class.
@@ -162,14 +162,14 @@ select the `IBAction` to connect to.
 > ![image](unwind_connection_baritems.png) 
 > ![image](popup_unwindtoseque.png) 
 
-You should now see the seques in the `Notes View Controller` outline.
+You should now see the segues in the `Notes View Controller` outline.
 
 ![image](unwind_seque_selection.png) 
 
 > [action]
-> Select the first one seque in the list, this will be the `Cancel` `Bar Item` connection, ensure the *Attributes Insepctor* is selected.
+> Select the first one segue in the list, this will be the `Cancel` `Bar Item` connection, ensure the *Attributes Insepctor* is selected.
 > Set this identifier to 'Cancel' 
-> Set the next seque to have an identifier of 'Save'
+> Set the next segue to have an identifier of 'Save'
 
 Run your App!
 
@@ -183,13 +183,13 @@ input lets ensure our process to save works.
 
 ##Creating Data
 
-First of all we are going to create a new Note in our `NewNoteViewController`, will will do this in our `prepareForSeque` function, 
+First of all we are going to create a new Note in our `NewNoteViewController`, will will do this in our `prepareForSegue` function, 
 this code block was auto-generated by Xcode and commented out.
 
 > [action]
 > Open `NewNoteViewController.swift`
 > 1. Add a variable to the class to hold our new Note
-> 2. Uncomment the `prepareForSeque` function and setup a dummy Note with a little bit of content. 
+> 2. Uncomment the `prepareForSegue` function and setup a dummy Note with a little bit of content. 
 > Hint: Look at `viewDidLoad` in `NotesViewController` to see this process.
 
 > [solution]
@@ -213,11 +213,11 @@ this code block was auto-generated by Xcode and commented out.
 ##Saving Data
 
 Great whenever you navigate to `Add New Note` a new note will be created however once you exit this controller the note will be lost and forgotten about.
-We need something to grab this Note data and save it when the user presses the `Save` button.  Well we've already seen we are alerted through our `unwindSeque` when the `Add` action
+We need something to grab this Note data and save it when the user presses the `Save` button.  Well we've already seen we are alerted through our `unwindSegue` when the `Add` action
 is performed. So let's look there.
 
 > [action]
-> Open `NotesViewController.swift` and locate the `unwindToSeque` function.  Modify your code as follows:
+> Open `NotesViewController.swift` and locate the `unwindToSegue` function.  Modify your code as follows:
 
 >
    if let identifier = segue.identifier {
