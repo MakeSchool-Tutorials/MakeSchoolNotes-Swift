@@ -144,15 +144,15 @@ The **MakeSchool ConvenienceKit** helps us out here by wrapping things up a litt
     keyboardNotificationHandler = KeyboardNotificationHandler()
 >        
         keyboardNotificationHandler!.keyboardWillBeHiddenHandler = { (height: CGFloat) in
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
+            UIView.animateWithDuration(0.3) {
                 self.toolbarBottomSpace.constant = 0
-            })
+            }
         }
 >        
         keyboardNotificationHandler!.keyboardWillBeShownHandler = { (height: CGFloat) in
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
+            UIView.animateWithDuration(0.3) {
                 self.toolbarBottomSpace.constant = -height
-            })
+            }
         }
 >
         
