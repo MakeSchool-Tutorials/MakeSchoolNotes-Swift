@@ -84,7 +84,7 @@ Let's try one out right now and connect our '+' button to the `New Note View Con
 > ![image](add_create_seque_1.png)
 
 You will be presented with an additional dialog of seque types, for now we are going to use *Show*.  This will push the `New Note View Controller` to the top of
-the Navigation stack.
+the Navigation stack. 
 
 ![image](action_seque_1.png)
 

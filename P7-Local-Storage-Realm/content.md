@@ -186,6 +186,20 @@ Remember when you added the `UITableViewDataSource` protocol extension? These fu
     return Int(notes?.count ?? 0)
 >
 
+In the above code, note how the operator "??" handles the case in which the variable notes is nil and empty.
+
+It is equivalent to using an if statement.
+
+>
+	if let notes = notes {
+		return Int(notes.count)
+	} else {
+		return 0
+	}
+>
+
+We would probably have other, bigger issues in our code if notes *was* ever nil, but it's still good to be a safe programmer. No one likes using apps that crash :)
+
 Finally, it's time to run the app!
 
 It should look a little like this:
