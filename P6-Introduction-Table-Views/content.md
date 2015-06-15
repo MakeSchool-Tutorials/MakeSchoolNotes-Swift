@@ -9,7 +9,7 @@ Let's take a sneak peek of MakeSchoolNotes a little bit further on in the tutori
 
 ![image](app_preview_1.png)
 
-##UITableView
+#UITableView
 
 A Table view is an instance of the `UITableView` class. It has only one column and only allows vertical scrolling.  
 Rows are drawn using cells, which are `UITableViewCell` objects.  
@@ -17,7 +17,7 @@ Rows are drawn using cells, which are `UITableViewCell` objects.
 As you can see, it's an ideal way to display lists of information, which is perfect for our app.
 
 > [action]
-> Open `Main.Storyboard` you will see that you have two `Controllers`.
+> Open `Main.storyboard`. You will see that you have two `Controllers`.
 > On the right hand side you can see the *Table View* inside the `View Controller`.
 > ![image](viewcontroller_table_view.png)
 >
@@ -38,7 +38,7 @@ You will be expanding on this class very soon.
  
 You will come back to this shortly, however let's look at the other `Controller` in our Storyboard.
  
-##Navigation Controller
+#Navigation Controller
  
 What is a *Navigation Controller* ?
 
@@ -49,11 +49,12 @@ a View Controller to display image thumbnails, drill down again and you go into 
 Notice that when you are *Navigating* within the app, you will always have a `Navigation Bar` at the top. This is provided by the `Navigation Controller` and sits at 
 the root of your app. This enables you to easily perform actions such as *Back* that help manage your stack of view controllers.
 
-##Connecting the Table View
+#Connecting the Table View
 
 You have a Table View, but it's not much use without any content, so let's get started.  You want to be able to access your Table View programmatically, 
 so you will need to create an *IBOutlet* to connect your Table View from Interface Builder to your code.  A sensible place to manage this would be in your *NotesViewController*.
 
+##Part 1: Add an outlet variable
 > [action]
 > Let's see if you can add an outlet variable to the NotesViewController. I'll give you a clue: the object type is *UITableView*.
 
@@ -68,8 +69,10 @@ so you will need to create an *IBOutlet* to connect your Table View from Interfa
 
 Great! You now have a place to connect your Table View.
 
+##Part 2: Connect the referencing outlet
+
 > [action]
-> 1. Go back into *Main.Storyboard* and select the `Table View` inside the `Home Scene`. 
+> 1. Go back into *Main.storyboard* and select the `Table View` inside the `Home Scene`. 
 > 2. With this selected, click on the *Connections Inspector* and look at `Referencing Outlets`
 > 3. Create a `New Referencing Outlet` to your ViewController (Home with the yellow circle just below 'Home Scene')
 
@@ -80,21 +83,17 @@ When you let go, you should notice that you will be presented with two options.
 So you have the option of connecting to either the View or the new tableView variable you just created.
 Select the tableView outlet.
 
-Let's change the View Controller name while we are at it.
+Let's change the View Controller name while we are at it. This keeps our app organized.
 
 > [action]
-> Click on *Home* and then press *Enter* and rename to `Dashboard`
+> Click on *Home* and then press *Enter* and rename to `Dashboard`.
 >
-> Great! Your Table View is now connected to tabelView variable in `NotesViewController`. 
+> Great! Your Table View is now connected to tableView variable in `NotesViewController`. 
 
 So hit Run!
 
-Oh it looks exactly the same... 
-Well, you haven't added any data, and before it can display anything the tableView needs a data source and also requires delegate functions
-So hit run!
-
 Oh, it looks exactly the same...
-Well, you haven't added any data and before it can display anything, the tableView needs a data source and also requires delegate functions
+Well, you haven't added any data and before the tableView can display anything, it needs a data source and also requires delegate functions
 to be set up before it will run.
 
 #Adding a Table Data Source
@@ -118,14 +117,14 @@ You will notice a red exclamation mark. Uh-oh, you just made Swift sad.
 
 Xcode has kindly inform you that as it stands we have not added any support for the `UITableViewDataSource` protocol in our `NotesViewController`.
 
-##What is a protocol?
+#What is a protocol?
 
 Good question. A protocol defines a blueprint of methods, properties and other requirements that suit a particular task or piece of functionality.  A protocol
 will not implement any code for you. It only describes what the implementation will look like: the input it will take and the output it expects from your implementation.
 
 OK, great, so how do I add this protocol support for `UITableViewDataSource`?
 
-##Extensions
+#Extensions
 
 Glad you asked. You can extend support to your existing class using an *Extension*. Extensions can add new functionality, but they can't override existing functionality. 
 In this case you will be extending your class to implement the additional protocol functionality required to provide the data source.
@@ -153,18 +152,22 @@ In this case you will be extending your class to implement the additional protoc
 
 Don't run it just yet, Swift is still feeling sad.
 
+##Look up documentation
+
 A handy hint to find out more information for any function is to *Alt-Click* to see a description from the Apple Library Documentation. 
 Try it out now on your newly added `func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int` function. 
 
 ![image](table_view_protocol_lookup.png)
 
-Refer back to comment "//1" in the snippet above.
+##What is this extension doing?
 
-This code is trying to return a `UITableViewCell` with a unique identifier of "NoteCell" (You can create custom Table View Cells, so you could have many unique styles in your application).
-*dequeueReusableCellWithIdentifier* is a function of `UITableView` that tries to find a reusable cell, in order to save on additional initialization overhead. When cells scroll off the screen, the table view adds them to an internal collection of cells it can recycle.
+Take a look at comment "//1" in the snippet above.
+
+This code is trying to return a `UITableViewCell` with a unique identifier of "NoteCell." You can create custom Table View Cells, so you could have many unique styles in your application.
+*dequeueReusableCellWithIdentifier* is a function of `UITableView` that tries to find a reusable cell, in order to save on initialization overhead. When cells scroll off the screen, the table view adds them to an internal collection of cells it can recycle.
 If none exist, which will be the case when we run our app, this function will create new `UITableViewCells`, and in our case we are going to use our own custom subclass of `UITableViewCell` named `NoteTableViewCell`.
 
-Have a look at the code in `NoteTabelViewCell`. Right now, it doesn't do anything more than a standard `UITableViewCell`. As I'm sure you've guessed, you will be adding to this soon.
+Have a look at the code in `NoteTableViewCell`. Right now, it doesn't do anything more than a standard `UITableViewCell`. As I'm sure you've guessed, you will be adding to this soon.
 
 Let's quickly set up our `Table View Cell`.
 
@@ -172,17 +175,17 @@ Let's quickly set up our `Table View Cell`.
 > 1. Ensure you are in `Main.storyboard`
 > 2. Select `Table View Cell`
 > 3. Using the *Identity Inspector* set your *Custom Class* to `NoteTableViewCell`
-> 4. Using the *Attributes Inspector* set your *Style* to `Basic` and *Identifier* to `NoteCell`
+> 4. Using the *Attributes Inspector*, set your *Style* to `Basic` and *Identifier* to `NoteCell`
 > 5. Rename the `Table View Cell` in the *Document Outline* hierarchy to `NoteCell`
 >
 >![image](table_view_cell_identity_inspector.png) ![image](table_view_attributes_inspector.png)
 
-OK let's hit Run. By the power of Grayskull (Too 80s?), you should now see the following:
+OK let's hit Run. If the Force is with you, you should now see the following:
 
 ![image](table_view_hello_world.png)
 
-##Commit
-Now would be a good time to commit your code. Include a commit message to remind yourself of what you've implemented. It's good to commit after a chunk of work;
+#Commit
+Now would be a good time to commit your code. Include a commit message to remind yourself of what you've implemented. It's good to commit after you've finished a chunk of work;
 even better if it works :)
 
 #Hello World
@@ -193,9 +196,9 @@ If you click on a row, you will notice it will be `highlighted`. However, it wil
 contains the optional methods to allow you to interact with your rows. The most common interaction is tapping on a row, which takes the user to another View Controller to display
 more information.
 
-Before we tackle this, let's dress up our Table View Cell.
+Before we tackle this, let's decide what information our Table View Cell should display.
 
-##Custom Table View Cell
+#Custom Table View Cell
 
 Now is a good time to think about our application design. So, we have the ability to display a list of information, but what information should we store?
 A good starting point would be:
@@ -204,14 +207,14 @@ A good starting point would be:
 - Modification Date
 - Content
 
-Right now our basic cell only contains a title. You may have noticed a few styles under the `Table View Cell / Style` dropdown. You are going to roll your own and create a custom cell.
+Right now our basic cell only contains a title. You may have noticed a few styles under the `Table View Cell / Style` dropdown. You are going to create your own custom cell.
 
 > [action]
 > Select the `NoteCell` in the Interface Builder and expand the hierarchy.
 > ![image](notecell_custom_1.png)
 
-Let's see if you can create a custom cell with a title label and modification date label. Increase the cell height if needed, and feel free to add plausable placeholder text in your labels.  
-It makes it much easier to visualise and ensure you have the right asthetic.
+Try this on your own: create a custom cell with a title label and modification date label. Increase the cell height if needed, and feel free to add some placeholder text in your labels.  
+It makes it much easier to visualise and ensure you have the right aesthetic.
 
 *Hint* - Make sure you change the `Style` to `Custom` first; this will give you an empty `Content View` to work with.
 
@@ -219,9 +222,9 @@ Hopefully yours will look something like this, ideally with a bit more swag than
 
 ![image](notecell_custom_2.png)
 
-Great! Now you want to ensure you can access the label objects from your `NoteTableViewCell` object.  
-Let's see if you can do this one on your own. You will want to create two Outlet variables of type `UILabel` in `NoteTableViewCell.swift` and then 
-connect the `Custom Cell View` label objects respectively in IB.
+Great! Now you want to ensure you can access the label objects from your `NoteTableViewCell` object. 
+Let's see if you can do this one on your own - it's just like what we did for the tableView IBOutlet. You will want to create two Outlet variables of type `UILabel` in `NoteTableViewCell.swift` and then 
+connect the `Custom Cell View` label objects respectively in Interface Builder (IB).
 
 > [solution]
 > Open `NoteTableViewCell.swift` and add the following variable outlets.
@@ -253,5 +256,5 @@ Run your App.
 Pretty sweet...  
 You have explored some fundamental skills, and this is certainly not the last time you will hear of `Protocols`, `Delegates` and `Extensions`.
 
-Adding hardcoded data to populate you TableView is interesting and demonstrates the basics, but it's not that useful.  
+Adding hardcoded data to populate your TableView is interesting and demonstrates the basics, but it's not that useful.  
 Time to move on now and see how local storage using Realm can make this App a lot more useful.
