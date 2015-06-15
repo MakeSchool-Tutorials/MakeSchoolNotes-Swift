@@ -138,7 +138,9 @@ Our `NoteCell` can now display information from a `Note` object. Let's create on
     myNote.content = "A long piece of content"
 >
 
-Great! You have a new note but nowhere to put it. Let's add it to our `Realm` local storage with a simple 3 step process.
+Great! You have a new note but nowhere to put it. Let's save it to our `Realm` local storage with a simple 3 step process.
+
+#Saving A Note
 
 > [action]
 > Add the following code right after the previous code.
@@ -148,21 +150,24 @@ Great! You have a new note but nowhere to put it. Let's add it to our `Realm` lo
         realm.add(myNote) // 3
     }
 >
-> 1. Before you can add it to Realm you must first grab the default realm.
+> 1. Before you can add it to Realm you must first grab the default Realm.
 > 2. All changes to an object (addition, modification and deletion) must be done within a write transaction/closure.
-> 3. Add your new note to realm
+> 3. Add your new note to Realm
 
 Realm makes this whole process nice and easy.
 
+#Loading All Notes
 > [action]
-> Finally before the closing squiggley of `viewDidLoad()`, let's update our `notes` variable with our latest Realm data.
+> Finally before the closing squiggley of `viewDidLoad()`, let's update our `notes` variable with our latest Realm data. Now every time we open the app, it will be up to date with all the new notes.
 >
     notes = realm.objects(Note)
 >
 
 Very close now.....
 
-Remember when you added the `UITableViewDataSource` protocol extension? These functions now need updated to pull through the data from your new notes data source.
+#Update protocol functions
+
+Remember when you added the `UITableViewDataSource` protocol extension? The functions in that protocol now need to be updated to pull in the data from your new Realm data source and display it correctly.
 
 > [action]
 > Replace the following code in `tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)`
@@ -176,6 +181,8 @@ Remember when you added the `UITableViewDataSource` protocol extension? These fu
     let row = indexPath.row
     let note = notes[row] as Note
     cell.note = note
+    
+> Now instead of putting in note titles and dates ourselves, we're going to allow the app to read that information from the notes stored in Realm.
 >
 > Also replace the following code in `func tableView(tableView: UITableView, numberOfRowsInSection section: Int)`
 >
@@ -185,6 +192,7 @@ Remember when you added the `UITableViewDataSource` protocol extension? These fu
 >
     return Int(notes?.count ?? 0)
 >
+> So if notes isn't empty, numberOfRowsInSection will return notes.count; otherwise it will return 0.
 
 Finally, it's time to run the app!
 
@@ -193,10 +201,12 @@ It should look a little like this:
 ![image](notes_app_realm.png)
 
 The more times you run it, the more notes will be added.  
-If you wish to clear out the notes for testing, add the following into your realm write closure. `realm.deleteAll();`
+If you wish to clear out the notes for testing, add the following into your realm write closure (from Saving A Note): `realm.deleteAll();`
 
 As you have found out, Realm is a great lightweight framework to add data persistence to your app.  
 You also explored how to add new notes in code. The app is starting to come together now.
+
+#Commit
 
 Now would be a great time to **Commit** your work.
 
