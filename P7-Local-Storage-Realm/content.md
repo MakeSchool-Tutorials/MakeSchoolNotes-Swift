@@ -3,12 +3,12 @@ title: "Local Storage with Realm"
 slug: local-storage-realm
 ---     
 
-We have taken first steps of building a Notes App together. You can now create your own custom table view listing and populate it with some basic test data.
+We have taken the first steps of building a Notes App together. You can now create your own custom table view list and populate it with some basic test data.
 
 In most apps, you will want a way to archive your user data. Having a list is great, but the user is going to be pretty unimpressed if your app loses all
 their precious notes after the app is restarted.  That's a 1 Star review waiting to happen.
 
-##Persistence
+#Persistence
 
 In this context, persistence is the ability to save data so that when you close an app and reopen it, the data is still there.
 
@@ -24,7 +24,7 @@ It can be a great solution, but it is also a lot of work :)
 
 Let's look at a lightweight alternative called Realm. 
 
-##Realm
+#Realm
 
 What is [Realm](https://realm.io/)?
 
@@ -51,14 +51,14 @@ Realm objects are just like normal objects - you just subclass *RLMObject* to ge
     dynamic var modificationDate = NSDate()
 >
 
-##Dynamic Attribute
+#Dynamic Attribute
 
 What is all this **Dynamic** business?
 This attribute informs the Swift compiler that storage and implementation of a property will be provided at runtime.
 
 You will be pleased to know that's all it takes to implement your `Note` data model. Nice!
 
-##Displaying Realm Object Data
+#Displaying Realm Object Data
 
 Time to knuckle down. It's going to take a little bit of coding to switch over to Realm and add a test note in code.
 
@@ -89,19 +89,19 @@ Time to knuckle down. It's going to take a little bit of coding to switch over t
     }
 >
 
-##Code Optimisation
+#Code Optimisation
 Wow, what is with `static var dateFormatter`? Glad you asked! This is a code optimisation for a `NSDateFormatter` object. Some objects are notoriously slow to initialize, so you want to be able to reuse them instead of creating a new one every time.
 When I say 'slow' this is a relative term. With one object, you might not even notice the difference. However, if you are processing hundreds of objects, the initialization time adds up and if it only takes a few lines of code to optimise, then it's code that's worthwhile.
 
 I wouldn't expect you at this stage to start worrying about optimisations. Focus on your application experience first.  However, it's good to know there is always a little extra juice 
 that can be squeezed out of an app. This comes with experience.
 
-##didSet
+#didSet
 So you've added a variable to store the `Note` object, what is didSet? Well it's a rather handy bit of functionality that will be called whenever this `note` object is modified. 
 
 For example, if the note gets edited anywhere, this function will be called that will update the Outlet labels and therefore update the `NoteCell` in our list.
 
-##if - let
+#if - let
 
 Remember back to Optionals and how sometimes a variable can be empty - represented by `nil`? If we forget about this and go about coding normally, our application is likely to crash and burn, not exactly a great experience for your users. If - let allows us to ensure that the variable does hold a value, and continue to code as usual.
 
@@ -109,7 +109,7 @@ Remember back to Optionals and how sometimes a variable can be empty - represent
 
 In our example, we make sure that `note`, `titleLabel`, and `dateLabel` are properly set before we execute our code involving them.
 
-##Notes Collection
+#Notes Collection
 
 Before you create a new note, you need to add a notes variable to our `NotesViewController` so we can populate the Table View.
 
@@ -126,7 +126,7 @@ Before you create a new note, you need to add a notes variable to our `NotesView
 
 Once again, notice the use of *didSet* to refresh the tableView when Notes results are updated - very handy. Let's add some notes.
 
-##Creating A New Note
+#Creating A New Note
 
 Our `NoteCell` can now display information from a `Note` object. Let's create one to see this in action.  
 
