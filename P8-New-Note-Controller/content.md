@@ -33,7 +33,7 @@ to this very powerful functionality soon.
 
 #Creating the new Note View Controller interface
 
-Now let's connect the new View Controller to `Main.storyboard` so users can create their own notes. 
+Now let's connect the new View Controller to `Main.storyboard` so users can create their own notes.
 
 > [action]
 > 1. Open `Main.storyboard` and drag in a `View Controller` from the object library.
