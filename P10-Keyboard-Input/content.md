@@ -176,10 +176,10 @@ However, one last niggle: the trash can is still enabled when we're creating a n
 
 Great! But how do we know when we are in edit mode?  In this case, we want to set `edit` to true when we are in the `New Note View Controller`.
 Open this controller and look at the `prepareForSegue` function code. 
-Notice that when we set the `NoteDisplayViewController` note, we can also set the edit variable. 
+Notice that when we set the `NoteDisplayViewController` note, we can also set the edit variable.
 
 > [action]
-> Add the following modifcation after the note is set.
+> Add the following modification after the note is set.
 >    
     noteViewController.edit = true
 >
