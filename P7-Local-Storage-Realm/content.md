@@ -194,7 +194,7 @@ Remember when you added the `UITableViewDataSource` protocol extension? The func
 >
 > So if notes isn't empty, numberOfRowsInSection will return notes.count; otherwise it will return 0.
 
-In the above code, note how the operator "??" handles the case in which the variable notes is nil and empty.
+In the above code, note how the operator `??` handles the case in which the variable `notes` is nil and empty.
 
 It is equivalent to using an if statement.
 
