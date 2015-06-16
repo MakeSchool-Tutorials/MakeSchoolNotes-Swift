@@ -25,10 +25,10 @@ Although we'll touch on some other topics, this is an outline of what youll be m
 
 Once you've finished, you'll have a good understanding of how to build a complete iOS utility app and be in good shape for the next tutorial, *Makestagram*!
 
-##Getting Started
+#Getting Started
 
 Although we could go through setting up the project step by step, I've decided to supply a project template that has all additional libraries, provides
-starting point classes for us to quick start on the app development, and most importantly 'Just Works' for everyone. 
+starting point classes for us to quick start on the app development, and most importantly 'just works' for everyone.
 
 [Download MakeSchoolNotes Template Project](https://github.com/MakeSchool-Tutorials/MakeSchoolNotes-Swift/raw/master/P5-MakeSchoolNotes-Intro/MakeSchoolNotes-Template.zip)
 
