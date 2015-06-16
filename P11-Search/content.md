@@ -95,10 +95,11 @@ When the `Dashboard` is presented we want to revert to `.DefaultMode`.
 > Ensure `func viewWillAppear` reads as follows:
 > 
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+        
         let realm = Realm()
         notes = realm.objects(Note).sorted("modificationDate", ascending: false)
         state = .DefaultMode
+        super.viewWillAppear(animated)
     }
  
 We are setting the default state. However nothing will happen unless we use the ever-useful *didSet* functionality to perform actions when our `state` machine is updated.
@@ -112,7 +113,7 @@ We are setting the default state. However nothing will happen unless we use the 
             switch (state) {
             case .DefaultMode:
                 let realm = Realm()
-                notes = realm.objects(Note).sorted("modificationDate", ascending: false) //1 //1 
+                notes = realm.objects(Note).sorted("modificationDate", ascending: false) //1 
                 self.navigationController!.setNavigationBarHidden(false, animated: true) //2
                 searchBar.resignFirstResponder() // 3
                 searchBar.text = "" 
