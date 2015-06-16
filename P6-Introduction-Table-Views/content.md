@@ -1,7 +1,7 @@
 ---
 title: "Introduction Table Views"
 slug: introduction-table-views
----     
+---
 
 Table Views are frequently found in iOS apps. I'm sure you have seen them many times.
 
@@ -21,8 +21,9 @@ As you can see, it's an ideal way to display lists of information, which is perf
 > On the right hand side you can see the *Table View* inside the `View Controller`.
 > ![image](viewcontroller_table_view.png)
 >
-> Ensure you have expanded the *Document Outline*: 
-> ![image](tableview_outline.png)
+> Ensure you have expanded the *Document Outline* (1):
+> ![image](document_outline_button.png)
+> ![image](document_outline_tree.png)
 
 You can inspect the object hierarchy for our main `View Controller` which contains the following objects of interest:
 
@@ -30,28 +31,30 @@ You can inspect the object hierarchy for our main `View Controller` which contai
  - `Table View`
    - `Table View Cell`
      - `Content View`
-     
+
 I would encourage you to always look at new objects under the various *Inspector* tabs.
 
-You may have noticed if you click on the `View Controller` and inspect under the *Identity Inspector* it is using a custom class of **NotesViewController**. 
+You may have noticed if you click on the `View Controller` (1) and then the *Identity Inspector* (2), it is using a custom class of `NotesViewController`.
 You will be expanding on this class very soon.
- 
-You will come back to this shortly, however let's look at the other `Controller` in our Storyboard.
- 
+
+![image](identity_inspector.png)
+
+You will come back to this shortly, however, let's first look at the other `Controller` in our Storyboard.
+
 #Navigation Controller
- 
-What is a *Navigation Controller* ?
 
-The *Navigation Controller* manages a stack of view controllers. It provides a drill-down interface for hierarchical content. It often goes hand in hand with Table Views, 
-for example look at the *Photos* App. Click `Albums` to take you into a View Controller that presents the UITableView, click a row and it this opens 
-a View Controller to display image thumbnails, drill down again and you go into another View Controller that will preview the image.
+What is a *Navigation Controller*?
 
-Notice that when you are *Navigating* within the app, you will always have a `Navigation Bar` at the top. This is provided by the `Navigation Controller` and sits at 
+The *Navigation Controller* manages a stack of view controllers that generally flow from left to right (and vice versa). It provides a drill-down interface for hierarchical content, and it often goes hand in hand with Table Views.
+
+For example, look at the *Photos* App. Tapping on *Albums* takes you into a View Controller that presents the UITableView.  Tapping on a row opens a View Controller to display image thumbnails. Tapping on a picture lets you drill down one level deeper into another View Controller that will preview the image.
+
+Notice that when you are *Navigating* within the app, you will always have a `Navigation Bar` at the top. This is provided by the `Navigation Controller` and sits at
 the root of your app. This enables you to easily perform actions such as *Back* that help manage your stack of view controllers.
 
 #Connecting the Table View
 
-You have a Table View, but it's not much use without any content, so let's get started.  You want to be able to access your Table View programmatically, 
+You have a Table View, but it's not much use without any content, so let's get started.  You want to be able to access your Table View programmatically,
 so you will need to create an *IBOutlet* to connect your Table View from Interface Builder to your code.  A sensible place to manage this would be in your *NotesViewController*.
 
 ##Part 1: Add an outlet variable
@@ -72,23 +75,18 @@ Great! You now have a place to connect your Table View.
 ##Part 2: Connect the referencing outlet
 
 > [action]
-> 1. Go back into *Main.storyboard* and select the `Table View` inside the `Home Scene`. 
-> 2. With this selected, click on the *Connections Inspector* and look at `Referencing Outlets`
-> 3. Create a `New Referencing Outlet` to your ViewController (Home with the yellow circle just below 'Home Scene')
-
-When you let go, you should notice that you will be presented with two options.
-
-![image](code_connect_tableview_2.png)
-
-So you have the option of connecting to either the View or the new tableView variable you just created.
-Select the tableView outlet.
+> 1. Open `NotesViewController` and `Main.storyboard` in the *Assistant Editor* view (refer back to the *Connecting Objects* section of the last tutorial if you're having trouble with this).
+> 2. Click and drag from the circle beside your new `@IBOutlet` in `NotesViewController` to the Table View in `Main.storyboard`.
+> 3. Open the *Connections Inspector* for the Table View and check out your beautiful new referencing outlet.
+> ![image](connect_tableview_1.png)
+> ![image](connect_tableview_2.png)
 
 Let's change the View Controller name while we are at it. This keeps our app organized.
 
 > [action]
 > Click on *Home* and then press *Enter* and rename to `Dashboard`.
 >
-> Great! Your Table View is now connected to tableView variable in `NotesViewController`. 
+> Great! Your Table View is now connected to tableView variable in `NotesViewController`.
 
 So hit Run!
 
@@ -126,27 +124,27 @@ OK, great, so how do I add this protocol support for `UITableViewDataSource`?
 
 #Extensions
 
-Glad you asked. You can extend support to your existing class using an *Extension*. Extensions can add new functionality, but they can't override existing functionality. 
+Glad you asked. You can extend support to your existing class using an *Extension*. Extensions can add new functionality, but they can't override existing functionality.
 In this case you will be extending your class to implement the additional protocol functionality required to provide the data source.
 
 > [action]
 > Add the following code snippet after the closing squiggly bracket on your `NotesViewController` class definition.
 >
     extension NotesViewController: UITableViewDataSource {
->    
+>
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCellWithIdentifier("NoteCell", forIndexPath: indexPath) as! NoteTableViewCell //1
->    
+>
             let row = indexPath.row
             cell.textLabel?.text = "Hello World"
->            
+>
             return cell
         }
->        
+>
         func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return 5
         }
->    
+>
     }
 >
 
@@ -154,8 +152,8 @@ Don't run it just yet, Swift is still feeling sad.
 
 ##Look up documentation
 
-A handy hint to find out more information for any function is to *Alt-Click* to see a description from the Apple Library Documentation. 
-Try it out now on your newly added `func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int` function. 
+A handy hint to find out more information for any function is to *Alt-Click* to see a description from the Apple Library Documentation.
+Try it out now on your newly added `func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int` function.
 
 ![image](table_view_protocol_lookup.png)
 
@@ -173,10 +171,10 @@ Let's quickly set up our `Table View Cell`.
 
 > [action]
 > 1. Ensure you are in `Main.storyboard`
-> 2. Select `Table View Cell`
+> 2. Select `Table View Cell` from the *Document Outline*
 > 3. Using the *Identity Inspector* set your *Custom Class* to `NoteTableViewCell`
 > 4. Using the *Attributes Inspector*, set your *Style* to `Basic` and *Identifier* to `NoteCell`
-> 5. Rename the `Table View Cell` in the *Document Outline* hierarchy to `NoteCell`
+> 5. The `Table View Cell` in your *Document Outline* hierarchy should now be called `NoteCell`
 >
 >![image](table_view_cell_identity_inspector.png) ![image](table_view_attributes_inspector.png)
 
@@ -222,24 +220,27 @@ Hopefully yours will look something like this, ideally with a bit more swag than
 
 ![image](notecell_custom_2.png)
 
-Great! Now you want to ensure you can access the label objects from your `NoteTableViewCell` object. 
-Let's see if you can do this one on your own - it's just like what we did for the tableView IBOutlet. You will want to create two Outlet variables of type `UILabel` in `NoteTableViewCell.swift` and then 
+Great! Now you want to ensure you can access the label objects from your `NoteTableViewCell` object.
+Let's see if you can do this one on your own - it's just like what we did for the tableView IBOutlet. You will want to create two Outlet variables of type `UILabel` in `NoteTableViewCell.swift` and then
 connect the `Custom Cell View` label objects respectively in Interface Builder (IB).
 
 > [solution]
 > Open `NoteTableViewCell.swift` and add the following variable outlets.
-> 
+>
     class NoteTableViewCell: UITableViewCell {
->    
+>
         @IBOutlet weak var titleLabel: UILabel!
         @IBOutlet weak var dateLabel: UILabel!
 >
 > Your outlets are now ready.
 >
+> It's worth noting that there are several equally correct ways to connect outlets to their counterparts in your Storyboard. You saw one just a few minutes ago (opening both files in the assistant editor and dragging from one to the other), so now we'll show you another.
+>
 > Open `Main.storyboard`
-> Select your `NoteCell`, then select *Connections Inspector*. You will see `dateLabel` and `titleLabel` listed as `Outlets`.
+> Select your `NoteCell`, then open the *Connections Inspector*. You will see `dateLabel` and `titleLabel` listed as `Outlets`, because you've already added them to `NoteTableViewCell.swift`.
 > Drag the Outlets to your Title Label and Date Label objects in your `Prototype Cells` view.
-> ![image](notecell_custom_connection.png)
+> ![image](notecell_outlet_connection.png)
+> ![image](notecell_outlet_connection_finished.png)
 >
 > Let's see this in action! Return to your `NotesViewController` and modify the function that populates your `UITableView` to use these new labels.
 >
