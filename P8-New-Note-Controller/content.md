@@ -33,7 +33,7 @@ to this very powerful functionality soon.
 
 #Creating the new Note View Controller interface
 
-Now let's connect the new View Controller to `Main.storyboard` so users can create their own notes. 
+Now let's connect the new View Controller to `Main.storyboard` so users can create their own notes.
 
 > [action]
 > 1. Open `Main.storyboard` and drag in a `View Controller` from the object library.
@@ -76,13 +76,8 @@ Let's try one out right now and connect our '+' button to the `New Note View Con
 >
 > ![image](add_create_segue_1.png)
 
-<<<<<<< HEAD
-You will be presented with an additional dialog of segue types, for now we are going to use *Show*.  This will push the `New Note View Controller` to the top of
-The Navigation stack.
-=======
 You will be presented with an additional dialog of segue types: for now we are going to use *Show*.  This will push the `New Note View Controller` to the top of
 the Navigation stack.
->>>>>>> upstream/master
 
 ![image](action_segue_1.png)
 
