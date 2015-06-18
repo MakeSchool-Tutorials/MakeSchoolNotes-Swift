@@ -51,9 +51,10 @@ Let's add some search functionality. Realm can use `NSPredicate` to filter its r
 > [action]
 > Add the following function to the `NotesViewController` class:
 >
-    func searchNotes(searchString: String) -> RLMResults {
-      let searchPredicate = NSPredicate(format: "title CONTAINS[c] %@ OR content CONTAINS[c] %@", searchString, searchString)
-      return Note.objectsWithPredicate(searchPredicate).sortedResultsUsingProperty("modificationDate", ascending: false)
+    func searchNotes(searchString: String) -> Results<Note> {
+        let realm = Realm()
+        let searchPredicate = NSPredicate(format: "title CONTAINS[c] %@ OR content CONTAINS[c] %@", searchString, searchString)
+        return realm.objects(Note).filter(searchPredicate)
     }
 >
     
@@ -93,8 +94,11 @@ When the `Dashboard` is presented we want to revert to `.DefaultMode`.
 > Ensure `func viewWillAppear` reads as follows:
 > 
     override func viewWillAppear(animated: Bool) {
-      super.viewWillAppear(animated)
-      state = .DefaultMode
+        
+        let realm = Realm()
+        notes = realm.objects(Note).sorted("modificationDate", ascending: false)
+        state = .DefaultMode
+        super.viewWillAppear(animated)
     }
  
 We are setting the default state. However nothing will happen unless we use the ever-useful *didSet* functionality to perform actions when our `state` machine is updated.
@@ -107,7 +111,8 @@ We are setting the default state. However nothing will happen unless we use the 
             // update notes and search bar whenever State changes
             switch (state) {
             case .DefaultMode:
-                notes = Note.allObjects().sortedResultsUsingProperty("modificationDate", ascending: false) //1 
+                let realm = Realm()
+                notes = realm.objects(Note).sorted("modificationDate", ascending: false) //1 
                 self.navigationController!.setNavigationBarHidden(false, animated: true) //2
                 searchBar.resignFirstResponder() // 3
                 searchBar.text = "" 
