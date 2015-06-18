@@ -44,20 +44,13 @@ Now let's connect the new View Controller to `Main.storyboard` so users can crea
 
 #Navigation
 
-How do we get from one view controller to another? With a navigation controller, of course!
+As you can see, the new view controller is currently missing the navigation bar that the rest of the app has. We will soon take care of this.
+
+Let's first give our navigation bar in the NotesViewController a title and insert an add button to allow users to create a new note. When this button is pressed the app will navigate to our NewNoteViewController.
 
 > [action]
-> Add our new View Controller to the Navigation Controller.
-> Highlight `New Note View Controller`, from the main menu `Editor/Embed In/Navigation Controller`
->
-> ![image](embed_in_navigation_1.png)
+> Select `NotesViewController` in Interface Builder, then select the `Navigation Item`, ensure you have the *Attributes Inspector* open, and rename *Title* to *Dashboard*.
 
-This will actually create a new `Navigation Controller`. This isn't exactly what we want: we already have a Navigation Controller. Later on we'll be able to delete this new Navigation Controller and connect our new class to the old one, but for now let's leave the new one in place.
-
-![image](embed_in_navigation_2.png)
-
-> [action]
-> Select `NotesViewController` in the Document Outline then select `Navigation Item`. Open the *Attributes Inspector* and set *Title* to *Dashboard*.
 >
 > ![image](navigation_item_1.png)
 >

@@ -155,6 +155,6 @@ Now that we've fixed that, it's once again a good time to **Commit your code.**
 Well done! You have made it this far and have a fully functional Notes application.  
 Sure, it may not be super pretty and polished yet. However, it's your first App and a great starting place in your development.
 
-The next chapter is brief chapter on app polish. We will look at changing the color of various elements to start putting your own stamp on it.
+The next chapter is a brief chapter on app polishing. We will look at changing the color of various elements to start putting your own stamp on it.
 
 

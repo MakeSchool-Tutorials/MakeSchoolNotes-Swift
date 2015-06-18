@@ -137,24 +137,25 @@ The **MakeSchool ConvenienceKit** helps us out here by wrapping things up a litt
 
 #Keyboard Notifications
 
-> [action]
-> Add the following code into your `func viewWillAppear`:
+>[action]
+>Add the following code into your `func viewWillAppear`:
 >
     keyboardNotificationHandler = KeyboardNotificationHandler()
->        
-        keyboardNotificationHandler!.keyboardWillBeHiddenHandler = { (height: CGFloat) in
-            self.toolbarBottomSpace.constant = 0
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.view.layoutIfNeeded()
-            })
+> 
+>
+	keyboardNotificationHandler!.keyboardWillBeHiddenHandler = { (height: CGFloat) in
+        UIView.animateWithDuration(0.3){
+>            self.toolbarBottomSpace.constant = 0
+            self.view.layoutIfNeeded()
         }
->        
-        keyboardNotificationHandler!.keyboardWillBeShownHandler = { (height: CGFloat) in
-            self.toolbarBottomSpace.constant = -height
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.view.layoutIfNeeded()
-            })
-        }
+    }
+>
+>   	keyboardNotificationHandler!.keyboardWillBeShownHandler = { (height: CGFloat) in
+        UIView.animateWithDuration(0.3) {
+            self.toolbarBottomSpace.constant = height
+            self.view.layoutIfNeeded()
+      }
+	}
 >
         
 We assign the `KeyboardNotificationHandler` so we will be informed of keyboard notification events.  You can see how easily we can now modify the `toolbarBottomSpace` value depending
