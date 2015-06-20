@@ -36,7 +36,6 @@ You should continue reading through the next few steps, to better understand exa
 <video width="50%" controls>
   <source src="https://s3.amazonaws.com/mgwu-misc/SA2015/AddViewControllerAndSetUpNavigation.mp4" type="video/mp4">
 
-
 Now let's connect the new View Controller to `Main.storyboard` so users can create their own notes.
 
 > [action]
@@ -47,7 +46,7 @@ Now let's connect the new View Controller to `Main.storyboard` so users can crea
 
 #Navigation
 
-How do we get from one view controller to another? With a navigation controller, of course!
+As you can see, the new view controller is currently missing the navigation bar that the rest of the app has. We will soon take care of this.
 
 > [action]
 > Add our new View Controller to the Navigation Controller.
@@ -55,12 +54,15 @@ How do we get from one view controller to another? With a navigation controller,
 >
 > ![image](embed_in_navigation_1.png)
 
-This will actually create a new `Navigation Controller`. This isn't exactly what we want: we already have a Navigation Controller. Later on we'll be able to delete this new Navigation Controller and connect our new class to the old one, but for now let's leave the new one in place.
+This will actually create a new *Navigation Controller*. This isn't exactly what we want: we already have a *Navigation Controller*, we just wanted to have a *Navigation Bar* for our new *View Controller*. Later on we'll be able to delete this new Navigation Controller and connect our new class to the old one, but for now let's leave the new one in place.
 
 ![image](embed_in_navigation_2.png)
 
+Now let's give our navigation bar in the `NotesViewController` a title and insert an add button to allow users to create a new note. When this button is pressed the app will navigate to our NewNoteViewController.
+
 > [action]
-> Select your `NotesViewController` in the Document Outline (it should be called "Dashboard") then select its *Navigation Item*. Open the *Attributes Inspector* and set the *Navigation Item's* *Title* to "Dashboard".
+> Select `NotesViewController` in Interface Builder, then select the `Navigation Item`, ensure you have the *Attributes Inspector* open, and rename *Title* to "Dashboard".
+
 >
 > ![image](navigation_item_1.png)
 >

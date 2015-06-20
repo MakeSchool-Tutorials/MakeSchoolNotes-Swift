@@ -137,24 +137,25 @@ The **MakeSchool ConvenienceKit** helps us out here by wrapping things up a litt
 
 #Keyboard Notifications
 
-> [action]
-> Add the following code into your `func viewWillAppear`:
+>[action]
+>Add the following code into your `func viewWillAppear`:
 >
     keyboardNotificationHandler = KeyboardNotificationHandler()
->        
-        keyboardNotificationHandler!.keyboardWillBeHiddenHandler = { (height: CGFloat) in
-            self.toolbarBottomSpace.constant = 0
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.view.layoutIfNeeded()
-            })
+> 
+>
+	keyboardNotificationHandler!.keyboardWillBeHiddenHandler = { (height: CGFloat) in
+        UIView.animateWithDuration(0.3){
+>            self.toolbarBottomSpace.constant = 0
+            self.view.layoutIfNeeded()
         }
->        
-        keyboardNotificationHandler!.keyboardWillBeShownHandler = { (height: CGFloat) in
-            self.toolbarBottomSpace.constant = -height
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.view.layoutIfNeeded()
-            })
-        }
+    }
+>
+>   	keyboardNotificationHandler!.keyboardWillBeShownHandler = { (height: CGFloat) in
+        UIView.animateWithDuration(0.3) {
+            self.toolbarBottomSpace.constant = height
+            self.view.layoutIfNeeded()
+      }
+	}
 >
         
 We assign the `KeyboardNotificationHandler` so we will be informed of keyboard notification events.  You can see how easily we can now modify the `toolbarBottomSpace` value depending
@@ -176,10 +177,10 @@ However, one last niggle: the trash can is still enabled when we're creating a n
 
 Great! But how do we know when we are in edit mode?  In this case, we want to set `edit` to true when we are in the `New Note View Controller`.
 Open this controller and look at the `prepareForSegue` function code. 
-Notice that when we set the `NoteDisplayViewController` note, we can also set the edit variable. 
+Notice that when we set the `NoteDisplayViewController` note, we can also set the edit variable.
 
 > [action]
-> Add the following modifcation after the note is set.
+> Add the following modification after the note is set.
 >    
     noteViewController.edit = true
 >
