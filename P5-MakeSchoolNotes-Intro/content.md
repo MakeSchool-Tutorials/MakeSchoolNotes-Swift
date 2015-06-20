@@ -3,7 +3,7 @@ title: "MakeSchoolNotes-Intro"
 slug: makeschoolnotes-intro
 ---     
 
-That EDIT time has come to make your first *real* app, your own version of the classic *Notes* app.  After finishing the *SimpleApp* tutorial you should have an understanding
+That time has come to make your first *real* app, your own version of the classic *Notes* app.  After finishing the *SimpleApp* tutorial you should have an understanding
 of how to use Xcode and the fundamental building blocks of how an App is put together.  
 
 In this tutorial we will build upon that knowledge to build a fully fledged application that will touch upon many beginner and intermediate development topics. 
