@@ -1,7 +1,7 @@
 ---
 title: "Search"
 slug: search
----     
+---
 
 ##UISearchBar
 
@@ -23,29 +23,29 @@ Let's add this outlet and possible search states.
 > Open `NotesViewController`. Change it to read as follows:
 >
 	class NotesViewController: UIViewController {
-> 
+>
       @IBOutlet weak var searchBar: UISearchBar!
       @IBOutlet weak var tableView: UITableView!
-> 
+>
       enum State {
         case DefaultMode
         case SearchMode
       }
->     
+>
       var state: State = .DefaultMode
 >
 
 Now time to tackle the interface.
-     
+
 > [action]
 > 1. Connect your Search Bar in your interface to the `searchBar` outlet.
-> 2. Set the `Search Bar Delegate`. You can do this as you did before with `tableView` e.g. `searchBar.delegate = self`. However 
+> 2. Set the `Search Bar Delegate`. You can do this as you did before with `tableView` e.g. `searchBar.delegate = self`. However
 > you can also do it by opening the *Connections Inspector* for the `Search Bar` object and dragging the delegate outlet to the `Dashboard`.
 >
 > ![image](search_delegate_connect.png)
 >
 
-Let's add some search functionality. Realm can use `NSPredicate` to filter its result set. 
+Let's add some search functionality. Realm can use `NSPredicate` to filter its result set.
 `NSPredicate` allows you to construct logical conditions used to constrain a search.  It's easier to see it in action.
 
 > [action]
@@ -57,7 +57,7 @@ Let's add some search functionality. Realm can use `NSPredicate` to filter its r
         return realm.objects(Note).filter(searchPredicate)
     }
 >
-    
+
 Here's what this does:
 *IF* the *TEXT* entered in the search bar is found in either the *TITLE* or the *CONTENT* of a note, then include that matching note as part of the result set.
 
@@ -68,39 +68,39 @@ Now we need our app to know when we are modifying our search bar. This is where 
 > Add the following extension to the `NotesViewController`:
 >
     extension NotesViewController: UISearchBarDelegate {
->    
+>
       func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         state = .SearchMode
       }
->      
+>
       func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         state = .DefaultMode
       }
->      
+>
       func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         notes = searchNotes(searchText)
       }
->    
+>
     }
 >
-    
+
 Run your app. Pretty nice, eh? Although the search works well, the user experience can always be better.  Let's improve it:
-    
+
 #The State Machine
- 
+
 When the `Dashboard` is presented we want to revert to `.DefaultMode`.
- 
+
 > [action]
 > Ensure `func viewWillAppear` reads as follows:
-> 
+>
     override func viewWillAppear(animated: Bool) {
-        
+
         let realm = Realm()
         notes = realm.objects(Note).sorted("modificationDate", ascending: false)
         state = .DefaultMode
         super.viewWillAppear(animated)
     }
- 
+
 We are setting the default state. However nothing will happen unless we use the ever-useful *didSet* functionality to perform actions when our `state` machine is updated.
 
 > [action]
@@ -112,10 +112,10 @@ We are setting the default state. However nothing will happen unless we use the 
             switch (state) {
             case .DefaultMode:
                 let realm = Realm()
-                notes = realm.objects(Note).sorted("modificationDate", ascending: false) //1 
+                notes = realm.objects(Note).sorted("modificationDate", ascending: false) //1
                 self.navigationController!.setNavigationBarHidden(false, animated: true) //2
                 searchBar.resignFirstResponder() // 3
-                searchBar.text = "" 
+                searchBar.text = ""
                 searchBar.showsCancelButton = false
             case .SearchMode:
                 let searchText = searchBar?.text ?? ""
@@ -125,7 +125,7 @@ We are setting the default state. However nothing will happen unless we use the 
             }
         }
     }
->    
+>
 > What's going on:
 > 1. We have moved our default state search code so whenever we return to default state the list is reset.
 > 2. This returns the navigation bar in an animated fashion - you can see why it was hidden in point 6.
@@ -147,7 +147,7 @@ Looks great! But if you play around a bit you may discover a pretty serious UX b
 > Try to find this bug and fix it by yourself. You can do it!
 
 > [solution]
-> When you go into search mode, you hide the navigation bar. But if you tap on a note when you're in search mode, you never re-show the navigation bar; the only way to get back to the Dashboard is to delete the note! 
+> When you go into search mode, you hide the navigation bar. But if you tap on a note when you're in search mode, you never re-show the navigation bar; the only way to get back to the Dashboard is to delete the note!
 > There are a few ways to fix this. One is to make sure the navigation bar is shown every time your `NoteDisplayViewController` appears. To do this, add the following to the `viewWillAppear` method in your `NoteDisplayViewController`:
 >
     self.navigationController!.setNavigationBarHidden(false, animated: true)
@@ -155,11 +155,7 @@ Looks great! But if you play around a bit you may discover a pretty serious UX b
 
 Finding and fixing bugs like this is great practice. No matter how well-thought-out your code is, some things will always slip through the cracks.
 
-Now that we've fixed that, it's once again a good time to **Commit your code.**
-
 Well done! You have made it this far and have a fully functional Notes application.  
 Sure, it may not be super pretty and polished yet. However, it's your first App and a great starting place in your development.
 
 The next chapter is a brief chapter on app polishing. We will look at changing the color of various elements to start putting your own stamp on it.
-
-

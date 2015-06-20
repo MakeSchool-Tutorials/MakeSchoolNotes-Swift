@@ -1,14 +1,14 @@
 ---
 title: "Keyboard Input"
 slug: keyboard-input
----     
+---
 
 ##Keyboard Handling
 
 In our app, keyboard handling for the most part *just works*. However, the user experience is not optimal.
 
-When you want to add a new note, you would expect the keyboard to auto-activate and set focus to the title field. 
-If you are viewing an existing note then you would expect the note to be displayed (with the option to edit) and only present the keyboard when a field is clicked on. 
+When you want to add a new note, you would expect the keyboard to auto-activate and set focus to the title field.
+If you are viewing an existing note then you would expect the note to be displayed (with the option to edit) and only present the keyboard when a field is clicked on.
 
 How does the app know if we want to edit/create or view a new note? It doesn't! You will need to implement this logic.
 You can create an `edit` variable that can be set in much the same way as the display note. However, it's a good time to think about design
@@ -24,12 +24,12 @@ Now modify `func viewWillAppear` as follows:
 >
 	override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
->        
+>
         displayNote(self.note)
->    
+>
         titleTextField.returnKeyType = .Next //1
         titleTextField.delegate = self       //2
->        
+>
     }
 >
 > - 1: We are renaming the 'Return' button on the keyboard to 'Next'. For our app it makes more sense from a user experience perspective that you most likely
@@ -47,49 +47,49 @@ Time to set our edit flag status based upon the note content.
         if let note = note, titleTextField = titleTextField, contentTextView = contentTextView  {
             titleTextField.text = note.title
             contentTextView.text = note.content
->            
+>
             if count(note.title)==0 && count(note.content)==0 { //1
                 titleTextField.becomeFirstResponder()
             }
         }
     }
->    
+>
 > - 1: Here we're checking the length of our note content strings. If there is no content, we'll assume 'Edit' mode and set the first responder. This will set focus to the titleTextField
-and prompt the user with the keyboard ready for title input. 
+and prompt the user with the keyboard ready for title input.
 > If we are not in 'Edit' mode, then the note will be displayed as is and no keyboard will pop up until the user initiates this action for themselves.
- 
+
 OK! We still need to add a delegate for our textField so it knows if it should move on to the next field.
 
 #Adding UITextFieldDelegate
- 
+
 > [action]
 > Add the following extension code:
-> 
+>
     extension NoteDisplayViewController: UITextFieldDelegate {
->    
+>
         func textFieldShouldReturn(textField: UITextField) -> Bool {
->            
+>
             if (textField == titleTextField) {  //1
                 contentTextView.becomeFirstResponder()
                 contentTextView.returnKeyType = .Done
             }
->            
+>
             return false
         }
     }
->    
+>
 
 > - 1: When the 'Return' button is pressed, or in our case 'Next', this delegate will be called. We need to check that the `textField` in question is our `titleTextField`. If so, then
 we want to move the user input focus onto editing the `contentTextView`. This makes the user experience nicer.
- 
-![image](simulator_keyboard.png) 
- 
+
+![image](simulator_keyboard.png)
+
 Great! We can finally allow the user to manage their note content.
 
 #Hold Up
 
-Hmm... did you see that the bottom toolbar is no longer visible when we're editing a note? 
-The keyboard appears over the top and our toolbar is no longer visible. Well, in this case it doesn't make a huge difference to the user experience. However, 
+Hmm... did you see that the bottom toolbar is no longer visible when we're editing a note?
+The keyboard appears over the top and our toolbar is no longer visible. Well, in this case it doesn't make a huge difference to the user experience. However,
 it's good to know how you could change this, as there will be times when you do want to have this functionality available.
 
 Let's set the scene for some constraint magic.
@@ -107,7 +107,7 @@ Let's set the scene for some constraint magic.
 >
 > Connect the `deleteButton` outlet to your trash can button in the toolbar.
 
-> The layout is a little tricker, as you need to ensure it's the correct one. 
+> The layout is a little tricker, as you need to ensure it's the correct one.
 >
 > Open `Main.storyboard`, remove all constraints from this `Scene` and select `View`. We are going to let `Auto Layout` resolve everything for us and set up all the constraints. In Apple we trust...
 >
@@ -116,7 +116,7 @@ Let's set the scene for some constraint magic.
 > ![image](autolayout_view_resolve.png)
 >
 > Your view and constraints should now look like this:
-> 
+>
 > ![image](constraints_view.png)
 
 Now when the keyboard pops up, we want to move the toolbar to be positioned above the keyboard.  
@@ -141,7 +141,7 @@ The **MakeSchool ConvenienceKit** helps us out here by wrapping things up a litt
 >Add the following code into your `func viewWillAppear`:
 >
     keyboardNotificationHandler = KeyboardNotificationHandler()
-> 
+>
 >
 	keyboardNotificationHandler!.keyboardWillBeHiddenHandler = { (height: CGFloat) in
         UIView.animateWithDuration(0.3){
@@ -157,7 +157,7 @@ The **MakeSchool ConvenienceKit** helps us out here by wrapping things up a litt
       }
 	}
 >
-        
+
 We assign the `KeyboardNotificationHandler` so we will be informed of keyboard notification events.  You can see how easily we can now modify the `toolbarBottomSpace` value depending
 on the keyboard notification.  We use `-height` as we want to push the toolbar up from the bottom of the view.
 
@@ -176,22 +176,18 @@ However, one last niggle: the trash can is still enabled when we're creating a n
 >
 
 Great! But how do we know when we are in edit mode?  In this case, we want to set `edit` to true when we are in the `New Note View Controller`.
-Open this controller and look at the `prepareForSegue` function code. 
+Open this controller and look at the `prepareForSegue` function code.
 Notice that when we set the `NoteDisplayViewController` note, we can also set the edit variable.
 
 > [action]
 > Add the following modification after the note is set.
->    
+>
     noteViewController.edit = true
 >
 
 Now run the app...
 
 ![image](trash_can.png)
-
-#Commit
-
-Good time to **Commit your code**.
 
 What do we do when the user starts to gather a lot of notes, and instead of 5 entries they have 100 entries? How can we help them find the note they need?
 

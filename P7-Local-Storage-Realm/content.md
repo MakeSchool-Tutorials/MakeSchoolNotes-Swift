@@ -1,7 +1,7 @@
 ---
 title: "Local Storage with Realm"
 slug: local-storage-realm
----     
+---
 
 We have taken the first steps of building a Notes App together. You can now create your own custom table view list and populate it with some basic test data.
 
@@ -22,7 +22,7 @@ Hold up... This sounds like it could be painful...
 Thankfully, this is an age old problem with many different solutions. Apple offers you [Core Data](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdTechnologyOverview.html) as a complete framework for object graph management.
 It can be a great solution, but it is also a lot of work :)
 
-Let's look at a lightweight alternative called Realm. 
+Let's look at a lightweight alternative called Realm.
 
 #Realm
 
@@ -37,7 +37,7 @@ OK, I'm convinced. Let's take it for a spin. Time to implement Realm into our `N
     import Foundation
     import RealmSwift
 
-    class Note : RLMObject { 
+    class Note : RLMObject {
     }
 
 So we've dynamically imported the Realm library so we have access to this functionality.  You remember Alt-Clicking? Try it now on *RLMObject*.
@@ -66,17 +66,17 @@ Time to knuckle down. It's going to take a little bit of coding to switch over t
 > Open `NoteTableViewCell.swift` and enter the following code:
 >
     class NoteTableViewCell: UITableViewCell {
->    
+>
         // initialize the date formatter only once, using a static computed property
         static var dateFormatter: NSDateFormatter = {
             var formatter = NSDateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
             return formatter
             }()
->        
+>
         @IBOutlet weak var titleLabel: UILabel!
         @IBOutlet weak var dateLabel: UILabel!
->        
+>
         var note: Note? {
             didSet {
                 if let note = note, titleLabel = titleLabel, dateLabel = dateLabel {
@@ -85,7 +85,7 @@ Time to knuckle down. It's going to take a little bit of coding to switch over t
                 }
             }
         }
->            
+>
     }
 >
 
@@ -93,11 +93,11 @@ Time to knuckle down. It's going to take a little bit of coding to switch over t
 Wow, what is with `static var dateFormatter`? Glad you asked! This is a code optimisation for a `NSDateFormatter` object. Some objects are notoriously slow to initialize, so you want to be able to reuse them instead of creating a new one every time.
 When I say 'slow' this is a relative term. With one object, you might not even notice the difference. However, if you are processing hundreds of objects, the initialization time adds up and if it only takes a few lines of code to optimise, then it's code that's worthwhile.
 
-I wouldn't expect you at this stage to start worrying about optimisations. Focus on your application experience first.  However, it's good to know there is always a little extra juice 
+I wouldn't expect you at this stage to start worrying about optimisations. Focus on your application experience first.  However, it's good to know there is always a little extra juice
 that can be squeezed out of an app. This comes with experience.
 
 #didSet
-So you've added a variable to store the `Note` object, what is didSet? Well it's a rather handy bit of functionality that will be called whenever this `note` object is modified. 
+So you've added a variable to store the `Note` object, what is didSet? Well it's a rather handy bit of functionality that will be called whenever this `note` object is modified.
 
 For example, if the note gets edited anywhere, this function will be called that will update the Outlet labels and therefore update the `NoteCell` in our list.
 
@@ -177,11 +177,11 @@ Remember when you added the `UITableViewDataSource` protocol extension? The func
     cell.dateLabel.text = "Today"
 >
 > with
-> 
+>
     let row = indexPath.row
     let note = notes[row] as Note
     cell.note = note
-    
+
 > Now instead of putting in note titles and dates ourselves, we're going to allow the app to read that information from the notes stored in Realm.
 >
 > Also replace the following code in `func tableView(tableView: UITableView, numberOfRowsInSection section: Int)`
@@ -219,9 +219,5 @@ If you wish to clear out the notes for testing, add the following into your real
 
 As you have found out, Realm is a great lightweight framework to add data persistence to your app.  
 You also explored how to add new notes in code. The app is starting to come together now.
-
-#Commit
-
-Now would be a great time to **Commit** your work.
 
 In the next chapter we will be looking at the next steps to enable the capture of user input to create new notes.

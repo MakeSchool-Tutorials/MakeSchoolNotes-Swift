@@ -1,7 +1,7 @@
 ---
 title: "Adding Polish"
 slug: adding-polish
----     
+---
 
 ##Adding a Dash of Color
 It's great to put your own stamp on your app. An easy way to start is with simple color changes.
@@ -21,24 +21,24 @@ be whatever RGB color value you like. A nice mauve, perhaps?
 > Modify it to read as follows:
 >
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
->    
+>
       UINavigationBar.appearance().barTintColor = StyleConstants.defaultBlueColor
       UINavigationBar.appearance().tintColor = UIColor.whiteColor()
       UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
       UINavigationBar.appearance().translucent = false
->      
+>
       UIToolbar.appearance().barTintColor = StyleConstants.defaultBlueColor
       UIToolbar.appearance().tintColor = UIColor.whiteColor()
       UIToolbar.appearance().translucent = false
->      
+>
       return true
     }
->    
-> ![image](simulator_styling.png) 
 >
- 
+> ![image](simulator_styling.png)
+>
+
 However, there is no need to feel blue.  
- 
+
 #Explore
- 
+
 Now is the time to explore the app. Find places to style or play with Layouts and/or anything you wish.

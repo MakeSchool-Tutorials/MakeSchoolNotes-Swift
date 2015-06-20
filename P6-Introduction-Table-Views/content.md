@@ -182,10 +182,6 @@ OK let's hit Run. If the Force is with you, you should now see the following:
 
 ![image](table_view_hello_world.png)
 
-#Commit
-Now would be a good time to commit your code. Include a commit message to remind yourself of what you've implemented. It's good to commit after you've finished a chunk of work;
-even better if it works :)
-
 #Hello World
 Great, so you can now display *Hello World* in each of the five table rows.  The second method in your `UITableViewDataSource` extension returns the number of rows to be populated by the data source.
 In this case, it's been hardcoded to 5 simply for testing. Generally it will be the count of an array of objects.

@@ -1,7 +1,7 @@
 ---
 title: "Note Display Controller"
 slug: note-display-controller
----     
+---
 
 Time to move on to displaying a note in its own controller. We will be creating a reusable View Controller that will be used to display our note information
 but can also be used to manipulate notes using keyboard input.
@@ -17,56 +17,56 @@ Let's add a new container view to our `New Note View Controller`. This container
 
 When the container was added, it created a new embeded segue under `New Note View Controller`.
 
-> [action] 
+> [action]
 > Set this segue identifier to: 'ShowNewNote' (We will be using this later on).
-> ![image](embed_segue_1.png) ![image](embed_segue_2.png) 
+> ![image](embed_segue_1.png) ![image](embed_segue_2.png)
 
 #Adding The Note Display Controller
 
-> [action] 
+> [action]
 > As per the previous chapter, create a new View Controller subclass entitled `NoteDisplayViewController` and set your newly added View Controller to use this Custom Class.
 
 Let's add a bit of initial functionality to our new Note Display View Controller.
 
 > [action]
-> 1. Go back into `Main.storyboard`, locate a `Toolbar` in the *Objects Library* and drag this into your empty `Note Display View Controller`. 
+> 1. Go back into `Main.storyboard`, locate a `Toolbar` in the *Objects Library* and drag this into your empty `Note Display View Controller`.
 > 2. Add the following *Pin* (aka TIE fighter) constraints so that our `Toolbar` sits at the bottom of the view.
-> ![image](toolbar_constraints.png) 
+> ![image](toolbar_constraints.png)
 >
 > 3. Select the `Item` object under our `Toolbar` in the Document Outline and change its `Identifier` to Trash. You will see `Item` change into a trash can icon.
 > 4. Connect the Trash icon to the `Exit` of the View Controller. You will be presented with a popup. Select the `unwindToSegue` action.
 >
-> ![image](connect_trash_exit.png) 
+> ![image](connect_trash_exit.png)
 >
 > A new segue will have been created.
 > Change the Identifier to 'Delete'. You will be using that in the switch statement in the `unwindToSegue` function.
 >
-> ![image](display_segue_exit_1.png) ![image](display_segue_exit_2.png) 
+> ![image](display_segue_exit_1.png) ![image](display_segue_exit_2.png)
 
 We also want to connect `Note Display View Controller` to our original `Dashboard View Controller` so that when a row is selected, we can display our note.
 
 > [action]
 > Connect (Ctrl-Drag) your `Dashboard View Controller` to the `Note Display View Controller`.
 
-![image](manual_segue.png) 
+![image](manual_segue.png)
 
 This will create a new segue.
 
 > [action]
 > Set the identifier of this segue to 'ShowExistingNote'.
- 
-![image](manual_segue_select.png) ![image](manual_segue_attributes.png) 
+
+![image](manual_segue_select.png) ![image](manual_segue_attributes.png)
 
 Great, let's add support for our new trash can segue.
 
 > [action]
 > Open `NotesViewController.swift` and add the following to the `switch` statement in your `unwindToSegue` function.
->	
+>
 	case "Delete":
 	    realm.write() {
 	        realm.delete(self.selectedNote)
 	    }
->        
+>
         let source = segue.sourceViewController as! NoteDisplayViewController
         source.note = nil;
 >
@@ -78,7 +78,7 @@ Time to enable the table row selection to trigger the segue to the `Note Display
 > Uncomment the following code in your `UITableViewDelegate` extension.
 >
 	self.performSegueWithIdentifier("ShowExistingNote", sender: self)
-	
+
 Ah, those handy segue identifiers...
 
 #Bonus
@@ -94,11 +94,11 @@ Time to create an interface to present our Note information and move us toward b
 > 3. Add a `Text Field` to your `Scroll View` near the top. This will be used to display the title.
 > 4. Add a `Text View` to your `Scroll View` and add it below your `Text Field`. This will be used to display the content.
 
-We have a basic presentation interface. Now we need to connect the `Text Field` and `Text View` objects with our `Note Display View Controller`. 
+We have a basic presentation interface. Now we need to connect the `Text Field` and `Text View` objects with our `Note Display View Controller`.
 
 It should look like this:
 
-![image](display_view.png) 
+![image](display_view.png)
 
 Remember, if things are not looking quite right when you run on device, you can generally solve these problems through resolving auto layout (we talked about that in the simple app tutorial).
 
@@ -120,10 +120,10 @@ Time to add some outlets.
 	import ConvenienceKit
 >
 	class NoteDisplayViewController: UIViewController {
->	    
+>
 	    @IBOutlet weak var titleTextField: UITextField!
 	    @IBOutlet weak var contentTextView: TextView!
->        
+>
 	    override func viewDidLoad() {
 >
 
@@ -135,10 +135,10 @@ For the eagle-eyed, you will notice that we are using `TextView` and not `UIText
 > 3. Connect your `UITextField` and `TextView` Interface Builder objects to the `IBOutlets` variables in your code.  
 > In case you have forgotten how that works, here is a little reminder:
 >
-> ![image](code_connect_fields.png) 
+> ![image](code_connect_fields.png)
 >
 
-Now let's get these new display objects to display our existing note information. We need to add a variable to hold our Note. 
+Now let's get these new display objects to display our existing note information. We need to add a variable to hold our Note.
 
 > [action]
 > Add the following note declaration after the `contentTextView` declaration.
@@ -149,7 +149,7 @@ Now let's get these new display objects to display our existing note information
         }
     }
 >
-	
+
 Remember the `didSet` functionality we added during the 'Local Storage with Realm' chapter? Have a quick look at `NoteTableViewCell` for a reminder.
 In this case, when a note is set, we want to call the `displayNote` method to populate our title and content display objects in our view.
 
@@ -162,11 +162,11 @@ In this case, when a note is set, we want to call the `displayNote` method to po
             contentTextView.text = note.content
         }
     }
->	
+>
 > That should do the trick. This ensures all variables are not nil and then sets the objects with the Note data.  
 
 #Sharing Note Data
-How can we send the Note information across to this controller? 
+How can we send the Note information across to this controller?
 
 Well, once you've implemented the segue functionality, then when a segue is being prepared you can override the functionality and perform your own actions.
 In this case we will override the `prepareForSegue` functionality, check for the `ShowExistingNote` identifier and then set our `Note` variable in our `Note Display View Controller` with the currently selected `Note` in our `Table View`.  Sound easy? :)
@@ -181,7 +181,7 @@ In this case we will override the `prepareForSegue` functionality, check for the
         }
     }
 >
-	
+
 This does exactly what we described above. Check for the given identifier (`ShowExistingNote`) and then grab our reference to the `destinationViewController`, which we expect to be a `NoteDisplayViewController`.
 This gives us access to the `note` variable in this controller and finally we can set it to the currently selected note.
 
@@ -200,31 +200,31 @@ Now we'll go back to our `Note Display View Controller` and ensure we call `disp
 	import ConvenienceKit
 >
 	class NoteDisplayViewController: UIViewController {
->    
+>
 	    @IBOutlet weak var titleTextField: UITextField!
 	    @IBOutlet weak var contentTextView: TextView!
->	    
+>
 	    var note: Note? {
 	        didSet {
 	            displayNote(note)
 	        }
 	    }
->	    
+>
 	    override func viewWillAppear(animated: Bool) {
 	        super.viewWillAppear(animated)
->   	        
+>
 	        displayNote(note)
 	    }
->	    
+>
 	    //MARK: Business Logic
->	    
+>
 	    func displayNote(note: Note?) {
 	        if let note = note, titleTextField = titleTextField, contentTextView = contentTextView  {
 	            titleTextField.text = note.title
 	            contentTextView.text = note.content
 	        }
 	    }
->   
+>
 	}
 >
 
@@ -232,7 +232,7 @@ Now we'll go back to our `Note Display View Controller` and ensure we call `disp
 
 Notice we are calling `displayNote` in `viewWillAppear` rather than the previously supplied `viewDidLoad`.  What is the difference, you may ask yourself?
 
- - **viewDidLoad** is called once upon initialization. 
+ - **viewDidLoad** is called once upon initialization.
  - **viewWillAppear** is called every time the view is about to be displayed to ensure it is always refreshed.
 
 We are going to make one more modification before running our app and trying out all these changes.
@@ -245,30 +245,30 @@ When we select the `New Note View Controller`, we want to be able to create an e
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new View Controller using segue.destinationViewController.
         // Pass the selected object to the new View Controller.
->        
+>
         if (segue.identifier == "ShowNewNote") {
             // create a new Note and hold onto it, to be able to save it later
             currentNote = Note()
             let noteViewController = segue.destinationViewController as! NoteDisplayViewController
             noteViewController.note = currentNote
         }
-    }   
+    }
 
 > The code above should be very familiar from the previous application of this logic in `NotesViewController.swift` only a few chapters ago.
 
-> As a reminder, you should take some time to familiarize yourself with the code before you copy-paste it into your project. You can retype instead of copy-pasting if that helps you slow down. If you don't understand the code you're putting in your project, that's a first step down a road to confusion and future heartbreak.  :(  	
+> As a reminder, you should take some time to familiarize yourself with the code before you copy-paste it into your project. You can retype instead of copy-pasting if that helps you slow down. If you don't understand the code you're putting in your project, that's a first step down a road to confusion and future heartbreak.  :(
 
 
 
-Time to run the app! 
+Time to run the app!
 
-Hopefully you have a few 'Super Simple New Notes' left over. Click one! 
+Hopefully you have a few 'Super Simple New Notes' left over. Click one!
 \o/ Your title and content should be displayed!
 Don't worry if it's a bit ugly, functionality first before aesthetic beauty.
 
 Try and create a new Note. You can edit the title and content, but it won't save it just yet. Hit *Save* and you will have created a new note, but it won't have a title or content, only its modification date. Boooo!
 
-![image](simulator_dashboard.png) ![image](simulator_view.png) ![image](simulator_add.png) 
+![image](simulator_dashboard.png) ![image](simulator_view.png) ![image](simulator_add.png)
 
 #Enabling Keyboard Input
 
@@ -287,14 +287,14 @@ When is a good time to save a Note? When the View is dismissed seems like a good
 >
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
->        
+>
         saveNote()
     }
->   
+>
     func saveNote() {
         if let note = note {
             let realm = Realm()
->            
+>
             realm.write {
                 if (note.title != self.titleTextField.text || note.content != self.contentTextView.textValue) {
                     note.title = self.titleTextField.text
@@ -305,7 +305,7 @@ When is a good time to save a Note? When the View is dismissed seems like a good
         }
     }
 >
-    
+
 When you press the back button (e.g. '< Dashboard') the view will be dismissed and the `viewWillDisappear` method will be called.  
 At this point `saveNote` is called. This method will check if the fields have changed, and if so, then it will update the note.
 
@@ -321,18 +321,14 @@ As we learned in this chapter, you should refresh scene information in `viewWill
         tableView.dataSource = self
         tableView.delegate = self
     }
->    
+>
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let realm = Realm()        
+        let realm = Realm()
         notes = realm.objects(Note).sorted("modificationDate", ascending: false)
     }
->    
+>
 
 Now run the app. You can add new notes and edit existing notes using the physical keyboard.  Another step closer to full Note management!
-
-#Commit
-
-Another great time to **Commit your code**!
 
 Give yourself a pat on the back! The app is coming along nicely. Time to move on to the next chapter and get a bit more involved with Keyboard Handling.
