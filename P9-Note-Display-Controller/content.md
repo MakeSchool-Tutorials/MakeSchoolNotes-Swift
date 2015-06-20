@@ -11,9 +11,11 @@ but can also be used to manipulate notes using keyboard input.
 Let's add a new container view to our `New Note View Controller`. This container will create a new View Controller that will be displayed within the `New Note View Controller`.
 
 > [action]
-> Open `Main.storyboard` and locate `Container View` in the *Object Library*.
-> Drag this into the `View` of your `New Note View Controller`, then resize it vertically to sit under the navigation item bar.
-> Rename this controller to `Note Display View Controller`.
+> Open `Main.storyboard` and locate *Container View* in the *Object Library*.
+> Drag this into the *View* of your *New Note View Controller*, then resize it vertically to sit under the navigation item bar. Notice that it also adds a new *View Controller*, connected by a segue.
+> Rename this new *View Controller* to "Note Display View Controller".
+> <video width="50%" controls>
+  <source src="https://s3.amazonaws.com/mgwu-misc/SA2015/AddContainerView.mp4" type="video/mp4">
 
 When the container was added, it created a new embeded segue under `New Note View Controller`.
 
@@ -24,7 +26,7 @@ When the container was added, it created a new embeded segue under `New Note Vie
 #Adding The Note Display Controller
 
 > [action]
-> As per the previous chapter, create a new View Controller subclass entitled `NoteDisplayViewController` and set your newly added View Controller to use this Custom Class.
+> As per the previous chapter, create a new View Controller subclass entitled `NoteDisplayViewController` and set your newly added View Controller to use this Custom Class. Definitely look back at the step-by-step tutorial if you get stuck!
 
 Let's add a bit of initial functionality to our new Note Display View Controller.
 
@@ -34,7 +36,7 @@ Let's add a bit of initial functionality to our new Note Display View Controller
 > ![image](toolbar_constraints.png)
 >
 > 3. Select the `Item` object under our `Toolbar` in the Document Outline and change its `Identifier` to Trash. You will see `Item` change into a trash can icon.
-> 4. Connect the Trash icon to the `Exit` of the View Controller. You will be presented with a popup. Select the `unwindToSegue` action.
+> 4. Control-click and drag to connect the Trash icon to the `Exit` of the View Controller. You will be presented with a popup. Select the `unwindToSegue` action.
 >
 > ![image](connect_trash_exit.png)
 >
@@ -42,11 +44,13 @@ Let's add a bit of initial functionality to our new Note Display View Controller
 > Change the Identifier to 'Delete'. You will be using that in the switch statement in the `unwindToSegue` function.
 >
 > ![image](display_segue_exit_1.png) ![image](display_segue_exit_2.png)
+> <video width="50%" controls>
+  <source src="https://s3.amazonaws.com/mgwu-misc/SA2015/AddToolbar.mp4" type="video/mp4">
 
 We also want to connect `Note Display View Controller` to our original `Dashboard View Controller` so that when a row is selected, we can display our note.
 
 > [action]
-> Connect (Ctrl-Drag) your `Dashboard View Controller` to the `Note Display View Controller`.
+> Connect (Ctrl-Drag) your `Dashboard View Controller` to the `Note Display View Controller`, and select a manual "show" segue.
 
 ![image](manual_segue.png)
 
@@ -64,13 +68,13 @@ Great, let's add support for our new trash can segue.
 >
 	case "Delete":
 	    realm.write() {
-	        realm.delete(self.selectedNote)
+	        realm.delete(self.selectedNote!)
 	    }
 >
         let source = segue.sourceViewController as! NoteDisplayViewController
         source.note = nil;
 >
-The trash can, when clicked, will now delete notes.
+The trash can, when clicked, will now be able to delete notes (once we finish our implementation of NoteDisplayViewController, of course).
 
 Time to enable the table row selection to trigger the segue to the `Note Display View Controller`.
 
@@ -100,7 +104,7 @@ It should look like this:
 
 ![image](display_view.png)
 
-Remember, if things are not looking quite right when you run on device, you can generally solve these problems through resolving auto layout (we talked about that in the simple app tutorial).
+Remember, if things are not looking quite right when you run on device, you can generally solve these problems through resolving auto layout issues (we talked about that in the simple app tutorial).
 
 >[action]
 > Select from the main menu `Editor\Resolve Auto Layout Issues\(Selected Views) Reset to Suggested Constraints`.
@@ -131,9 +135,9 @@ For the eagle-eyed, you will notice that we are using `TextView` and not `UIText
 
 > [action]
 > 1. Update your `UITextView` object in the *Identity Inspector* to use the `TextView` class.
-> 2. Set `Module` to `ConvenienceKit`.
+> 2. Make sure *Module* is set to `ConvenienceKit`.
 > 3. Connect your `UITextField` and `TextView` Interface Builder objects to the `IBOutlets` variables in your code.  
-> In case you have forgotten how that works, here is a little reminder:
+> In case you have forgotten how that works, here is a little reminder of one of the several ways it can be done:
 >
 > ![image](code_connect_fields.png)
 >
@@ -192,7 +196,7 @@ Now what will happen is the note will get set and `didSet` will be called. Howev
 Now we'll go back to our `Note Display View Controller` and ensure we call `displayNote` once the view is ready for action.
 
 > [action]
-> Make your `Note Display View Controller` code look as follows:
+> Make your `NoteDisplayViewController` code look as follows:
 >
 	import Foundation
 	import UIKit
@@ -278,7 +282,7 @@ From the `iOS Simulator` menu, go to: `Hardware/Keyboard/Connect Hardware Keyboa
 
 #Modifying Notes
 
-Let's add quick support for modification of our notes.
+Let's quickly add support for modification of our notes.
 
 When is a good time to save a Note? When the View is dismissed seems like a good time to do so.
 
