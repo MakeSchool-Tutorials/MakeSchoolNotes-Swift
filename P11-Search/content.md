@@ -94,7 +94,7 @@ When the `Dashboard` is presented we want to revert to `.DefaultMode`.
 > Ensure `func viewWillAppear` reads as follows:
 >
     override func viewWillAppear(animated: Bool) {
-
+>
         let realm = Realm()
         notes = realm.objects(Note).sorted("modificationDate", ascending: false)
         state = .DefaultMode
