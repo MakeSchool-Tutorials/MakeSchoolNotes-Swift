@@ -38,6 +38,7 @@ Let's add this outlet and possible search states.
 Now time to tackle the interface.
 
 > [action]
+>
 > 1. Connect your Search Bar in your interface to the `searchBar` outlet.
 > 2. Set the `Search Bar Delegate`. You can do this as you did before with `tableView` e.g. `searchBar.delegate = self`. However
 > you can also do it by opening the *Connections Inspector* for the `Search Bar` object and dragging the delegate outlet to the `Dashboard`.
@@ -127,6 +128,7 @@ We are setting the default state. However nothing will happen unless we use the 
     }
 >
 > What's going on:
+>
 > 1. We have moved our default state search code so whenever we return to default state the list is reset.
 > 2. This returns the navigation bar in an animated fashion - you can see why it was hidden in point 6.
 > 3. Remove keyboard popup.
