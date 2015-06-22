@@ -37,11 +37,11 @@ OK, I'm convinced. Let's take it for a spin. Time to implement Realm into our `N
     import Foundation
     import RealmSwift
 
-    class Note : RLMObject {
+    class Note : Object {
     }
 
-So we've dynamically imported the Realm library so we have access to this functionality.  You remember Alt-Clicking? Try it now on *RLMObject*.
-Realm objects are just like normal objects - you just subclass *RLMObject* to get started.
+So we've dynamically imported the Realm library so we have access to this functionality.  You remember Alt-Clicking? Try it now on *Object*.
+Realm objects are just like normal objects - you just subclass *Object* to get started.
 
 > [action]
 > Let's add the following variables to create our `Note` model class.
