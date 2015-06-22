@@ -75,6 +75,7 @@ Great! You now have a place to connect your Table View.
 ##Part 2: Connect the referencing outlet
 
 > [action]
+>
 > 1. Open `NotesViewController` and `Main.storyboard` in the *Assistant Editor* view (refer back to the *Connecting Objects* section of the last tutorial if you're having trouble with this).
 > 2. Click and drag from the circle beside your new `@IBOutlet` in `NotesViewController` to the Table View in `Main.storyboard`.
 > 3. Open the *Connections Inspector* for the Table View and check out your beautiful new referencing outlet.
@@ -101,6 +102,7 @@ For the Table View to display data, it requires a data source to populate from. 
 Let's tell our tableView where it should expect to find its dataSource. We'll set it via code this time, but it could also be set via Interface Builder.
 
 > [action]
+>
 > 1. Open `NotesViewController` and locate the `viewDidLoad` function.
 > 2. Ensure the following method reads as follows:
 >
@@ -170,6 +172,7 @@ Have a look at the code in `NoteTableViewCell`. Right now, it doesn't do anythin
 Let's quickly set up our `Table View Cell`.
 
 > [action]
+>
 > 1. Ensure you are in `Main.storyboard`
 > 2. Select `Table View Cell` from the *Document Outline*
 > 3. Using the *Identity Inspector* set your *Custom Class* to `NoteTableViewCell`
