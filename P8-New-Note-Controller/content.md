@@ -366,7 +366,7 @@ We need to go back and add some contraints to ensure the Table View fits our dev
 > [action]
 > Open up your `Dashboard Scene` in `Main.storyboard` and select the `Table View`. Then select the icon on the bottom left of the storyboard that looks like a [TIE fighter](http://icons.iconarchive.com/icons/jonathan-rey/star-wars-vehicles/256/Tie-Fighter-03-icon.png) - this is the Constraint Editor. By adding some constraints to our table view, we can make space for the automatically generated *Delete* button:
 >
-> <video width="50%" controls>
+> <video width="100%" controls>
   <source src="https://s3.amazonaws.com/mgwu-misc/SA2015/AddTableviewConstraints.mov" type="video/mp4">>>
 >
 
