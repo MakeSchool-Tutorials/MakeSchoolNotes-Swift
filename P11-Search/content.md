@@ -10,6 +10,8 @@ Let's take a look at adding a search bar to our `Dashboard Scene`.
 > [action]
 > See if you can add a `Search Bar` object to your `Dashboard Scene` yourself.
 
+<!-- don't combine these two blocks -->
+
 > [solution]
 > ![image](add_search_bar.png)
 
