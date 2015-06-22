@@ -31,6 +31,7 @@ When the container was added, it created a new embeded segue under `New Note Vie
 Let's add a bit of initial functionality to our new Note Display View Controller.
 
 > [action]
+>
 > 1. Go back into `Main.storyboard`, locate a `Toolbar` in the *Objects Library* and drag this into your empty `Note Display View Controller`.
 > 2. Add the following *Pin* (aka TIE fighter) constraints so that our `Toolbar` sits at the bottom of the view.
 > ![image](toolbar_constraints.png)
@@ -44,7 +45,7 @@ Let's add a bit of initial functionality to our new Note Display View Controller
 > Change the Identifier to 'Delete'. You will be using that in the switch statement in the `unwindToSegue` function.
 >
 > ![image](display_segue_exit_1.png) ![image](display_segue_exit_2.png)
-> <video width="50%" controls>
+> <video width="100%" controls>
   <source src="https://s3.amazonaws.com/mgwu-misc/SA2015/AddToolbar.mp4" type="video/mp4">
 
 We also want to connect `Note Display View Controller` to our original `Dashboard View Controller` so that when a row is selected, we can display our note.
@@ -93,6 +94,7 @@ You may have noticed we are now perform a `Delete` operation in two seperate pla
 Time to create an interface to present our Note information and move us toward being able to edit this information.
 
 > [action]
+>
 > 1. Open `Main.storyboard` and locate your `Note Display View Controller Scene`.
 > 2. Add a `Scroll View` to your main `View`. Your notes have the potential to contain a lot of content, so you want to ensure the user can scroll through them.
 > 3. Add a `Text Field` to your `Scroll View` near the top. This will be used to display the title.
@@ -134,6 +136,7 @@ Time to add some outlets.
 For the eagle-eyed, you will notice that we are using `TextView` and not `UITextView`. This is provided by the `ConvenienceKit` framework, which is a handy tool created by Make School to streamline the process of handling user input. *Cmd-Click* if you are curious about this subclass.
 
 > [action]
+>
 > 1. Update your `UITextView` object in the *Identity Inspector* to use the `TextView` class.
 > 2. Make sure *Module* is set to `ConvenienceKit`.
 > 3. Connect your `UITextField` and `TextView` Interface Builder objects to the `IBOutlets` variables in your code.  
