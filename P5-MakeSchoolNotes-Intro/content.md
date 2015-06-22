@@ -1,6 +1,6 @@
 ---
-title: "MakeSchoolNotes-Intro"
-slug: makeschoolnotes-intro
+title: "Getting Started"
+slug: getting-started
 ---     
 
 That time has come to make your first *real* app, your own version of the classic *Notes* app.  After finishing the *SimpleApp* tutorial you should have an understanding
