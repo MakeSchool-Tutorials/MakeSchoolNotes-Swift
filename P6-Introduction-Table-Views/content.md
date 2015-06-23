@@ -61,6 +61,8 @@ so you will need to create an *IBOutlet* to connect your Table View from Interfa
 > [action]
 > Let's see if you can add an outlet variable to the NotesViewController. I'll give you a clue: the object type is *UITableView*.
 
+<!-- don't combine these two blocks -->
+
 > [solution]
 > It should look something like this:
 >
