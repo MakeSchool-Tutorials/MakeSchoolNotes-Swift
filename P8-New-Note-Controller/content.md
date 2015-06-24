@@ -46,19 +46,14 @@ Now let's connect the new View Controller to `Main.storyboard` so users can crea
 
 #Navigation
 
-As you can see, the new view controller is currently missing the navigation bar that the rest of the app has. We will soon take care of this.
+As you can see, the new view controller is currently missing the navigation bar that the rest of the app has. Lets care of this.
 
 > [action]
-> Add our new View Controller to the Navigation Controller.
-> Select `New Note View Controller` from the Document Outline, and from the main menu select `Editor/Embed In/Navigation Controller`
->
-> ![image](embed_in_navigation_1.png)
+> On the 'NotesViewController', control click the little circular yellow view controller icon and drag it to the 'NewNotesViewController'. After letting go, select the 'show' option in the little black box. We don't need a segue identifier in this case. We just need this generic segue to provide us with the nav bar and let the navigation controller know it has to manage a new view controller on the stack. 
+> ![image](create_blank_segue.png)
+> ![image](blank_show_segue.png)
 
-This will actually create a new *Navigation Controller*. This isn't exactly what we want: we already have a *Navigation Controller*, we just wanted to have a *Navigation Bar* for our new *View Controller*. Later on we'll be able to delete this new Navigation Controller and connect our new class to the old one, but for now let's leave the new one in place.
-
-![image](embed_in_navigation_2.png)
-
-Now let's give our navigation bar in the `NotesViewController` a title and insert an add button to allow users to create a new note. When this button is pressed the app will navigate to our NewNoteViewController.
+Now let's give our navigation bar on the `NotesViewController` a title and insert an add button to allow users to create a new note. When this button is pressed the app will navigate to our NewNoteViewController.
 
 > [action]
 > Select `NotesViewController` in Interface Builder, then select the `Navigation Item`, ensure you have the *Attributes Inspector* open, and rename *Title* to "Dashboard".
