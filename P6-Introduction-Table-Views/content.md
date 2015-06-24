@@ -108,10 +108,10 @@ Let's tell our tableView where it should expect to find its dataSource. We'll se
 > 1. Open `NotesViewController` and locate the `viewDidLoad` function.
 > 2. Ensure the following method reads as follows:
 >
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.dataSource = self
-    }
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            tableView.dataSource = self
+        }
 >
 
 You will notice a red exclamation mark. Uh-oh, you just made Swift sad.
