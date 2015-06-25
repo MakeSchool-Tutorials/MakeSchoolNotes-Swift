@@ -49,7 +49,7 @@ Now let's connect the new View Controller to `Main.storyboard` so users can crea
 As you can see, the new view controller is currently missing the navigation bar that the rest of the app has. Lets care of this.
 
 > [action]
-> On the 'NotesViewController', control click the little circular yellow view controller icon and drag it to the 'NewNotesViewController'. After letting go, select the 'show' option in the little black box. We don't need a segue identifier in this case. We just need this generic segue to provide us with the nav bar and let the navigation controller know it has to manage a new view controller on the stack. 
+> On the 'NotesViewController', control click the little circular yellow view controller icon and drag it to the 'NewNotesViewController'. After letting go, select the 'show' option in the little black box. We don't need a segue identifier in this case. We just need this generic segue to provide us with the nav bar and let the navigation controller know it has to manage a new view controller on the stack.
 > ![image](create_blank_segue.png)
 > ![image](blank_show_segue.png)
 
@@ -98,10 +98,6 @@ Let's add an identifier to our new segue.
 >
 > ![image](add_segue_identifier.png)
 >
-Now that the `New Note View Controller` has been connected into our original Navigation Stack, we can remove the new one that was created during the `embed in Navigation Controller` stage.
-
-> [action]
-> Remove the navigation controller that was added during the Embed stage.
 
 Feel free to move your controllers around your storyboard so everything lines up just how you like it :)
 
