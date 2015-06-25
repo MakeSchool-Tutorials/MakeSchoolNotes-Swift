@@ -37,3 +37,7 @@ starting point classes for us to quick start on the app development, and most im
 [Download MakeSchoolNotes Template Project](https://github.com/MakeSchool-Tutorials/MakeSchoolNotes-Swift/raw/master/P5-MakeSchoolNotes-Intro/MakeSchoolNotes-Template.zip)
 
 Let's move onto the next chapter and start exploring a very important building block in many apps, Table Views.
+
+#Feedback
+
+If you have feedback on this tutorial or find any mistakes, please open issues on the [GitHub Repository](https://github.com/MakeSchool-Tutorials/MakeSchoolNotes-Swift).
