@@ -11,49 +11,49 @@ Let's take a look at what you have learned so far.
 
 ###Controllers & Views
 
-* **View Controllers**: These are the cornerstone of designing your application flow and 'user screens'.
+* **View Controllers**: These are the cornerstones of designing your application flow and *user screens*.
 
-* **The Navigation Controller**: The Navigation Controller manages a stack of view controllers that generally flow from left to right (and vice versa). It provides a drill-down interface for hierarchical content, and it often goes hand in hand with Table Views.
+* **Navigation Controllers**: The Navigation Controller manages a stack of view controllers that generally flow from left to right (and vice versa). It provides a drill-down interface for hierarchical content, and it often goes hand-in-hand with Table Views.
 
-* **The Table View**: The table view is a means for displaying and editing hierarchical lists of information. Perfect for a notes app. This is an essential view and one you will see often in application design.
+* **Table Views**: The table view allows us to display and edit hierarchical lists of information. (Perfect for a notes app.) This is an essential view and one you will see often in application design.
 
-* **Table View Cell**: You have seen how easy it is to customize table view cells, although ours was a simple deisgn you could easily expand with additional information.
+* **Table View Cells**: You have seen how easy it is to customize table view cells; although ours was a simple design, you could easily expand with additional information.
 
-* **Container View**: We used a container view to provide a common view controller interface for viewing/creating and editing notes.
+* **Container Views**: We used a container view to provide a common view controller interface for viewing, creating, and editing notes.
 
-###Delegates, Protocols & Extensions
+###Delegates, Protocols, & Extensions
 
-* **Delegates**: A delegate refers to the Delegation Design Patten. Using this design pattern, a class would have certain operations that it delegates out (perhaps optionally). Doing so creates an alternative to subclassing by allowing specific tasks to be handled in an application-specific manner, which would be implemented by a delegate.  You implemented many delegates in this app.
+* **Delegates**: A delegate refers to the **Delegation Design Patten**. Using this design pattern, a class would have certain operations that it delegates out (perhaps optionally). Doing so creates an alternative to subclassing by allowing specific tasks to be handled in an application-specific manner, which would be implemented by a delegate. 
 
-* **Protocols**: A protocol is an interface that a class can conform to, meaning that class implements the listed methods. It's up to you to implement the actual code.
+* **Protocols**: A protocol is a set of method declarations and properties (an interface) that a type can choose to implement (called *conforming to a protocol*). When a class conforms to a protocol, it implements all of the protocol's **required** methods and properties, and may also implement all or some of the protocols **optional** methods and properties. Note that it is up to the programmer to implement the actual code when conforming to a protocol.
 
-* **DataSource**: You implemented the data source protocol to be able to populate your table view with your notes data stored in realm's local storage.
+* **DataSources**: You implemented the data source protocol to populate your table view with your note's data, which was stored in realm's local storage.
 
-* **Extensions**: Extensions add new functionality to an existing class, structure, enumeration, or protocol type. In this app we added our delegates as extensions, you could add delegate support directly to the class however it looks a bit nicer as an extension. 
+* **Extensions**: Extensions add new functionality to an existing class, structure, enumeration, or protocol type. In the notes app, we added our delegates as extensions. Note that you could add delegate support directly to the class; however, it looks a bit nicer as an extension. 
 
 ###Data Persistence
 
-* **Persistence**: Persistence is the ability to save data so that when you close an app and reopen it, the data is still there.
+* **Persistence**: Persistence is the ability to save data - it allow us to close an app and reopen it without losing anything.
 
-* **Realm**: You used Realm to implement a data persistence layer, we learnt about Realm entities, setting up our own `Note` model and how to read and write this information.
+* **Realm**: You used Realm to implement a data persistence layer. We learned about Realm entities, setting up our own `Note` model, and how to read and write this information.
 
 ###Keyboard Handling & Constraints
 
-* **Text Input**: Adding text input functionality to the app and customising this experience.
+* **Text Input**: Adding text input functionality to the app and customising the experience.
 
 * **Keyboard Notifications**: Having the keyboard inform our code when the keyboard was going to appear and when it was going to disappear.
 
-* **Constraints**: Using constraints to ensure the toolbar is constrained to the bottom space of our app.
+* **Constraints**: Using constraints to ensure the toolbar was constrained to the bottom space of our app.
 
-* **Animating Constraint**: Using the keyboard notification along with the constraint to ensure the toolbar stays above the keyboard.
+* **Animating Constraints**: Using keyboard notifications, along with constraints, to ensure the toolbar stays above the keyboard.
 
 ###Note Lifecycle
 
 * **Create Note**: You created new notes by passing an empty Note object through to the New Note Controller to be populated by the user.
 
-* **Display/Modify**: You learnt how to display the note and allow the user to modify existing note information.
+* **Display/Modify**: You learned how to display the note and how to allow the user to modify existing note information.
 
-* **Remove Notes**: You implemented the facility to remove notes through the trash can and using table view behaviour (swipe to delete).
+* **Remove Notes**: You implemented a mechanism to remove notes through the trash can and using table view behavior (swipe to delete).
 
 ###Search
 
@@ -66,8 +66,8 @@ Let's take a look at what you have learned so far.
 A lot of ground was touched upon here and these concepts are a great step towards building a bigger app.
 
 If you take a popular app like "Yelp", you have a table view, a search bar and a list of results. 
-The cell view may have an image and a few more fields however you could easily add an image and more information to your cell.
+The cell view may have an image and a few more fields; however, you could easily add an image and more information to your cell.
 
-You used local storage of user data however imagine you were using cloud storage populated with restaurant data...
+You used local storage of user data; however, imagine you were using cloud storage populated with restaurant data...
 
-Notes may be a simple app however it's only a few iterations away from something much more.
+Notes may be a simple app; however, it's only a few iterations away from something much more.
