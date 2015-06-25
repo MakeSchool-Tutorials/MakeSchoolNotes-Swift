@@ -70,8 +70,8 @@ OK! We still need to add a delegate for our textField so it knows if it should m
         func textFieldShouldReturn(textField: UITextField) -> Bool {
 >
             if (textField == titleTextField) {  //1
-                contentTextView.becomeFirstResponder()
                 contentTextView.returnKeyType = .Done
+                contentTextView.becomeFirstResponder()
             }
 >
             return false
