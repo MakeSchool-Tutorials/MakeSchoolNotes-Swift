@@ -49,9 +49,9 @@ Let's take a look at what you have learned so far.
 
 ###Note Lifecycle
 
-* **Create Note**: You can create new notes by creating an empty Note object and passing this through to the New Note Controller for populating note information.
+* **Create Note**: You created new notes by passing an empty Note object through to the New Note Controller to be populated by the user.
 
-* **Display/Modify**: You learn to display your note and allow the user to modify existing note information.
+* **Display/Modify**: You learnt how to display the note and allow the user to modify existing note information.
 
 * **Remove Notes**: You implemented the facility to remove notes through the trash can and using table view behaviour (swipe to delete).
 
@@ -61,4 +61,13 @@ Let's take a look at what you have learned so far.
 
 * **State Machine**: A state machie was implemented to give us a `.DefaultMode` and `.SearchNode` so the NotesViewController behaviour could be modified based on state.
 
+###Thoughts
 
+A lot of ground was touched upon here and these concepts are a great step towards building a bigger app.
+
+If you take a popular app like "Yelp", you have a table view, a search bar and a list of results. 
+The cell view may have an image and a few more fields however you could easily add an image and more information to your cell.
+
+You used local storage of user data however imagine you were using cloud storage populated with restaurant data...
+
+Notes may be a simple app however it's only a few iterations away from something much more.
