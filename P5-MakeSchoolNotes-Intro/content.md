@@ -21,9 +21,13 @@ We are going to be looking at the following topics:
 - Constraints
 - Search Bar
 
-Although we'll touch on some other topics, this is an outline of what youll be most familiar and comfortable with by the end of this tutorial.
+Although we'll touch on some other topics, this is an outline of what you'll be most familiar and comfortable with by the end of this tutorial.
 
 Once you've finished, you'll have a good understanding of how to build a complete iOS utility app and be in good shape for the next tutorial, *Makestagram*!
+
+Here's a brief video introduction that summarizes what you will learn throughout this tutorial:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/W7GabrpMLMg" frameborder="0" allowfullscreen></iframe>
 
 #Getting Started
 
