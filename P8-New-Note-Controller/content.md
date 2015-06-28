@@ -311,7 +311,7 @@ would be a great time to add an `Extension` to the `Notes View Controller` to im
     }
 >
 
-So what is going on here? Remeber you can Alt-Click on a function to quickly get an overview of what it does.
+So what is going on here? Remember you can Alt-Click on a function to quickly get an overview of what it does.
 
 The first function informs us that a row has been selected. You will notice these lines have been commented out.
 
