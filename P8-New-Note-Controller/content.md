@@ -118,7 +118,7 @@ Those look like a good start.  See if you can implement the following by yoursel
 
 > [action]
 >
-> 1. Rename the `New Note View Controller` Navigation Item to `Add New Note`
+> 1. Add and rename a new Navigation Item to `Add New Note`
 > 2. Add a `Cancel` `Bar Button Item` on the left hand side of the bar.
 > 2. Add a `Save` `Bar Button Item` on the right hand side of the bar.
 
