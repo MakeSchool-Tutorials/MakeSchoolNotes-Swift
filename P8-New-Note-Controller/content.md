@@ -224,7 +224,7 @@ We've already seen that we are alerted through our `unwindSegue` when the `Add` 
    if let identifier = segue.identifier {
             let realm = Realm()
 >
->           switch identifier {
+           switch identifier {
             case "Save":
                 let source = segue.sourceViewController as! NewNoteViewController //1
 >
