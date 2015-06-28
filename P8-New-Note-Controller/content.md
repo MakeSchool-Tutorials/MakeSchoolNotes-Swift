@@ -342,7 +342,7 @@ This is because we need tell the Table View where it can find the delegate metho
 Here's the solution:
 
 > [solution]
-> Add these two lines to your `viewDidLoad`:
+> Add the new line below where you assigned the `dataSource` in the `viewDidLoad` function:
 >
     tableView.dataSource = self
     tableView.delegate = self
