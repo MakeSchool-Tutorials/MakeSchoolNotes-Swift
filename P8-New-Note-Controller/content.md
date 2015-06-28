@@ -295,7 +295,7 @@ would be a great time to add an `Extension` to the `Notes View Controller` to im
 >
         // 4
         func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-            if (editingStyle == .Delete) {
+            if editingStyle == .Delete {
                 let note = notes[indexPath.row] as Object
 >
                 let realm = Realm()
