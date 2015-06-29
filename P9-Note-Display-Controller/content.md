@@ -194,7 +194,7 @@ Now what will happen is the note will get set and `didSet` will be called. Howev
 
 #Calling displayNote()
 
-Now we'll go back to our `Note Display View Controller` and ensure we call `displayNote` once the view is ready for action.
+Now we'll go back to our `Note Display View Controller` and ensure we call `displayNote` once the view is ready for action, inside of `viewWillAppear`.
 
 > [action]
 > Make your `NoteDisplayViewController` code look as follows:
