@@ -106,12 +106,10 @@ It should look like this:
 
 ![image](display_view.png)
 
-Remember, if things are not looking quite right when you run on device, you can generally solve these problems through resolving auto layout issues (we talked about that in the simple app tutorial).
+Remember, if things are not looking quite right when you run on device, you can generally solve these problems through resolving auto layout issues (we talked about that in the simple app tutorial). In this specific example, be sure to Reset to Suggested Constraints for all views in the view controller.
 
 >[action]
-> Select from the main menu `Editor\Resolve Auto Layout Issues\(Selected Views) Reset to Suggested Constraints`.
->
-> ![image](reset_constraints.png)
+> Select from the main menu `Editor\Resolve Auto Layout Issues\(All Views In View Controller) Reset to Suggested Constraints`.
 
 #Connecting the Note Outlets
 
