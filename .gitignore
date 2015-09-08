@@ -1,0 +1,2 @@
+#exclude OSX utilities
+.DS_Store
