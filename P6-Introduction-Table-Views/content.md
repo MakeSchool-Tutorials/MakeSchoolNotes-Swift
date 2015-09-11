@@ -9,6 +9,14 @@ Let's take a sneak peek of MakeSchoolNotes a little bit further on in the tutori
 
 ![image](app_preview_1.png)
 
+Table views are on of the many components provided by Apple's UIKit framework. The UIKit framework is a collection
+of components that makes it easier for developers to build apps. If you haven't built iOS apps before you should watch this lecture 
+that introduces the main concepts of UIKit before moving on with this tutorial:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vgl9X047-2s" frameborder="0" allowfullscreen></iframe>
+
+You can download the slides for this lecture [here](https://s3.amazonaws.com/mgwu-misc/SA2015/LectureSlides/UIKitIntro.pdf). 
+
 #UITableView
 
 A Table view is an instance of the `UITableView` class. It has only one column and only allows vertical scrolling.  
