@@ -4,8 +4,7 @@ slug: adding-polish
 ---
 
 ##Adding a Dash of Color
-It's great to put your own stamp on your app. An easy way to start is with simple color changes.
-You may have noticed a `StyleConstants.swift` file that we never once discussed.  
+It's great to put your own stamp on your app. An easy way to start is with simple color changes. You may have noticed a `StyleConstants.swift` file that we never once discussed.  
 
 Now is the time to finally have a look! *Drum Roll, please!*
 
