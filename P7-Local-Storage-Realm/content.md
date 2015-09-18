@@ -3,10 +3,9 @@ title: "Local Storage with Realm"
 slug: local-storage-realm
 ---
 
-We have taken the first steps of building a Notes App together. You can now create your own custom table view list and populate it with some basic test data.
+We have taken the first steps of building a Notes app together. You can now create your own custom table view list and populate it with some basic test data.
 
-In most apps, you will want a way to archive your user data. Having a list is great, but the user is going to be pretty unimpressed if your app loses all
-their precious notes after the app is restarted.  That's a 1 Star review waiting to happen.
+In most apps, you will want a way to archive your user data. Having a list is great, but the user is going to be pretty unimpressed if your app loses all their precious notes after the app is restarted.  That's a 1 Star review waiting to happen.
 
 #Persistence
 
@@ -19,8 +18,7 @@ In this context, persistence is the ability to save data so that when you close 
 
 Hold up... This sounds like it could be painful...  
 
-Thankfully, this is an age old problem with many different solutions. Apple offers you [Core Data](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdTechnologyOverview.html) as a complete framework for object graph management.
-It can be a great solution, but it is also a lot of work :)
+Thankfully, this is an age old problem with many different solutions. Apple offers you [Core Data](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdTechnologyOverview.html) as a complete framework for object graph management. It can be a great solution, but it is also a lot of work. :)
 
 Let's look at a lightweight alternative called Realm.
 
@@ -32,7 +30,7 @@ What is [Realm](https://realm.io/)?
 
 Hmmmmm... I like saving lines of code and I like saving work...
 
-OK, I'm convinced. Let's take it for a spin. Time to implement Realm into our `Note` object. You can find this under the `Entities` group.
+OK, I'm convinced. Let's take it for a spin. Time to implement Realm into our *Note* object. You can find this under the *Entities* group.
 
     import Foundation
     import RealmSwift
@@ -40,11 +38,10 @@ OK, I'm convinced. Let's take it for a spin. Time to implement Realm into our `N
     class Note : Object {
     }
 
-So we've dynamically imported the Realm library so we have access to this functionality.  You remember Alt-Clicking? Try it now on *Object*.
-Realm objects are just like normal objects - you just subclass *Object* to get started.
+So we've dynamically imported the Realm library so we have access to this functionality.
 
 > [action]
-> Let's add the following variables to create our `Note` model class.
+> Let's add the following variables to create our *Note* model class.
 >
     dynamic var title: String = ""
     dynamic var content: String = ""
@@ -56,7 +53,7 @@ Realm objects are just like normal objects - you just subclass *Object* to get s
 What is all this **Dynamic** business?
 This attribute informs the Swift compiler that storage and implementation of a property will be provided at runtime.
 
-You will be pleased to know that's all it takes to implement your `Note` data model. Nice!
+You will be pleased to know that's all it takes to implement your *Note* data model. Nice!
 
 #Displaying Realm Object Data
 
@@ -89,17 +86,18 @@ Time to knuckle down. It's going to take a little bit of coding to switch over t
     }
 >
 
-#Code Optimisation
-Wow, what is with `static var dateFormatter`? Glad you asked! This is a code optimisation for a `NSDateFormatter` object. Some objects are notoriously slow to initialize, so you want to be able to reuse them instead of creating a new one every time.
-When I say 'slow' this is a relative term. With one object, you might not even notice the difference. However, if you are processing hundreds of objects, the initialization time adds up and if it only takes a few lines of code to optimise, then it's code that's worthwhile.
+#Code Optimization
 
-I wouldn't expect you at this stage to start worrying about optimisations. Focus on your application experience first.  However, it's good to know there is always a little extra juice
-that can be squeezed out of an app. This comes with experience.
+Wow, what is with `static var dateFormatter`? Glad you asked! This is a code optimization for a `NSDateFormatter` object. Some objects are notoriously slow to initialize, so you want to be able to reuse them instead of creating a new one every time.
+When I say 'slow' this is a relative term. With one object, you might not even notice the difference. However, if you are processing hundreds of objects, the initialization time adds up and if it only takes a few lines of code to optimize, then it's code that's worthwhile.
+
+I wouldn't expect you at this stage to start worrying about optimizations. Focus on your application experience first.  However, it's good to know there is always a little extra juice that can be squeezed out of an app. This comes with experience.
 
 #didSet
-So you've added a variable to store the `Note` object, what is didSet? Well it's a rather handy bit of functionality that will be called whenever this `note` object is modified.
 
-For example, if the note gets edited anywhere, this function will be called that will update the Outlet labels and therefore update the `NoteCell` in our list.
+So you've added a variable to store the *Note* object, what is didSet? Well it's a rather handy bit of functionality that will be called whenever this `note` object is modified.
+
+For example, if the note gets edited anywhere, this function will be called that will update the Outlet labels and therefore update the *NoteCell* in our list.
 
 #if - let
 
@@ -111,10 +109,10 @@ In our example, we make sure that `note`, `titleLabel`, and `dateLabel` are prop
 
 #Notes Collection
 
-Before you create a new note, you need to add a notes variable to our `NotesViewController` so we can populate the Table View.
+Before you create a new note, you need to add a notes variable to our *NotesViewController* so we can populate the table view.
 
 > [action]
-> Add the following code to after your `tableView` variable in `NoteViewController`
+> Add the following code to the top of the *NotesViewController* class:
 >
     var notes: Results<Note>! {
         didSet {
@@ -124,32 +122,48 @@ Before you create a new note, you need to add a notes variable to our `NotesView
     }
 >
 
-Once again, notice the use of *didSet* to refresh the tableView when Notes results are updated - very handy. Let's add some notes.
+Since the `Results` type comes from the **Realm** framework, we will need to include the framework in the `NotesViewController.swift` file.
+
+> [action]
+Add the following to the top of `NotesViewController.swift`:
+>
+    import RealmSwift
+
+Notice the use of *didSet* to refresh the tableView when Notes results are updated - very handy. Let's add some notes.
 
 #Creating A New Note
 
-Our `NoteCell` can now display information from a `Note` object. Let's create one to see this in action.  
+Our *NoteCell* can now display information from a *Note* object. Let's create one to see this in action.  
 
 > [action]
-> Add the following to the end of your *viewDidLoad* function in `NotesViewController.swift` to initialize a new `Note` object.
+> Add the following to the end of your *viewDidLoad* function in `NotesViewController.swift` to initialize a new *Note* object.
 >
     let myNote = Note()
     myNote.title   = "Super Simple Test Note"
     myNote.content = "A long piece of content"
 >
 
-Great! You have a new note but nowhere to put it. Let's save it to our `Realm` local storage with a simple 3 step process.
+Great! You have a new note but nowhere to put it. Let's save it to our *Realm* local storage with a simple 3 step process.
 
 #Saving A Note
 
 > [action]
 > Add the following code right after the previous code.
 >
-    let realm = Realm() // 1
-    realm.write() { // 2
-        realm.add(myNote) // 3
-    }
+      do {
+          // 1
+          let realm = try Realm()
+          // 2
+          try realm.write() {
+            // 3
+            realm.add(myNote)
+          }
 >
+      } catch {
+        print("handle error")
+      }
+>
+> Note: The `do`, `try`, and `catch` keywords are all used for error handling. For now, do not worry about handling errors, we will discuss it in **Makestagram**
 > 1. Before you can add it to Realm you must first grab the default Realm.
 > 2. All changes to an object (addition, modification and deletion) must be done within a write transaction/closure.
 > 3. Add your new note to Realm
@@ -157,22 +171,33 @@ Great! You have a new note but nowhere to put it. Let's save it to our `Realm` l
 Realm makes this whole process nice and easy.
 
 #Loading All Notes
+
+We now need to update our `notes` variable to contain all of the same data as our **Realm** database.
+
 > [action]
-> Finally before the closing squiggley of `viewDidLoad()`, let's update our `notes` variable with our latest Realm data. Now every time we open the app, it will be up to date with all the new notes.
+> Change the realm code in the `viewDidLoad` method of the *NotesViewController* class to look as follows:
 >
-    notes = realm.objects(Note)
+      do {
+          let realm = try Realm()
+          try realm.write() {
+            realm.add(myNote)
+          }
+        // 1
+        notes = realm.objects(Note)
+      } catch {
+        print("handle error")
+      }
 >
 
 Very close now.....
 
 #Update protocol functions
 
-Remember when you added the `UITableViewDataSource` protocol extension? The functions in that protocol now need to be updated to pull in the data from your new Realm data source and display it correctly.
+Now that we are using **Realm** we need to update our table view code.
 
 > [action]
 > Replace the following code in `tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)`
 >
-    let row = indexPath.row
     cell.titleLabel.text = "Hello"
     cell.dateLabel.text = "Today"
 >
@@ -215,9 +240,8 @@ It should look a little like this:
 ![image](notes_app_realm.png)
 
 The more times you run it, the more notes will be added.  
-If you wish to clear out the notes for testing, add the following into your realm write closure (from Saving A Note): `realm.deleteAll();`
+If you wish to clear out the notes for testing, add the following into your realm write closure (from Saving A Note): `realm.deleteAll()`
 
-As you have found out, Realm is a great lightweight framework to add data persistence to your app.  
-You also explored how to add new notes in code. The app is starting to come together now.
+As you have found out, Realm is a great lightweight framework to add data persistence to your app. You also explored how to add new notes in code. The app is starting to come together now.
 
 In the next chapter we will be looking at the next steps to enable the capture of user input to create new notes.
