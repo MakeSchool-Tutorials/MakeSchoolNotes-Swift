@@ -216,7 +216,7 @@ Now that we are using **Realm** we need to update our table view code.
 >
 > with
 >
-    return Int(notes?.count ?? 0)
+    return notes?.count ?? 0
 >
 > So if notes isn't empty, numberOfRowsInSection will return notes.count; otherwise it will return 0.
 
