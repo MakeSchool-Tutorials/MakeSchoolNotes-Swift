@@ -28,7 +28,7 @@ Here's a brief video introduction that summarizes what you will learn throughout
 
 The goal of this tutorial is to further familiarize you with iOS development, not to confuse you with how to setup and structure a new project in Xcode. For this reason, we have provided a starter project that includes the necessary libraries and some files that have already been properly structured. This will allow us to get started quickly, and most importantly, ensure that nobody will get discouraged by errors from setting up the project incorrectly.
 
-[Download MakeSchoolNotes Template Project](https://github.com/MakeSchool-Tutorials/MakeSchoolNotes-Swift/raw/master/P5-MakeSchoolNotes-Intro/MakeSchoolNotes-Template.zip)
+[Download MakeSchoolNotes Template Project](https://github.com/MakeSchool/Make-School-Notes-Starter-Project/archive/starter_project.zip)
 
 Let's move onto the next chapter and start exploring one of the most popular components in iOS development, table views.
 
