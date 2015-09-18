@@ -14,7 +14,7 @@ Let's start by creating a new view controller subclass.
 >
 > ![image](new_controller_1.png)
 >
-> Name your class "NewNoteViewController". Make it a subclass of `UIVewController` - and you will of course be using Swift. Press *Next*.
+> Name your class "NewNoteViewController". Make it a subclass of `UIViewController` - and you will of course be using Swift. Press *Next*.
 >
 > ![image](new_controller_2.png)
 >
