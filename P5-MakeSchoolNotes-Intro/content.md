@@ -3,27 +3,22 @@ title: "Getting Started"
 slug: getting-started
 ---     
 
-That time has come to make your first *real* app, your own version of the classic *Notes* app.  After finishing the *SimpleApp* tutorial you should have an understanding
-of how to use Xcode and the fundamental building blocks of how an App is put together.  
+The time has come to make your first *real* app, your own version of **Notes**, the classic note taking app from Apple. In this tutorial, we will discuss many beginner and intermediate development topics, building on the knowledge you gained from the previous tutorials.
 
-In this tutorial we will build upon that knowledge to build a fully fledged application that will touch upon many beginner and intermediate development topics. 
+Here are the most important things you will learn throughout this tutorial:
 
-We are going to be looking at the following topics:
+- How to implement a table view
+- How to setup a navigation controller
+- How to use Interface Builder to create segues
+- How to use delegates & protocols
+- How to extend a class
+- How to store data locally with Realm
+- How to capture user input
+- How to handle keyboard input
+- How to setup constraints
+- How to implement a search bar
 
-- Introduction to Table Views
-- The Navigation Controller
-- Delegates, protocols and extensions
-- Local storage and Realm
-- Creating notes 
-- Using Segues
-- Capturing User Input
-- Keyboard Handling
-- Constraints
-- Search Bar
-
-Although we'll touch on some other topics, this is an outline of what you'll be most familiar and comfortable with by the end of this tutorial.
-
-Once you've finished, you'll have a good understanding of how to build a complete iOS utility app and be in good shape for the next tutorial, *Makestagram*!
+Although we'll discuss many topics throughout building **MakeSchoolNotes**, this is an outline of what you should be most familiar with by the end of the tutorial. Once complete, you'll have a good understanding of how to build a complete iOS utility app and be in good shape for the next tutorial, **Makestagram**!
 
 Here's a brief video introduction that summarizes what you will learn throughout this tutorial:
 
@@ -31,12 +26,11 @@ Here's a brief video introduction that summarizes what you will learn throughout
 
 #Getting Started
 
-Although we could go through setting up the project step by step, I've decided to supply a project template that has all additional libraries, provides
-starting point classes for us to quick start on the app development, and most importantly 'just works' for everyone.
+The goal of this tutorial is to further familiarize you with iOS development, not to confuse you with how to setup and structure a new project in Xcode. For this reason, we have provided a starter project that includes the necessary libraries and some files that have already been properly structured. This will allow us to get started quickly, and most importantly, ensure that nobody will get discouraged by errors from setting up the project incorrectly.
 
-[Download MakeSchoolNotes Template Project](https://github.com/MakeSchool-Tutorials/MakeSchoolNotes-Swift/raw/master/P5-MakeSchoolNotes-Intro/MakeSchoolNotes-Template.zip)
+[Download MakeSchoolNotes Template Project](https://github.com/MakeSchool/Make-School-Notes-Starter-Project/archive/starter_project.zip)
 
-Let's move onto the next chapter and start exploring a very important building block in many apps, Table Views.
+Let's move onto the next chapter and start exploring one of the most popular components in iOS development, table views.
 
 #Feedback
 
