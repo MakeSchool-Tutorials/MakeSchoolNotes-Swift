@@ -39,6 +39,7 @@ You should continue reading through the next few steps, to better understand exa
 Now let's connect the new view controller to `Main.storyboard` so users can create their own notes.
 
 > [action]
+>
 > 1. Open `Main.storyboard` and drag in a `View Controller` from the object library.  
 > 2. Assign *Custom Class* identifier to *NewNoteViewController* so it'll use the Swift file we just created above. This should also change this view controller's name to "New Note View Controller" in the *Document Outline*.
 >
