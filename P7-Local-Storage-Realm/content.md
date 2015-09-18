@@ -77,8 +77,8 @@ Time to knuckle down. It's going to take a little bit of coding to switch over t
         var note: Note? {
             didSet {
                 if let note = note, titleLabel = titleLabel, dateLabel = dateLabel {
-                    self.titleLabel.text = note.title
-                    self.dateLabel.text = NoteTableViewCell.dateFormatter.stringFromDate(note.modificationDate)
+                    titleLabel.text = note.title
+                    dateLabel.text = NoteTableViewCell.dateFormatter.stringFromDate(note.modificationDate)
                 }
             }
         }
