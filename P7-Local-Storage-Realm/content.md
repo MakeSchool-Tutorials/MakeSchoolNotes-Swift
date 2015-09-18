@@ -164,6 +164,7 @@ Great! You have a new note but nowhere to put it. Let's save it to our *Realm* l
       }
 >
 > Note: The `do`, `try`, and `catch` keywords are all used for error handling. For now, do not worry about handling errors, we will discuss it in **Makestagram**
+>
 > 1. Before you can add it to Realm you must first grab the default Realm.
 > 2. All changes to an object (addition, modification and deletion) must be done within a write transaction/closure.
 > 3. Add your new note to Realm
