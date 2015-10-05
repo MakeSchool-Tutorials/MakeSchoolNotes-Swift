@@ -17,7 +17,7 @@ that introduces the main concepts of UIKit before moving on with this tutorial:
 
 You can download the slides for this lecture [here](https://s3.amazonaws.com/mgwu-misc/SA2015/LectureSlides/UIKitIntro.pdf). 
 
-#The UITableView
+## The UITableView
 
 A table view is an instance of the `UITableView` class. It has only one column and only allows vertical scrolling. Rows are drawn using cells, which are `UITableViewCell` objects.  
 
@@ -47,7 +47,7 @@ You may have noticed if you click on the view controller (1) and then the *Ident
 
 You will come back to this shortly; however, let's first look at the other controller`s in our storyboard.
 
-#Navigation Controller
+## Navigation Controller
 
 What is a *navigation controller*?
 
@@ -57,7 +57,7 @@ For example, look at the *Photos* app. Tapping on *Albums* takes you into a view
 
 Notice that when you are *navigating* within the app, you will always have a *navigation bar* at the top. This is provided by the navigation controller and sits at the root of your app. This enables you to easily perform actions such as *Back* that help manage your stack of view controllers.
 
-#Adding a Table Data Source
+## Adding a Table Data Source
 
 For the table view to display data, we must set its `dataSource` property. The data to be displayed might be an array of information, which could be queried from a local database or pulled down from a remote source.
 
@@ -76,13 +76,13 @@ Let's tell our table view where it should expect to find its `dataSource`. We'll
 
 The `dataSource` property is a special kind of property called a protocol and has type  `UITableViewDataSource`.
 
-#What is a protocol?
+## What is a protocol?
 
 Good question. A protocol defines a blueprint of methods, properties and other requirements that suit a particular task or piece of functionality.  A protocol will not implement any code for you, it only describes what the implementation will look like: the input it will take and the output it expects from your implementation.
 
 OK, great, so how do I add this protocol support for `UITableViewDataSource`?
 
-#Extensions
+## Extensions
 
 You can extend support to your existing class using an *Extension*. Extensions can add new functionality, but they can't override existing functionality. In this case you will be extending your class to implement the additional protocol functionality required to provide the data source.
 
@@ -106,13 +106,13 @@ You can extend support to your existing class using an *Extension*. Extensions c
     }
 >
 
-##Look up documentation
+#### Look up documentation
 
 A handy hint to find out more information for any function is to *Alt-Click* to see a description from the Apple Library Documentation. Try it out now on your newly added `func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int` function.
 
 ![image](table_view_protocol_lookup.png)
 
-##What is this extension doing?
+#### What is this extension doing?
 
 Take a look at comment "//1" in the snippet above.
 
@@ -137,7 +137,7 @@ OK let's hit Run. If the Force is with you, you should now see the following:
 
 ![image](table_view_hello_world.png)
 
-#Hello World
+## Hello World
 
 Great, so you can now display *Hello World* in each of the five table rows.  The second method in your *UITableViewDataSource* extension returns the number of rows to be populated by the data source. In this case, it's been hardcoded to 5 simply for testing. Generally it will be the count of an array of objects.
 
@@ -145,7 +145,7 @@ If you click on a row, you will notice it will be *highlighted*; however, it wil
 
 Before we tackle this, let's decide what information our table view cell should display.
 
-#Custom Table View Cell
+## Custom Table View Cell
 
 Now is a good time to think about our application design. So, we have the ability to display a list of information, but what information should we store? A good starting point would be:
 
