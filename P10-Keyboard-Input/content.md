@@ -3,7 +3,7 @@ title: "Keyboard Input"
 slug: keyboard-input
 ---
 
-##Keyboard Handling
+## Keyboard Handling
 
 In our app, keyboard handling for the most part *just works*. However, the user experience is not optimal.
 
@@ -36,7 +36,7 @@ Now modify `func viewWillAppear` as follows:
 
 Time to set our edit flag status based upon the note content.
 
-#First Responder
+## First Responder
 
 > [action]
 > Modify `func displayNote` as follows:
@@ -58,7 +58,7 @@ Time to set our edit flag status based upon the note content.
 
 OK! We still need to add a delegate for our textField so it knows if it should move on to the next field.
 
-#Adding UITextFieldDelegate
+## Adding UITextFieldDelegate
 
 > [action]
 > Add the following extension code:
@@ -84,14 +84,14 @@ we want to move the user input focus onto editing the `contentTextView`. This ma
 
 Great! We can finally allow the user to manage their note content.
 
-#Hold Up
+## Hold Up
 
 Hmm... did you see that the bottom toolbar is no longer visible when we're editing a note?
 The keyboard appears over the top and our toolbar is no longer visible. Well, in this case it doesn't make a huge difference to the user experience. However, it's good to know how you could change this, as there will be times when you do want to have this functionality available.
 
 Let's set the scene for some constraint magic.
 
-#Constraint Connection
+## Constraint Connection
 
 > [action]
 > Add the following variables to your *NoteDisplayViewController*:
@@ -132,7 +132,7 @@ Next, we need to ensure we are informed of the keyboard so when it pops up we ca
 
 The **MakeSchool ConvenienceKit** helps us out here by wrapping things up a little bit so handling these notifications is super simple.  
 
-#Keyboard Notifications
+## Keyboard Notifications
 
 >[action]
 >Add the following code into your `func viewWillAppear`:
@@ -160,7 +160,7 @@ on the keyboard notification.  We use `-height` as we want to push the toolbar u
 
 Run your app. It's looking much nicer!
 
-#The Trash Can
+## The Trash Can
 
 However, one last niggle: the trash can is still enabled when we're creating a new note. This doesn't make a whole lot of sense - when writing a new note, we'll either cancel (so the note won't be created at all) or click save. The trash can has nothing to do with either of those actions. Let's disable it.  
 
