@@ -5,7 +5,7 @@ slug: note-display-controller
 
 Time to move on to displaying a note in its own controller. We will be creating a reusable view controller that will be used to display our note information but can also be used to manipulate notes using keyboard input.
 
-#Adding a Container View
+## Adding a Container View
 
 Let's add a new container view to our *New Note View Controller*. This container will create a new view controller that will be displayed within the *New Note View Controller*.
 
@@ -22,7 +22,7 @@ When the container was added, it created a new embedded segue under *New Note Vi
 > Set this segue identifier to: 'ShowNewNote' (We will be using this later on).
 > ![image](embed_segue_1.png) ![image](embed_segue_2.png)
 
-#Adding The Note Display Controller
+## Adding The Note Display Controller
 
 > [action]
 > As per the previous chapter, create a new view controller subclass entitled *NoteDisplayViewController* and set your newly added view controller to use this Custom Class. Definitely look back at the step-by-step tutorial if you get stuck!
@@ -85,11 +85,11 @@ Time to enable the table row selection to trigger the segue to the *NoteDisplayV
 
 Ah, those handy segue identifiers...
 
-#Bonus
+## Bonus
 
 You may have noticed we are now performing a *Delete* operation in two separate places. This seems like a good candidate to refactor and ensure we have a unified function that perhaps takes a note and deletes it, this can then replace both chunks of *Delete* code.
 
-#Displaying Note Information
+## Displaying Note Information
 
 Time to create an interface to present our note information and move us toward being able to edit this information.
 
@@ -111,7 +111,7 @@ Remember, if things are not looking quite right when you run on device, you can 
 >[action]
 > Select from the main menu *Editor\Resolve Auto Layout Issues\(All Views In View Controller) Reset to Suggested Constraints*.
 
-#Connecting the Note Outlets
+## Connecting the Note Outlets
 
 Time to add some outlets.
 
@@ -155,7 +155,7 @@ Remember the `didSet` functionality we added during the 'Local Storage with Real
 >
 > That should do the trick. This ensures all variables are not nil and then sets the objects with the Note data.  
 
-#Sharing Note Data
+## Sharing Note Data
 
 How can we send the note information across to this controller?
 
@@ -177,7 +177,7 @@ This gives us access to the `note` variable in this controller and finally we ca
 
 Now what will happen is the note will get set and `didSet` will be called. However, the display objects have not yet been created and hence will be nil, so no information can be presented - yet.
 
-#Calling displayNote()
+## Calling displayNote()
 
 Now we'll go back to our *Note Display View Controller* and ensure we call `displayNote` once the view is ready for action, inside of `viewWillAppear`.
 
@@ -217,7 +217,7 @@ Now we'll go back to our *Note Display View Controller* and ensure we call `disp
 	}
 >
 
-#To Load or Appear?
+## To Load or Appear?
 
 Notice we are calling `displayNote` in `viewWillAppear` rather than the previously supplied `viewDidLoad`.  What is the difference, you may ask yourself?
 
@@ -255,11 +255,11 @@ Try and create a new Note. You can edit the title and content, but it won't save
 
 ![image](simulator_dashboard.png) ![image](simulator_view.png) ![image](simulator_add.png)
 
-#Enabling Keyboard Input
+## Enabling Keyboard Input
 
 In the simulator, by default it will not show the iOS keyboard - you can simply type into the fields with your physical keyboard. This tends to make input easier when testing. However, I like to disable the physical keyboard so it will always default to the software keyboard so I can get more accurate simulation of what users will see. From the *iOS Simulator* menu, go to: *Hardware/Keyboard/Connect Hardware Keyboard* to disable the hardware keyboard.
 
-#Modifying Notes
+## Modifying Notes
 
 Let's quickly add support for modification of our notes.
 
