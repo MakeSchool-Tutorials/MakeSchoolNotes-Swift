@@ -3,7 +3,7 @@ title: "Adding Polish"
 slug: adding-polish
 ---
 
-##Adding a Dash of Color
+## Adding a Dash of Color
 It's great to put your own stamp on your app. An easy way to start is with simple color changes. You may have noticed a `StyleConstants.swift` file that we never once discussed.  
 
 Now is the time to finally have a look! *Drum Roll, please!*
@@ -38,6 +38,6 @@ be whatever RGB color value you like. A nice mauve, perhaps?
 
 However, there is no need to feel blue.  
 
-#Explore
+## Explore
 
 Now is the time to explore the app. Find places to style or play with Layouts and/or anything you wish.
