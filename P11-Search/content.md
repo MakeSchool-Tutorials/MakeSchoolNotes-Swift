@@ -3,7 +3,7 @@ title: "Search"
 slug: search
 ---
 
-##UISearchBar
+## UISearchBar
 
 Let's take a look at adding a search bar to our *Dashboard Scene*.
 
@@ -68,7 +68,7 @@ Let's add some search functionality. Realm can use *NSPredicate* to filter its r
 Here's what this does:
 *IF* the *TEXT* entered in the search bar is found in either the *TITLE* or the *CONTENT* of a note, then include that matching note as part of the result set.
 
-#Search Delegate
+## Search Delegate
 Now we need our app to know when we are modifying our search bar. This is where the *UISearchBarDelegate* comes into play.
 
 > [action]
@@ -93,7 +93,7 @@ Now we need our app to know when we are modifying our search bar. This is where 
 
 Run your app. Pretty nice, eh? Although the search works well, the user experience can always be better.  Let's improve it:
 
-#The State Machine
+## The State Machine
 
 When the *Dashboard* is presented we want to revert to `.DefaultMode`.
 
@@ -154,7 +154,7 @@ Run the App
 
 ![image](simulator_search.png)
 
-#Find the bug!
+## Find the bug!
 
 Looks great! But if you play around a bit you may discover a pretty serious UX bug.
 
