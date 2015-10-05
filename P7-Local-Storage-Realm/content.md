@@ -7,7 +7,7 @@ We have taken the first steps of building a Notes app together. You can now crea
 
 In most apps, you will want a way to archive your user data. Having a list is great, but the user is going to be pretty unimpressed if your app loses all their precious notes after the app is restarted.  That's a 1 Star review waiting to happen.
 
-#Persistence
+## Persistence
 
 In this context, persistence is the ability to save data so that when you close an app and reopen it, the data is still there.
 
@@ -22,7 +22,7 @@ Thankfully, this is an age old problem with many different solutions. Apple offe
 
 Let's look at a lightweight alternative called Realm.
 
-#Realm
+## Realm
 
 What is [Realm](https://realm.io/)?
 
@@ -48,14 +48,14 @@ So we've dynamically imported the Realm library so we have access to this functi
     dynamic var modificationDate = NSDate()
 >
 
-#Dynamic Attribute
+## Dynamic Attribute
 
 What is all this **Dynamic** business?
 This attribute informs the Swift compiler that storage and implementation of a property will be provided at runtime.
 
 You will be pleased to know that's all it takes to implement your *Note* data model. Nice!
 
-#Displaying Realm Object Data
+## Displaying Realm Object Data
 
 Time to knuckle down. It's going to take a little bit of coding to switch over to Realm and add a test note in code.
 
@@ -86,20 +86,20 @@ Time to knuckle down. It's going to take a little bit of coding to switch over t
     }
 >
 
-#Code Optimization
+## Code Optimization
 
 Wow, what is with `static var dateFormatter`? Glad you asked! This is a code optimization for a `NSDateFormatter` object. Some objects are notoriously slow to initialize, so you want to be able to reuse them instead of creating a new one every time.
 When I say 'slow' this is a relative term. With one object, you might not even notice the difference. However, if you are processing hundreds of objects, the initialization time adds up and if it only takes a few lines of code to optimize, then it's code that's worthwhile.
 
 I wouldn't expect you at this stage to start worrying about optimizations. Focus on your application experience first.  However, it's good to know there is always a little extra juice that can be squeezed out of an app. This comes with experience.
 
-#didSet
+## didSet
 
 So you've added a variable to store the *Note* object, what is didSet? Well it's a rather handy bit of functionality that will be called whenever this `note` object is modified.
 
 For example, if the note gets edited anywhere, this function will be called that will update the Outlet labels and therefore update the *NoteCell* in our list.
 
-#if - let
+## if - let
 
 Remember back to Optionals and how sometimes a variable can be empty - represented by `nil`? If we forget about this and go about coding normally, our application is likely to crash and burn, not exactly a great experience for your users. If - let allows us to ensure that the variable does hold a value, and continue to code as usual.
 
@@ -107,7 +107,7 @@ Remember back to Optionals and how sometimes a variable can be empty - represent
 
 In our example, we make sure that `note`, `titleLabel`, and `dateLabel` are properly set before we execute our code involving them.
 
-#Notes Collection
+## Notes Collection
 
 Before you create a new note, you need to add a notes variable to our *NotesViewController* so we can populate the table view.
 
@@ -131,7 +131,7 @@ Add the following to the top of `NotesViewController.swift`:
 
 Notice the use of *didSet* to refresh the tableView when Notes results are updated - very handy. Let's add some notes.
 
-#Creating A New Note
+## Creating A New Note
 
 Our *NoteCell* can now display information from a *Note* object. Let's create one to see this in action.  
 
@@ -145,7 +145,7 @@ Our *NoteCell* can now display information from a *Note* object. Let's create on
 
 Great! You have a new note but nowhere to put it. Let's save it to our *Realm* local storage with a simple 3 step process.
 
-#Saving A Note
+## Saving A Note
 
 > [action]
 > Add the following code right after the previous code.
@@ -171,7 +171,7 @@ Great! You have a new note but nowhere to put it. Let's save it to our *Realm* l
 
 Realm makes this whole process nice and easy.
 
-#Loading All Notes
+## Loading All Notes
 
 We now need to update our `notes` variable to contain all of the same data as our **Realm** database.
 
@@ -192,7 +192,7 @@ We now need to update our `notes` variable to contain all of the same data as ou
 
 Very close now.....
 
-#Update protocol functions
+## Update protocol functions
 
 Now that we are using **Realm** we need to update our table view code.
 
