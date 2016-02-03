@@ -18,7 +18,7 @@ In this context, persistence is the ability to save data so that when you close 
 
 Hold up... This sounds like it could be painful...  
 
-Thankfully, this is an age old problem with many different solutions. Apple offers you [Core Data](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/Articles/cdTechnologyOverview.html) as a complete framework for object graph management. It can be a great solution, but it is also a lot of work. :)
+Thankfully, this is an age old problem with many different solutions. Apple offers you [Core Data](https://developer.apple.com/library/tvos/documentation/Cocoa/Conceptual/CoreData/index.html) as a complete framework for object graph management. It can be a great solution, but it is also a lot of work. :)
 
 Let's look at a lightweight alternative called Realm.
 
